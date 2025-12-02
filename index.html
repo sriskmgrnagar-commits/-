@@ -596,41 +596,92 @@
     </div>
   </main>
 
-<footer>
-  <div class="wrap">
-    <div>
-      <strong>அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</strong>
+<!-- Quick Stats Section -->
+<div class="stats-wrapper" style="max-width:900px;margin:22px auto">
+
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+
+    <!-- Quick Stats -->
+    <aside style="flex:1;min-width:280px">
+      <div class="card fade">
+        <h3 style="margin:0 0 6px">Quick Stats</h3>
+
+        <div class="small">Target: <strong id="qTarget">₹1,200,000</strong></div>
+        <div class="small">Collected: <strong id="qCollected">₹0</strong></div>
+        <div class="small">Outgoing: <strong id="qOutgoing">₹0</strong></div>
+        <div class="small">Remaining: <strong id="qRemaining">₹1,200,000</strong></div>
+
+        <div style="height:8px"></div>
+
+        <div class="progress" aria-hidden="true">
+          <i id="progressFill2" style="width:0%"></i>
+        </div>
+      </div>
+
+      <!-- Category Card -->
+      <div class="card fade" style="margin-top:12px">
+        <h3 style="margin:0 0 6px">By Category (Outflows)</h3>
+        <div class="small">Cement: <strong id="catCement">₹0</strong></div>
+        <div class="small">Stone: <strong id="catStone">₹0</strong></div>
+        <div class="small">Labour: <strong id="catLabour">₹0</strong></div>
+        <div class="small">Other: <strong id="catOther">₹0</strong></div>
+      </div>
+    </aside>
+
+
+    <!-- Donation Table -->
+    <div style="flex:2;min-width:320px">
+      <div class="card fade">
+
+        <h3 style="margin:0 0 10px">நன்கொடை வழங்கியவர்களின் பெயர் பட்டியல்</h3>
+
+        <p style="font-size:14px;color:#ddd;margin:0 0 12px;line-height:1.4">
+          உங்கள் குடும்பம் வழங்கிய கைப்புண்ணியம்  
+          ஒரு தலைமுறைக்கு வழிகாட்டும் ஒளியாக இருக்கும்.  
+          அருளின் விதை இன்று விதைக்கப்பட்டது.
+        </p>
+
+        <table id="donTable" style="width:100%;border-collapse:collapse">
+          <thead>
+            <tr style="background:#101a31;color:#fff">
+              <th style="padding:8px;border-bottom:1px solid #222">பெயர்</th>
+              <th style="padding:8px;border-bottom:1px solid #222">முகவரி</th>
+              <th style="padding:8px;border-bottom:1px solid #222">தொகை</th>
+              <th style="padding:8px;border-bottom:1px solid #222">செயலாளர்</th>
+              <th style="padding:8px;border-bottom:1px solid #222">நேரம்</th>
+            </tr>
+          </thead>
+
+          <tbody id="donTbody">
+            <tr>
+              <td colspan="5" class="small" style="text-align:center;padding:10px;color:#aaa">
+                இன்னும் தானங்கள் இல்லை
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer style="background:#0b1220;padding:20px 0;margin-top:30px">
+  <div class="wrap" style="max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;color:#fff">
+    
+    <div style="margin-bottom:10px">
+      <strong style="font-size:16px">அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</strong>
       <div style="font-size:13px;color:#e8e8e8;margin-top:6px">© All rights reserved</div>
     </div>
+
     <div style="font-size:13px;color:#e8e8e8">
       Designed responsive for TamilRSGroup
     </div>
   </div>
 </footer>
-
-<!-- Quick Stats Section -->
-<aside style="max-width:340px;margin:22px auto">
-  <div class="card fade">
-    <h3 style="margin:0 0 6px">Quick Stats</h3>
-    <div class="small">Target: <strong id="qTarget">₹1,200,000</strong></div>
-    <div class="small">Collected: <strong id="qCollected">₹0</strong></div>
-    <div class="small">Outgoing: <strong id="qOutgoing">₹0</strong></div>
-    <div class="small">Remaining: <strong id="qRemaining">₹1,200,000</strong></div>
-
-    <div style="height:8px"></div>
-    <div class="progress" aria-hidden="true">
-      <i id="progressFill2" style="width:0%"></i>
-    </div>
-  </div>
-
-  <div class="card fade" style="margin-top:12px">
-    <h3 style="margin:0 0 6px">By Category (Outflows)</h3>
-    <div class="small">Cement: <strong id="catCement">₹0</strong></div>
-    <div class="small">Stone: <strong id="catStone">₹0</strong></div>
-    <div class="small">Labour: <strong id="catLabour">₹0</strong></div>
-    <div class="small">Other: <strong id="catOther">₹0</strong></div>
-  </div>
-</aside>
 
 
   <script>
@@ -748,6 +799,7 @@
   </script>
 </body>
 </html>
+
 
 
 
