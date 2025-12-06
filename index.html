@@ -446,13 +446,16 @@
       margin: 20px auto;
       padding: 0 18px;
     }
+
+    /* hero layout */
     .hero {
       display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
       gap: 20px;
       align-items: start;
       width: 100%;
     }
+
     .card {
       background: linear-gradient(145deg, rgba(15,23,42,0.92), rgba(15,23,42,0.98));
       border-radius: var(--radius);
@@ -674,6 +677,35 @@
       100% { transform: translate3d(0,-18px,0) rotate(4deg); opacity: 1; }
     }
 
+    /* ==== Step-by-step blocks (NEW) ==== */
+    .step-block {
+      max-width: var(--container);
+      margin: 18px auto;
+      padding: 0 0; /* main already has padding */
+    }
+
+    .step-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #bfdbfe;
+      margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+    }
+
+    .step-label::before {
+      content: "●";
+      font-size: 8px;
+      color: #60a5fa;
+    }
+
+    .step-block .wrap {
+      align-items: stretch;
+    }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .marquee.animated,
@@ -698,13 +730,18 @@
         height: 210px;
       }
       .hero {
-        grid-template-columns: 1fr 300px;
+        grid-template-columns: 1fr; /* main card + aside கீழே கீழே */
       }
       .float-orbs {
         display: none; /* mobileல் icons இல்லா view */
       }
     }
+
     @media (max-width: 600px) {
+      main {
+        padding: 0 10px;
+      }
+
       .marq-item {
         min-width: 48vw;
         width: 48vw;
@@ -735,7 +772,30 @@
       .rituals {
         grid-template-columns: 1fr;
       }
+
+      .step-block {
+        margin: 14px auto;
+      }
+      .step-label {
+        font-size: 12px;
+      }
+
+      /* miracles + அறிவிப்புகள் flex wrapper – vertical */
+      .wrap.wrap-flex {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .wrap.wrap-flex > aside {
+        width: 100% !important;
+        margin-left: 0 !important;
+      }
+
+      /* stats block full width */
+      .stats-wrapper {
+        margin: 14px auto !important;
+      }
     }
+
     @media (min-width: 601px) and (max-width: 980px) {
       .rituals {
         grid-template-columns: repeat(2, 1fr);
@@ -760,14 +820,6 @@
     <div class="god-bg-side god-bg-side-left"></div>
     <div class="god-bg-side god-bg-side-right"></div>
   </div>
-
-  <!-- (Optional) floating icons – uncomment if you want them
-  <div class="float-orbs">
-    <div class="icon-orb icon-orb-3"><span>3D</span></div>
-    <div class="icon-orb icon-orb-6"><span>6D</span></div>
-    <div class="icon-orb icon-orb-12"><span>12D</span></div>
-  </div>
-  -->
 
   <!-- Top – Marquee -->
   <div class="marquee-top-wrap">
@@ -829,57 +881,60 @@
       <a href="#story">வரலாறு</a>
       <a href="#miracles">நன்கொடை விவரம்</a>
       <a href="#rituals"> திருப்பணி வருவாய் / செலவு</a>
-      <a href="#rituals"> Admin / Auditors Teams</a>
+      <a href="#donTable"> Admin / Auditors Teams</a>
     </div>
   </header>
 
   <main>
-    <div class="wrap">
-      <section class="hero">
-        <div class="card">
-          <h2 style="margin-top:4px">அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</h2>
-          <p class="lead">
-            ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமியின் உருவான கதை — கிராமம் மீண்டும் வளமுற்றதும்,
-            நோய்கள் நீங்கியதும், மக்கள் சிறப்பு வழிபாடுகளை செய்தும் நிகழ்ந்த சம்பவங்கள்.
-          </p>
-
-          <!-- 🎧 Story Audio Player -->
-          <div class="story-audio-box">
-            <p class="story-audio-title">
-              🎧 அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி வரலாறு (ஆடியோ)
+    <!-- STEP 1: வரலாறு + ஆடியோ + முக்கிய அம்சங்கள் -->
+    <section class="step-block" id="step1">
+      <div class="step-label">படி 1 • ஸ்தல வரலாறு & ஆடியோ</div>
+      <div class="wrap">
+        <section class="hero">
+          <div class="card">
+            <h2 style="margin-top:4px">அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</h2>
+            <p class="lead">
+              ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமியின் உருவான கதை — கிராமம் மீண்டும் வளமுற்றதும்,
+              நோய்கள் நீங்கியதும், மக்கள் சிறப்பு வழிபாடுகளை செய்தும் நிகழ்ந்த சம்பவங்கள்.
             </p>
-            <article class="story card" id="story" style="margin-top:8px;">
-              <div class="marq-item god-tilt" style="max-width:260px;height:180px;margin-bottom:10px;">
-                <img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg" alt="">
-                <div class="marq-caption"></div>
-              </div>
 
-              <div class="story-player">
-                <button class="story-play-btn" id="playBtnStory" aria-label="Play">
-                  <svg class="story-play-icon" id="playIconStory" viewBox="0 0 24 24">
-                    <polygon points="7,5 19,12 7,19"></polygon>
-                  </svg>
-                </button>
+            <!-- 🎧 Story Audio Player -->
+            <div class="story-audio-box">
+              <p class="story-audio-title">
+                🎧 அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி வரலாறு (ஆடியோ)
+              </p>
+              <article class="story card" id="story" style="margin-top:8px;">
+                <div class="marq-item god-tilt" style="max-width:260px;height:180px;margin-bottom:10px;">
+                  <img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg" alt="">
+                  <div class="marq-caption"></div>
+                </div>
 
-                <div class="story-progress-wrap">
-                  <div class="story-progress-bar" id="progressBarStory">
-                    <div class="story-progress-fill" id="progressFillStory"></div>
-                  </div>
-                  <div class="story-time-row">
-                    <span id="currentTimeStory">00:00</span>
-                    <span id="durationStory">00:00</span>
+                <div class="story-player">
+                  <button class="story-play-btn" id="playBtnStory" aria-label="Play">
+                    <svg class="story-play-icon" id="playIconStory" viewBox="0 0 24 24">
+                      <polygon points="7,5 19,12 7,19"></polygon>
+                    </svg>
+                  </button>
+
+                  <div class="story-progress-wrap">
+                    <div class="story-progress-bar" id="progressBarStory">
+                      <div class="story-progress-fill" id="progressFillStory"></div>
+                    </div>
+                    <div class="story-time-row">
+                      <span id="currentTimeStory">00:00</span>
+                      <span id="durationStory">00:00</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <audio id="audioStory">
-                <source src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/samy.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-              </audio>
-            </article>
-          </div>
+                <audio id="audioStory">
+                  <source src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/samy.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </article>
+            </div>
 
-          <article class="story">
+            <article class="story">
 அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி உருவான கதை
 
 மக்கள் அனைவரும் வறட்சியால் தவித்துக் கொண்டிருந்த காலகட்டம் அது. நம் ஊரின் ஒருவருக்கு பசியின் கொடுமையால் என்ன செய்வது என தெரியாமல், அருகிலுள்ள வேறு ஒரு ஊருக்கு சென்று மாட்டை திருட வேண்டும் என எண்ணம் தோன்றியது. ஆனால் அங்கே சென்றபோது அவர் பிடிபட்டார். அவரை மரத்தில் கட்டி வைத்து கடுமையாக அடித்தனர். அந்த மனவேதனையிலும் ஏக்கத்திலும் அவர் காடு வழியே தனியாக நடந்துச் சென்றார்.
@@ -903,21 +958,21 @@
 
 குறிப்பு:
 இந்த சாமிக்கு வேண்டுதல் வைத்து எதை வேண்டினாலும், அது நிறைவேற்றி தரும் என்பதே மக்கள் நம்பிக்கை.
-          </article>
+            </article>
 
-          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn" href="#miracles">அதிசயங்களைப் பார்க்க</a>
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+              <a class="btn" href="#miracles">அதிசயங்களைப் பார்க்க</a>
+            </div>
           </div>
-        </div>
 
-        <aside class="card side-cta">
-          <h3>சாமியின் முக்கிய அம்சங்கள்</h3>
-          <div class="timeline">
-            <div class="item"><strong>மழை தரும் சக்தி</strong> — சாமி அமர்ந்த நாளே கனமழை பெய்தது.</div>
-            <div class="item"><strong>நோய்களை நீக்கும்</strong> — ஆடு மாடுகள் மற்றும் அம்மை நோய் குணம்.</div>
-            <div class="item"><strong>வாழ்க்கை வளம்</strong> — விவசாயம் செழித்தது; மக்கள் நலமடைந்தனர்.</div>
-          </div>
-          <article class="story card">
+          <aside class="card side-cta">
+            <h3>சாமியின் முக்கிய அம்சங்கள்</h3>
+            <div class="timeline">
+              <div class="item"><strong>மழை தரும் சக்தி</strong> — சாமி அமர்ந்த நாளே கனமழை பெய்தது.</div>
+              <div class="item"><strong>நோய்களை நீக்கும்</strong> — ஆடு மாடுகள் மற்றும் அம்மை நோய் குணம்.</div>
+              <div class="item"><strong>வாழ்க்கை வளம்</strong> — விவசாயம் செழித்தது; மக்கள் நலமடைந்தனர்.</div>
+            </div>
+            <article class="story card">
 பழைய நினைவுகள்…
 அவை சாதாரணக் கதைகள் இல்லை.
 அவை ஒரு ஊரின் உயிர்,
@@ -965,397 +1020,414 @@
 அதை பாதுகாப்பது
 நம்  கடமை.
 அதை பாதுகாப்பது—நம் வேர் உயிரோடு இருக்கிறது என்பதற்கு அறிகுறி.
-          </article>
-        </aside>
-      </section>
+            </article>
+          </aside>
+        </section>
+      </div>
+    </section>
 
-      <!-- 3333 – Donation Section -->
-      <section class="blessing-section" style="font-family:'Noto Sans Tamil','Arial',sans-serif; padding:20px; border-radius:12px; line-height:1.6; margin-top:22px; width:100%;">
+    <!-- STEP 2: நன்கொடை / 3333 ஆன்மிகம் -->
+    <section class="step-block" id="step2">
+      <div class="step-label">படி 2 • 3333 ஆன்மிக நன்கொடை விளக்கம்</div>
+      <div class="wrap">
+        <section class="blessing-section" style="font-family:'Noto Sans Tamil','Arial',sans-serif; padding:20px; border-radius:12px; line-height:1.6; margin-top:22px; width:100%;">
 
-        <h2 style="color:#bfdbfe; text-align:center; margin-top:0; font-size:22px;">
-          3333 — ஆன்மிக ரீதியில் சிறப்பு எண்ணியல் ✨
-        </h2>
+          <h2 style="color:#bfdbfe; text-align:center; margin-top:0; font-size:22px;">
+            3333 — ஆன்மிக ரீதியில் சிறப்பு எண்ணியல் ✨
+          </h2>
 
-        <p style="font-size:16px; color:#e5e7eb; text-align:center; margin-bottom:14px;">
-          இறை அருள் • நல்ல மாற்றம் • வேண்டுதல் நிறைவு  
-          என்பவற்றை குறிக்கும் புனித எண்ணாக கருதப்படுகிறது ✨
-        </p>
+          <p style="font-size:16px; color:#e5e7eb; text-align:center; margin-bottom:14px;">
+            இறை அருள் • நல்ல மாற்றம் • வேண்டுதல் நிறைவு  
+            என்பவற்றை குறிக்கும் புனித எண்ணாக கருதப்படுகிறது ✨
+          </p>
 
-        <p style="font-size:15px; color:#e5e7eb;">
-          இந்த புண்ணிய நன்கொடையில் பங்கேற்பதன் மூலம்:
-        </p>
+          <p style="font-size:15px; color:#e5e7eb;">
+            இந்த புண்ணிய நன்கொடையில் பங்கேற்பதன் மூலம்:
+          </p>
 
-        <ul style="padding-left:18px; font-size:15px; color:#e5e7eb; margin-bottom:20px;">
-          <li>🔹 உங்கள் குடும்பத்தினருக்கு திருமூர்த்திகளின் அருள் எப்போதும் நிலை நிற்கும்</li>
-          <li>🔹 வாழ்க்கையில் நல்ல மாற்றங்கள், மேன்மையான முன்னேற்றங்கள் உருவாகும்</li>
-          <li>🔹 நீண்டநாள் விருப்பங்கள், கனவுகள் நனவாக தொடங்கும்</li>
-          <li>🔹 கொடுக்கும் கைகளுக்கு அறிவு, ஆரோக்கியம், செல்வம், வளம் மேலும் பெருகும்</li>
-        </ul>
+          <ul style="padding-left:18px; font-size:15px; color:#e5e7eb; margin-bottom:20px;">
+            <li>🔹 உங்கள் குடும்பத்தினருக்கு திருமூர்த்திகளின் அருள் எப்போதும் நிலை நிற்கும்</li>
+            <li>🔹 வாழ்க்கையில் நல்ல மாற்றங்கள், மேன்மையான முன்னேற்றங்கள் உருவாகும்</li>
+            <li>🔹 நீண்டநாள் விருப்பங்கள், கனவுகள் நனவாக தொடங்கும்</li>
+            <li>🔹 கொடுக்கும் கைகளுக்கு அறிவு, ஆரோக்கியம், செல்வம், வளம் மேலும் பெருகும்</li>
+          </ul>
 
-        <style>
-          table.donation-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(15,23,42,0.95);
-            border-radius: 12px;
-            overflow: hidden;
-          }
-          .donation-table th {
-            background: linear-gradient(90deg, #1d4ed8, #4f46e5);
-            color: #ffffff;
-            padding: 12px;
-            font-size: 17px;
-            text-align: center;
-          }
-          .donation-table td {
-            border: 1px solid rgba(55, 65, 81, 0.8);
-            padding: 10px;
-            font-size: 15px;
-            text-align: center;
-            color: #e5e7eb;
-          }
-          .donation-table tbody tr:nth-child(even) {
-            background: #020617;
-          }
-          .donation-table tbody tr:nth-child(odd) {
-            background: #020617f7;
-          }
-          .donation-table tbody tr:hover {
-            background: rgba(30, 64, 175, 0.55);
-            transition: 0.2s;
-          }
-
-          /* --- New: Responsive donation wrapper --- */
-          .donation-wrapper {
-            width: 100%;
-          }
-          .donation-scroll {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-          }
-          .donation-cards {
-            display: none; /* desktop-ல் காட்ட வேண்டாம் */
-          }
-          .donation-card {
-            background: rgba(15,23,42,0.95);
-            border-radius: 10px;
-            padding: 10px 12px;
-            border: 1px solid rgba(55,65,81,0.9);
-            margin-bottom: 8px;
-          }
-          .donation-card-amt {
-            font-weight: 700;
-            font-size: 16px;
-            color: #fbbf24;
-            margin-bottom: 4px;
-          }
-          .donation-card-num {
-            font-size: 14px;
-            color: #bfdbfe;
-            margin-bottom: 3px;
-          }
-          .donation-card-benefit {
-            font-size: 13px;
-            color: #e5e7eb;
-            line-height: 1.4;
-          }
-
-          @media (max-width:600px){
-            .donation-table th,.donation-table td{
-              padding:7px;
-              font-size:13px;
+          <style>
+            table.donation-table {
+              width: 100%;
+              border-collapse: collapse;
+              background: rgba(15,23,42,0.95);
+              border-radius: 12px;
+              overflow: hidden;
             }
-            /* Mobile: table hide, cards show */
+            .donation-table th {
+              background: linear-gradient(90deg, #1d4ed8, #4f46e5);
+              color: #ffffff;
+              padding: 12px;
+              font-size: 17px;
+              text-align: center;
+            }
+            .donation-table td {
+              border: 1px solid rgba(55, 65, 81, 0.8);
+              padding: 10px;
+              font-size: 15px;
+              text-align: center;
+              color: #e5e7eb;
+            }
+            .donation-table tbody tr:nth-child(even) {
+              background: #020617;
+            }
+            .donation-table tbody tr:nth-child(odd) {
+              background: #020617f7;
+            }
+            .donation-table tbody tr:hover {
+              background: rgba(30, 64, 175, 0.55);
+              transition: 0.2s;
+            }
+
+            /* --- New: Responsive donation wrapper --- */
+            .donation-wrapper {
+              width: 100%;
+            }
             .donation-scroll {
-              display: none;
+              width: 100%;
+              overflow-x: auto;
+              -webkit-overflow-scrolling: touch;
             }
             .donation-cards {
-              display: block;
-              margin-top: 10px;
+              display: none; /* desktop-ல் காட்ட வேண்டாம் */
             }
-          }
-        </style>
+            .donation-card {
+              background: rgba(15,23,42,0.95);
+              border-radius: 10px;
+              padding: 10px 12px;
+              border: 1px solid rgba(55,65,81,0.9);
+              margin-bottom: 8px;
+            }
+            .donation-card-amt {
+              font-weight: 700;
+              font-size: 16px;
+              color: #fbbf24;
+              margin-bottom: 4px;
+            }
+            .donation-card-num {
+              font-size: 14px;
+              color: #bfdbfe;
+              margin-bottom: 3px;
+            }
+            .donation-card-benefit {
+              font-size: 13px;
+              color: #e5e7eb;
+              line-height: 1.4;
+            }
 
-        <div class="donation-wrapper">
+            @media (max-width:600px){
+              .donation-table th,.donation-table td{
+                padding:7px;
+                font-size:13px;
+              }
+              /* Mobile: table hide, cards show */
+              .donation-scroll {
+                display: none;
+              }
+              .donation-cards {
+                display: block;
+                margin-top: 10px;
+              }
+            }
+          </style>
 
-          <!-- Desktop / Laptop view – normal table -->
-          <div class="donation-scroll">
-            <table class="donation-table">
-              <thead>
-                <tr>
-                  <th>நன்கொடை</th>
-                  <th>எண் சக்தி</th>
-                  <th>ஆன்மிக பயன்</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>₹ 108</td><td>இறைநாம சக்தி</td><td>முதற்கட்ட பாக்கியம் கிடைக்கும்</td></tr>
-                <tr><td>₹ 501</td><td>சுப தொடக்கம்</td><td>தடைகள் நீங்கும்</td></tr>
-                <tr><td>₹ 786</td><td>பாதுகாப்பு சக்தி</td><td>கஷ்டம் அகலும்</td></tr>
-                <tr><td>₹ 1,111</td><td>தெய்வ அருள்</td><td>புதிய முயற்சி வெற்றி</td></tr>
-                <tr><td>₹ 1,234</td><td>முன்னேற்ற வளர்ச்சி</td><td>எதிர்காலம் உறுதி</td></tr>
-                <tr><td>₹ 2,222</td><td>அமைதி + சமநிலை</td><td>குடும்ப நலன்</td></tr>
-                <tr><td>₹ 3,333</td><td>மாற்றம் + ஆசீர்வாதம்</td><td>வேண்டுதல் நிறைவு</td></tr>
-                <tr><td>₹ 4,444</td><td>பாதுகாப்பின் கட்டிடம்</td><td>நிலையான வருமானம்</td></tr>
-                <tr><td>₹ 5,555</td><td>பஞ்சபூத பாக்கியம்</td><td>ஆரோக்கிய வளம்</td></tr>
-                <tr><td>₹ 6,666</td><td>செல்வ எழுச்சி</td><td>வருமான உயர்வு</td></tr>
-                <tr><td>₹ 7,777</td><td>அதிர்ஷ்ட உச்சம்</td><td>லட்சுமி அருள்</td></tr>
-                <tr><td>₹ 8,888</td><td>அஷ்ட லட்சுமி</td><td>பண வளர்ச்சி</td></tr>
-                <tr><td>₹ 9,999</td><td>முழு நன்மை</td><td>குடும்ப உயர்வு</td></tr>
-                <tr><td>₹ 10,008</td><td>பரம்பரை புண்ணியம்</td><td>தெய்வ காப்பு</td></tr>
-                <tr><td>₹ 12,345</td><td>அபரிமித முன்னேற்றம்</td><td>நிலையான வளர்ச்சி</td></tr>
-                <tr><td>₹ 15,555</td><td>விசேஷ அருள்</td><td>தொழில் விரிவு</td></tr>
-                <tr><td>₹ 21,000</td><td>மகா புண்ணியம்</td><td>குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</td></tr>
-                <tr><td>₹ 25,000</td><td>கோவில் மேம்பாடு</td><td>பெயர் நிலைத்து நிற்கும்</td></tr>
-                <tr><td>₹ 51,000</td><td>மஹா திருவிளையாடல்</td><td>சந்ததியாருக்கு நன்மை</td></tr>
-                <tr><td>₹ 1,00,008</td><td>மிகப்பெரிய புண்ணியம்</td><td>தேவியின் கருணை நிரம்பும்</td></tr>
-              </tbody>
-            </table>
+          <div class="donation-wrapper">
+
+            <!-- Desktop / Laptop view – normal table -->
+            <div class="donation-scroll">
+              <table class="donation-table">
+                <thead>
+                  <tr>
+                    <th>நன்கொடை</th>
+                    <th>எண் சக்தி</th>
+                    <th>ஆன்மிக பயன்</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>₹ 108</td><td>இறைநாம சக்தி</td><td>முதற்கட்ட பாக்கியம் கிடைக்கும்</td></tr>
+                  <tr><td>₹ 501</td><td>சுப தொடக்கம்</td><td>தடைகள் நீங்கும்</td></tr>
+                  <tr><td>₹ 786</td><td>பாதுகாப்பு சக்தி</td><td>கஷ்டம் அகலும்</td></tr>
+                  <tr><td>₹ 1,111</td><td>தெய்வ அருள்</td><td>புதிய முயற்சி வெற்றி</td></tr>
+                  <tr><td>₹ 1,234</td><td>முன்னேற்ற வளர்ச்சி</td><td>எதிர்காலம் உறுதி</td></tr>
+                  <tr><td>₹ 2,222</td><td>அமைதி + சமநிலை</td><td>குடும்ப நலன்</td></tr>
+                  <tr><td>₹ 3,333</td><td>மாற்றம் + ஆசீர்வாதம்</td><td>வேண்டுதல் நிறைவு</td></tr>
+                  <tr><td>₹ 4,444</td><td>பாதுகாப்பின் கட்டிடம்</td><td>நிலையான வருமானம்</td></tr>
+                  <tr><td>₹ 5,555</td><td>பஞ்சபூத பாக்கியம்</td><td>ஆரோக்கிய வளம்</td></tr>
+                  <tr><td>₹ 6,666</td><td>செல்வ எழுச்சி</td><td>வருமான உயர்வு</td></tr>
+                  <tr><td>₹ 7,777</td><td>அதிர்ஷ்ட உச்சம்</td><td>லட்சுமி அருள்</td></tr>
+                  <tr><td>₹ 8,888</td><td>அஷ்ட லட்சுமி</td><td>பண வளர்ச்சி</td></tr>
+                  <tr><td>₹ 9,999</td><td>முழு நன்மை</td><td>குடும்ப உயர்வு</td></tr>
+                  <tr><td>₹ 10,008</td><td>பரம்பரை புண்ணியம்</td><td>தெய்வ காப்பு</td></tr>
+                  <tr><td>₹ 12,345</td><td>அபரிமித முன்னேற்றம்</td><td>நிலையான வளர்ச்சி</td></tr>
+                  <tr><td>₹ 15,555</td><td>விசேஷ அருள்</td><td>தொழில் விரிவு</td></tr>
+                  <tr><td>₹ 21,000</td><td>மகா புண்ணியம்</td><td>குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</td></tr>
+                  <tr><td>₹ 25,000</td><td>கோவில் மேம்பாடு</td><td>பெயர் நிலைத்து நிற்கும்</td></tr>
+                  <tr><td>₹ 51,000</td><td>மஹா திருவிளையாடல்</td><td>சந்ததியாருக்கு நன்மை</td></tr>
+                  <tr><td>₹ 1,00,008</td><td>மிகப்பெரிய புண்ணியம்</td><td>தேவியின் கருணை நிரம்பும்</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Mobile view – step-by-step cards -->
+            <div class="donation-cards">
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 108</div>
+                <div class="donation-card-num">இறைநாம சக்தி</div>
+                <div class="donation-card-benefit">முதற்கட்ட பாக்கியம் கிடைக்கும்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 501</div>
+                <div class="donation-card-num">சுப தொடக்கம்</div>
+                <div class="donation-card-benefit">தடைகள் நீங்கும்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 786</div>
+                <div class="donation-card-num">பாதுகாப்பு சக்தி</div>
+                <div class="donation-card-benefit">கஷ்டம் அகலும்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 1,111</div>
+                <div class="donation-card-num">தெய்வ அருள்</div>
+                <div class="donation-card-benefit">புதிய முயற்சி வெற்றி</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 1,234</div>
+                <div class="donation-card-num">முன்னேற்ற வளர்ச்சி</div>
+                <div class="donation-card-benefit">எதிர்காலம் உறுதி</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 2,222</div>
+                <div class="donation-card-num">அமைதி + சமநிலை</div>
+                <div class="donation-card-benefit">குடும்ப நலன்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 3,333</div>
+                <div class="donation-card-num">மாற்றம் + ஆசீர்வாதம்</div>
+                <div class="donation-card-benefit">வேண்டுதல் நிறைவு</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 4,444</div>
+                <div class="donation-card-num">பாதுகாப்பின் கட்டிடம்</div>
+                <div class="donation-card-benefit">நிலையான வருமானம்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 5,555</div>
+                <div class="donation-card-num">பஞ்சபூத பாக்கியம்</div>
+                <div class="donation-card-benefit">ஆரோக்கிய வளம்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 6,666</div>
+                <div class="donation-card-num">செல்வ எழுச்சி</div>
+                <div class="donation-card-benefit">வருமான உயர்வு</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 7,777</div>
+                <div class="donation-card-num">அதிர்ஷ்ட உச்சம்</div>
+                <div class="donation-card-benefit">லட்சுமி அருள்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 8,888</div>
+                <div class="donation-card-num">அஷ்ட லட்சுமி</div>
+                <div class="donation-card-benefit">பண வளர்ச்சி</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 9,999</div>
+                <div class="donation-card-num">முழு நன்மை</div>
+                <div class="donation-card-benefit">குடும்ப உயர்வு</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 10,008</div>
+                <div class="donation-card-num">பரம்பரை புண்ணியம்</div>
+                <div class="donation-card-benefit">தெய்வ காப்பு</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 12,345</div>
+                <div class="donation-card-num">அபரிமித முன்னேற்றம்</div>
+                <div class="donation-card-benefit">நிலையான வளர்ச்சி</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 15,555</div>
+                <div class="donation-card-num">விசேஷ அருள்</div>
+                <div class="donation-card-benefit">தொழில் விரிவு</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 21,000</div>
+                <div class="donation-card-num">மகா புண்ணியம்</div>
+                <div class="donation-card-benefit">குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 25,000</div>
+                <div class="donation-card-num">கோவில் மேம்பாடு</div>
+                <div class="donation-card-benefit">பெயர் நிலைத்து நிற்கும்</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 51,000</div>
+                <div class="donation-card-num">மஹா திருவிளையாடல்</div>
+                <div class="donation-card-benefit">சந்ததியாருக்கு நன்மை</div>
+              </div>
+
+              <div class="donation-card">
+                <div class="donation-card-amt">₹ 1,00,008</div>
+                <div class="donation-card-num">மிகப்பெரிய புண்ணியம்</div>
+                <div class="donation-card-benefit">தேவியின் கருணை நிரம்பும்</div>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Mobile view – step-by-step cards -->
-          <div class="donation-cards">
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 108</div>
-              <div class="donation-card-num">இறைநாம சக்தி</div>
-              <div class="donation-card-benefit">முதற்கட்ட பாக்கியம் கிடைக்கும்</div>
-            </div>
+        </section>
+      </div>
+    </section>
 
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 501</div>
-              <div class="donation-card-num">சுப தொடக்கம்</div>
-              <div class="donation-card-benefit">தடைகள் நீங்கும்</div>
-            </div>
+    <!-- STEP 3: அதிசயங்கள் + அறிவிப்புகள் -->
+    <section class="step-block" id="step3">
+      <div class="step-label">படி 3 • அதிசயங்கள் & அறிவிப்புகள்</div>
+      <div class="wrap wrap-flex" style="margin-top:18px; display: flex; flex-wrap: wrap;">
+        <section id="miracles" style="flex:1; min-width: 300px;">
+          <div class="card">
+            <h3>அதிசயங்கள் & நிகழ்வுகள்</h3>
+            <p class="muted">பக்தர்களால் காணப்பட்ட மற்றும் உணர்ந்த நிகழ்வுகள்.</p>
+            <ul class="muted" style="line-height:1.8;margin-top:12px">
+              <li>சக்காளம்மன் அமர்ந்த நாளே கனமழை பெய்தது; விவசாய வாழ்வு செழித்தது.</li>
+              <li>ஆடு மாடுகள் நோயிலிருந்து தீர்த்தத்தால் குணமடைந்தன.</li>
+              <li>அம்மை நோயும் வேப்பிலை–மஞ்சள் பரிசோதனையால் குணமடைந்தது.</li>
+              <li>சித்திரை 1, மாட்டுப் பொங்கல் போன்ற வருடாந்திர நிகழ்வுகள்.</li>
+            </ul>
+          </div>
+        </section>
+        <aside style="width:320px; min-width:260px; margin-left:18px; flex-shrink: 0;">
+          <div class="card">
+            <h4>அறிவிக்கைகள்</h4>
+            <p class="muted" style="line-height:1.6">
+              வரும் திருவிழாக்கள்: சித்திரை 1, மாட்டுப் பொங்கல், கிருஷ்ண ஜெயந்தி.
+              விரைவில் செயற்கை வரைபடம் மற்றும் தொடர்பு விவரங்கள் இணைக்கப்படும்.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 786</div>
-              <div class="donation-card-num">பாதுகாப்பு சக்தி</div>
-              <div class="donation-card-benefit">கஷ்டம் அகலும்</div>
+    <!-- STEP 4: வழிபாட்டு வழிகள் -->
+    <section class="step-block" id="step4">
+      <div class="step-label">படி 4 • வழிபாட்டு வழிகள் & திருவிழாக்கள்</div>
+      <div class="wrap" style="margin-top:18px">
+        <section id="rituals" style="flex:1">
+          <h3>வழிபாட்டு வழிகள் & திருவிழாக்கள்</h3>
+          <div class="rituals">
+            <div class="rit card">
+              <h4>சித்திரை 1</h4>
+              <p class="muted">சக்தி, நிவேதனம் மற்றும் குடும்ப நலனுக்காக சிறப்பு பூஜை.</p>
             </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 1,111</div>
-              <div class="donation-card-num">தெய்வ அருள்</div>
-              <div class="donation-card-benefit">புதிய முயற்சி வெற்றி</div>
+            <div class="rit card">
+              <h4>மாட்டுப் பொங்கல்</h4>
+              <p class="muted">மாட்டை தேவதையாகக் கருதி  பொங்கல் செய்து பூஜை செய்கின்றனர்.</p>
             </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 1,234</div>
-              <div class="donation-card-num">முன்னேற்ற வளர்ச்சி</div>
-              <div class="donation-card-benefit">எதிர்காலம் உறுதி</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 2,222</div>
-              <div class="donation-card-num">அமைதி + சமநிலை</div>
-              <div class="donation-card-benefit">குடும்ப நலன்</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 3,333</div>
-              <div class="donation-card-num">மாற்றம் + ஆசீர்வாதம்</div>
-              <div class="donation-card-benefit">வேண்டுதல் நிறைவு</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 4,444</div>
-              <div class="donation-card-num">பாதுகாப்பின் கட்டிடம்</div>
-              <div class="donation-card-benefit">நிலையான வருமானம்</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 5,555</div>
-              <div class="donation-card-num">பஞ்சபூத பாக்கியம்</div>
-              <div class="donation-card-benefit">ஆரோக்கிய வளம்</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 6,666</div>
-              <div class="donation-card-num">செல்வ எழுச்சி</div>
-              <div class="donation-card-benefit">வருமான உயர்வு</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 7,777</div>
-              <div class="donation-card-num">அதிர்ஷ்ட உச்சம்</div>
-              <div class="donation-card-benefit">லட்சுமி அருள்</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 8,888</div>
-              <div class="donation-card-num">அஷ்ட லட்சுமி</div>
-              <div class="donation-card-benefit">பண வளர்ச்சி</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 9,999</div>
-              <div class="donation-card-num">முழு நன்மை</div>
-              <div class="donation-card-benefit">குடும்ப உயர்வு</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 10,008</div>
-              <div class="donation-card-num">பரம்பரை புண்ணியம்</div>
-              <div class="donation-card-benefit">தெய்வ காப்பு</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 12,345</div>
-              <div class="donation-card-num">அபரிமித முன்னேற்றம்</div>
-              <div class="donation-card-benefit">நிலையான வளர்ச்சி</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 15,555</div>
-              <div class="donation-card-num">விசேஷ அருள்</div>
-              <div class="donation-card-benefit">தொழில் விரிவு</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 21,000</div>
-              <div class="donation-card-num">மகா புண்ணியம்</div>
-              <div class="donation-card-benefit">குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 25,000</div>
-              <div class="donation-card-num">கோவில் மேம்பாடு</div>
-              <div class="donation-card-benefit">பெயர் நிலைத்து நிற்கும்</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 51,000</div>
-              <div class="donation-card-num">மஹா திருவிளையாடல்</div>
-              <div class="donation-card-benefit">சந்ததியாருக்கு நன்மை</div>
-            </div>
-
-            <div class="donation-card">
-              <div class="donation-card-amt">₹ 1,00,008</div>
-              <div class="donation-card-num">மிகப்பெரிய புண்ணியம்</div>
-              <div class="donation-card-benefit">தேவியின் கருணை நிரம்பும்</div>
+            <div class="rit card">
+              <h4>கிருஷ்ண ஜெயந்தி</h4>
+              <p class="muted">குழந்தைகள் கிருஷ்ணர் வேடம் அணிந்து சிறப்பு விருந்துகள் மற்றும் பூஜை.</p>
             </div>
           </div>
+        </section>
+      </div>
+    </section>
 
-        </div>
+    <!-- STEP 5: Quick stats + நன்கொடை வழங்கியவர்கள் -->
+    <section class="step-block" id="step5">
+      <div class="step-label">படி 5 • திருப்பணி வருவாய் / செலவு – கணக்குப் பார்வை</div>
 
-      </section>
+      <div class="stats-wrapper" style="max-width:900px;margin:22px auto">
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <aside style="flex:1;min-width:280px">
+            <div class="card fade">
+              <h3 style="margin:0 0 6px">Quick Stats</h3>
+              <div class="small">Target: <strong id="qTarget">₹1,200,000</strong></div>
+              <div class="small">Collected: <strong id="qCollected">₹0</strong></div>
+              <div class="small">Outgoing: <strong id="qOutgoing">₹0</strong></div>
+              <div class="small">Remaining: <strong id="qRemaining">₹1,200,000</strong></div>
+              <div style="height:8px"></div>
+              <div class="progress" aria-hidden="true">
+                <i id="progressFill2" style="width:0%"></i>
+              </div>
+            </div>
 
-    </div>
+            <div class="card fade" style="margin-top:12px">
+              <h3 style="margin:0 0 6px">By Category (Outflows)</h3>
+              <div class="small">Cement: <strong id="catCement">₹0</strong></div>
+              <div class="small">Stone: <strong id="catStone">₹0</strong></div>
+              <div class="small">Labour: <strong id="catLabour">₹0</strong></div>
+              <div class="small">Other: <strong id="catOther">₹0</strong></div>
+            </div>
+          </aside>
 
-    <div class="wrap" style="margin-top:18px; display: flex; flex-wrap: wrap;">
-      <section id="miracles" style="flex:1; min-width: 300px;">
-        <div class="card">
-          <h3>அதிசயங்கள் & நிகழ்வுகள்</h3>
-          <p class="muted">பக்தர்களால் காணப்பட்ட மற்றும் உணர்ந்த நிகழ்வுகள்.</p>
-          <ul class="muted" style="line-height:1.8;margin-top:12px">
-            <li>சக்காளம்மன் அமர்ந்த நாளே கனமழை பெய்தது; விவசாய வாழ்வு செழித்தது.</li>
-            <li>ஆடு மாடுகள் நோயிலிருந்து தீர்த்தத்தால் குணமடைந்தன.</li>
-            <li>அம்மை நோயும் வேப்பிலை–மஞ்சள் பரிசோதனையால் குணமடைந்தது.</li>
-            <li>சித்திரை 1, மாட்டுப் பொங்கல் போன்ற வருடாந்திர நிகழ்வுகள்.</li>
-          </ul>
-        </div>
-      </section>
-      <aside style="width:320px; min-width:260px; margin-left:18px; flex-shrink: 0;">
-        <div class="card">
-          <h4>அறிவிக்கைகள்</h4>
-          <p class="muted" style="line-height:1.6">
-            வரும் திருவிழாக்கள்: சித்திரை 1, மாட்டுப் பொங்கல், கிருஷ்ண ஜெயந்தி.
-            விரைவில் செயற்கை வரைபடம் மற்றும் தொடர்பு விவரங்கள் இணைக்கப்படும்.
-          </p>
-        </div>
-      </aside>
-    </div>
+          <div style="flex:2;min-width:320px">
+            <div class="card fade">
+              <h3 style="margin:0 0 10px">நன்கொடை வழங்கியவர்களின் விவரம்</h3>
+              <p style="font-size:14px;color:#9ca3af;margin:0 0 12px;line-height:1.4">
+                உங்கள் குடும்பம் வழங்கிய கைப்புண்ணியம்  
+                ஒரு தலைமுறைக்கு வழிகாட்டும் ஒளியாக இருக்கும்.  
+                அருளின் விதை இன்று விதைக்கப்பட்டது.
+              </p>
 
-    <div class="wrap" style="margin-top:18px">
-      <section id="rituals" style="flex:1">
-        <h3>வழிபாட்டு வழிகள் & திருவிழாக்கள்</h3>
-        <div class="rituals">
-          <div class="rit card">
-            <h4>சித்திரை 1</h4>
-            <p class="muted">சக்தி, நிவேதனம் மற்றும் குடும்ப நலனுக்காக சிறப்பு பூஜை.</p>
+              <table id="donTable" style="width:100%;border-collapse:collapse">
+                <thead>
+                  <tr style="background:#020617;color:#fff">
+                    <th style="padding:8px;border-bottom:1px solid #111827">பெயர்</th>
+                    <th style="padding:8px;border-bottom:1px solid #111827">முகவரி</th>
+                    <th style="padding:8px;border-bottom:1px solid #111827">தொகை</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="padding:8px;border-bottom:1px solid #111827">ஆனந்தகுமார் w/o சத்தியா</td>
+                    <td style="padding:8px;border-bottom:1px solid #111827">கோல்காரன் கொட்டாய்-அவர்களின் வேண்டுதல் நிறைவேறியதற்காக,
+                      அருள்மிகு ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமி திருக்கோயிலுக்கு தரைத்தளம் அமைத்தல்</td>
+                    <td style="padding:8px;border-bottom:1px solid #111827">
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px;border-bottom:1px solid #111827">களிகுட்டி மகன் நாராயணன் w/o தனலட்சுமி</td>
+                    <td style="padding:8px;border-bottom:1px solid #111827">MGR Nagar- எம் சேண்ட் - 2 யூனிட்</td>
+                    <td style="padding:8px;border-bottom:1px solid #111827"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" class="small" style="text-align:center;padding:10px;color:#6b7280">
+                      <!-- future rows here -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
           </div>
-          <div class="rit card">
-            <h4>மாட்டுப் பொங்கல்</h4>
-            <p class="muted">மாட்டை தேவதையாகக் கருதி  பொங்கல் செய்து பூஜை செய்கின்றனர்.</p>
-          </div>
-          <div class="rit card">
-            <h4>கிருஷ்ண ஜெயந்தி</h4>
-            <p class="muted">குழந்தைகள் கிருஷ்ணர் வேடம் அணிந்து சிறப்பு விருந்துகள் மற்றும் பூஜை.</p>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <!-- Quick Stats Section -->
-  <div class="stats-wrapper" style="max-width:900px;margin:22px auto">
-    <div style="display:flex;gap:16px;flex-wrap:wrap;">
-      <aside style="flex:1;min-width:280px">
-        <div class="card fade">
-          <h3 style="margin:0 0 6px">Quick Stats</h3>
-          <div class="small">Target: <strong id="qTarget">₹1,200,000</strong></div>
-          <div class="small">Collected: <strong id="qCollected">₹0</strong></div>
-          <div class="small">Outgoing: <strong id="qOutgoing">₹0</strong></div>
-          <div class="small">Remaining: <strong id="qRemaining">₹1,200,000</strong></div>
-          <div style="height:8px"></div>
-          <div class="progress" aria-hidden="true">
-            <i id="progressFill2" style="width:0%"></i>
-          </div>
-        </div>
-
-        <div class="card fade" style="margin-top:12px">
-          <h3 style="margin:0 0 6px">By Category (Outflows)</h3>
-          <div class="small">Cement: <strong id="catCement">₹0</strong></div>
-          <div class="small">Stone: <strong id="catStone">₹0</strong></div>
-          <div class="small">Labour: <strong id="catLabour">₹0</strong></div>
-          <div class="small">Other: <strong id="catOther">₹0</strong></div>
-        </div>
-      </aside>
-
-      <div style="flex:2;min-width:320px">
-        <div class="card fade">
-          <h3 style="margin:0 0 10px">நன்கொடை வழங்கியவர்களின் விவரம்</h3>
-          <p style="font-size:14px;color:#9ca3af;margin:0 0 12px;line-height:1.4">
-            உங்கள் குடும்பம் வழங்கிய கைப்புண்ணியம்  
-            ஒரு தலைமுறைக்கு வழிகாட்டும் ஒளியாக இருக்கும்.  
-            அருளின் விதை இன்று விதைக்கப்பட்டது.
-          </p>
-
-          <table id="donTable" style="width:100%;border-collapse:collapse">
-            <thead>
-              <tr style="background:#020617;color:#fff">
-                <th style="padding:8px;border-bottom:1px solid #111827">பெயர்</th>
-                <th style="padding:8px;border-bottom:1px solid #111827">முகவரி</th>
-                <th style="padding:8px;border-bottom:1px solid #111827">தொகை</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="padding:8px;border-bottom:1px solid #111827">ஆனந்தகுமார் w/o சத்தியா</td>
-                <td style="padding:8px;border-bottom:1px solid #111827">கோல்காரன் கொட்டாய்</td>
-                <td style="padding:8px;border-bottom:1px solid #111827">
-                  அவர்களின் வேண்டுதல் நிறைவேறியதற்காக,
-                  அருள்மிகு ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமி திருக்கோயிலுக்கு தரைத்தளம் அமைத்தல்.
-                </td>
-              </tr>
-              <tr>
-                <td style="padding:8px;border-bottom:1px solid #111827">களிகுட்டி மகன் நாராயணன் w/o தனலட்சுமி</td>
-                <td style="padding:8px;border-bottom:1px solid #111827">MGR Nagar</td>
-                <td style="padding:8px;border-bottom:1px solid #111827">எம் சேண்ட் - 2 யூனிட்</td>
-              </tr>
-              <tr>
-                <td colspan="5" class="small" style="text-align:center;padding:10px;color:#6b7280">
-                  <!-- future rows here -->
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <footer style="background:#020617;padding:20px 0;margin-top:30px">
     <div class="wrap" style="max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;color:#fff">
