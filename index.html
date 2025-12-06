@@ -337,18 +337,6 @@
       }
     }
 
-    /* (Rotation keyframes kept but no longer used) */
-    @keyframes rotate360 {
-      0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(180deg) scale(1.02); }
-      100% { transform: rotate(360deg) scale(1); }
-    }
-    @keyframes glowPulse {
-      0% { box-shadow: 0 6px 18px rgba(30, 64, 175, 0.3); }
-      50% { box-shadow: 0 12px 28px rgba(59, 130, 246, 0.5); }
-      100% { box-shadow: 0 6px 18px rgba(30, 64, 175, 0.3); }
-    }
-
     .section-divider {
       max-width: var(--container);
       margin: 30px auto;
@@ -773,6 +761,14 @@
     <div class="god-bg-side god-bg-side-right"></div>
   </div>
 
+  <!-- (Optional) floating icons – uncomment if you want them
+  <div class="float-orbs">
+    <div class="icon-orb icon-orb-3"><span>3D</span></div>
+    <div class="icon-orb icon-orb-6"><span>6D</span></div>
+    <div class="icon-orb icon-orb-12"><span>12D</span></div>
+  </div>
+  -->
+
   <!-- Top – Marquee -->
   <div class="marquee-top-wrap">
     <h1 class="page-title-main">அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</h1>
@@ -805,7 +801,6 @@
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp7.jpeg" alt=""><div class="marq-caption"></div></div>
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp8.jpeg" alt=""><div class="marq-caption"></div></div>
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg"  alt=""><div class="marq-caption"></div></div>
-
       </div>
     </div>
   </div>
@@ -825,15 +820,16 @@
       </div>
       <nav aria-label="Main Navigation">
         <a href="#story">வரலாறு</a>
-        <a href="#miracles">அதிசயம்</a>
-        <a href="#rituals">திருவிழா</a>
+        <a href="#miracles">நன்கொடை விவரம்</a>
+        <a href="#rituals">திருப்பணி வருவாய் / செலவு</a>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
     </div>
     <div id="mobileMenu">
       <a href="#story">வரலாறு</a>
-      <a href="#miracles">அதிசயம்</a>
-      <a href="#rituals">திருவிழா</a>
+      <a href="#miracles">நன்கொடை விவரம்</a>
+      <a href="#rituals"> திருப்பணி வருவாய் / செலவு</a>
+      <a href="#rituals"> Admin / Auditors Teams</a>
     </div>
   </header>
 
@@ -1028,45 +1024,220 @@
             background: rgba(30, 64, 175, 0.55);
             transition: 0.2s;
           }
+
+          /* --- New: Responsive donation wrapper --- */
+          .donation-wrapper {
+            width: 100%;
+          }
+          .donation-scroll {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+          .donation-cards {
+            display: none; /* desktop-ல் காட்ட வேண்டாம் */
+          }
+          .donation-card {
+            background: rgba(15,23,42,0.95);
+            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid rgba(55,65,81,0.9);
+            margin-bottom: 8px;
+          }
+          .donation-card-amt {
+            font-weight: 700;
+            font-size: 16px;
+            color: #fbbf24;
+            margin-bottom: 4px;
+          }
+          .donation-card-num {
+            font-size: 14px;
+            color: #bfdbfe;
+            margin-bottom: 3px;
+          }
+          .donation-card-benefit {
+            font-size: 13px;
+            color: #e5e7eb;
+            line-height: 1.4;
+          }
+
           @media (max-width:600px){
             .donation-table th,.donation-table td{
               padding:7px;
               font-size:13px;
             }
+            /* Mobile: table hide, cards show */
+            .donation-scroll {
+              display: none;
+            }
+            .donation-cards {
+              display: block;
+              margin-top: 10px;
+            }
           }
         </style>
 
-        <table class="donation-table">
-          <thead>
-            <tr>
-              <th>நன்கொடை</th>
-              <th>எண் சக்தி</th>
-              <th>ஆன்மிக பயன்</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>₹ 108</td><td>இறைநாம சக்தி</td><td>முதற்கட்ட பாக்கியம் கிடைக்கும்</td></tr>
-            <tr><td>₹ 501</td><td>சுப தொடக்கம்</td><td>தடைகள் நீங்கும்</td></tr>
-            <tr><td>₹ 786</td><td>பாதுகாப்பு சக்தி</td><td>கஷ்டம் அகலும்</td></tr>
-            <tr><td>₹ 1,111</td><td>தெய்வ அருள்</td><td>புதிய முயற்சி வெற்றி</td></tr>
-            <tr><td>₹ 1,234</td><td>முன்னேற்ற வளர்ச்சி</td><td>எதிர்காலம் உறுதி</td></tr>
-            <tr><td>₹ 2,222</td><td>அமைதி + சமநிலை</td><td>குடும்ப நலன்</td></tr>
-            <tr><td>₹ 3,333</td><td>மாற்றம் + ஆசீர்வாதம்</td><td>வேண்டுதல் நிறைவு</td></tr>
-            <tr><td>₹ 4,444</td><td>பாதுகாப்பின் கட்டிடம்</td><td>நிலையான வருமானம்</td></tr>
-            <tr><td>₹ 5,555</td><td>பஞ்சபூத பாக்கியம்</td><td>ஆரோக்கிய வளம்</td></tr>
-            <tr><td>₹ 6,666</td><td>செல்வ எழுச்சி</td><td>வருமான உயர்வு</td></tr>
-            <tr><td>₹ 7,777</td><td>அதிர்ஷ்ட உச்சம்</td><td>லட்சுமி அருள்</td></tr>
-            <tr><td>₹ 8,888</td><td>அஷ்ட லட்சுமி</td><td>பண வளர்ச்சி</td></tr>
-            <tr><td>₹ 9,999</td><td>முழு நன்மை</td><td>குடும்ப உயர்வு</td></tr>
-            <tr><td>₹ 10,008</td><td>பரம்பரை புண்ணியம்</td><td>தெய்வ காப்பு</td></tr>
-            <tr><td>₹ 12,345</td><td>அபரிமித முன்னேற்றம்</td><td>நிலையான வளர்ச்சி</td></tr>
-            <tr><td>₹ 15,555</td><td>விசேஷ அருள்</td><td>தொழில் விரிவு</td></tr>
-            <tr><td>₹ 21,000</td><td>மகா புண்ணியம்</td><td>குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</td></tr>
-            <tr><td>₹ 25,000</td><td>கோவில் மேம்பாடு</td><td>பெயர் நிலைத்து நிற்கும்</td></tr>
-            <tr><td>₹ 51,000</td><td>மஹா திருவிளையாடல்</td><td>சந்ததியாருக்கு நன்மை</td></tr>
-            <tr><td>₹ 1,00,008</td><td>மிகப்பெரிய புண்ணியம்</td><td>தேவியின் கருணை நிரம்பும்</td></tr>
-          </tbody>
-        </table>
+        <div class="donation-wrapper">
+
+          <!-- Desktop / Laptop view – normal table -->
+          <div class="donation-scroll">
+            <table class="donation-table">
+              <thead>
+                <tr>
+                  <th>நன்கொடை</th>
+                  <th>எண் சக்தி</th>
+                  <th>ஆன்மிக பயன்</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>₹ 108</td><td>இறைநாம சக்தி</td><td>முதற்கட்ட பாக்கியம் கிடைக்கும்</td></tr>
+                <tr><td>₹ 501</td><td>சுப தொடக்கம்</td><td>தடைகள் நீங்கும்</td></tr>
+                <tr><td>₹ 786</td><td>பாதுகாப்பு சக்தி</td><td>கஷ்டம் அகலும்</td></tr>
+                <tr><td>₹ 1,111</td><td>தெய்வ அருள்</td><td>புதிய முயற்சி வெற்றி</td></tr>
+                <tr><td>₹ 1,234</td><td>முன்னேற்ற வளர்ச்சி</td><td>எதிர்காலம் உறுதி</td></tr>
+                <tr><td>₹ 2,222</td><td>அமைதி + சமநிலை</td><td>குடும்ப நலன்</td></tr>
+                <tr><td>₹ 3,333</td><td>மாற்றம் + ஆசீர்வாதம்</td><td>வேண்டுதல் நிறைவு</td></tr>
+                <tr><td>₹ 4,444</td><td>பாதுகாப்பின் கட்டிடம்</td><td>நிலையான வருமானம்</td></tr>
+                <tr><td>₹ 5,555</td><td>பஞ்சபூத பாக்கியம்</td><td>ஆரோக்கிய வளம்</td></tr>
+                <tr><td>₹ 6,666</td><td>செல்வ எழுச்சி</td><td>வருமான உயர்வு</td></tr>
+                <tr><td>₹ 7,777</td><td>அதிர்ஷ்ட உச்சம்</td><td>லட்சுமி அருள்</td></tr>
+                <tr><td>₹ 8,888</td><td>அஷ்ட லட்சுமி</td><td>பண வளர்ச்சி</td></tr>
+                <tr><td>₹ 9,999</td><td>முழு நன்மை</td><td>குடும்ப உயர்வு</td></tr>
+                <tr><td>₹ 10,008</td><td>பரம்பரை புண்ணியம்</td><td>தெய்வ காப்பு</td></tr>
+                <tr><td>₹ 12,345</td><td>அபரிமித முன்னேற்றம்</td><td>நிலையான வளர்ச்சி</td></tr>
+                <tr><td>₹ 15,555</td><td>விசேஷ அருள்</td><td>தொழில் விரிவு</td></tr>
+                <tr><td>₹ 21,000</td><td>மகா புண்ணியம்</td><td>குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</td></tr>
+                <tr><td>₹ 25,000</td><td>கோவில் மேம்பாடு</td><td>பெயர் நிலைத்து நிற்கும்</td></tr>
+                <tr><td>₹ 51,000</td><td>மஹா திருவிளையாடல்</td><td>சந்ததியாருக்கு நன்மை</td></tr>
+                <tr><td>₹ 1,00,008</td><td>மிகப்பெரிய புண்ணியம்</td><td>தேவியின் கருணை நிரம்பும்</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile view – step-by-step cards -->
+          <div class="donation-cards">
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 108</div>
+              <div class="donation-card-num">இறைநாம சக்தி</div>
+              <div class="donation-card-benefit">முதற்கட்ட பாக்கியம் கிடைக்கும்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 501</div>
+              <div class="donation-card-num">சுப தொடக்கம்</div>
+              <div class="donation-card-benefit">தடைகள் நீங்கும்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 786</div>
+              <div class="donation-card-num">பாதுகாப்பு சக்தி</div>
+              <div class="donation-card-benefit">கஷ்டம் அகலும்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 1,111</div>
+              <div class="donation-card-num">தெய்வ அருள்</div>
+              <div class="donation-card-benefit">புதிய முயற்சி வெற்றி</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 1,234</div>
+              <div class="donation-card-num">முன்னேற்ற வளர்ச்சி</div>
+              <div class="donation-card-benefit">எதிர்காலம் உறுதி</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 2,222</div>
+              <div class="donation-card-num">அமைதி + சமநிலை</div>
+              <div class="donation-card-benefit">குடும்ப நலன்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 3,333</div>
+              <div class="donation-card-num">மாற்றம் + ஆசீர்வாதம்</div>
+              <div class="donation-card-benefit">வேண்டுதல் நிறைவு</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 4,444</div>
+              <div class="donation-card-num">பாதுகாப்பின் கட்டிடம்</div>
+              <div class="donation-card-benefit">நிலையான வருமானம்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 5,555</div>
+              <div class="donation-card-num">பஞ்சபூத பாக்கியம்</div>
+              <div class="donation-card-benefit">ஆரோக்கிய வளம்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 6,666</div>
+              <div class="donation-card-num">செல்வ எழுச்சி</div>
+              <div class="donation-card-benefit">வருமான உயர்வு</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 7,777</div>
+              <div class="donation-card-num">அதிர்ஷ்ட உச்சம்</div>
+              <div class="donation-card-benefit">லட்சுமி அருள்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 8,888</div>
+              <div class="donation-card-num">அஷ்ட லட்சுமி</div>
+              <div class="donation-card-benefit">பண வளர்ச்சி</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 9,999</div>
+              <div class="donation-card-num">முழு நன்மை</div>
+              <div class="donation-card-benefit">குடும்ப உயர்வு</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 10,008</div>
+              <div class="donation-card-num">பரம்பரை புண்ணியம்</div>
+              <div class="donation-card-benefit">தெய்வ காப்பு</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 12,345</div>
+              <div class="donation-card-num">அபரிமித முன்னேற்றம்</div>
+              <div class="donation-card-benefit">நிலையான வளர்ச்சி</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 15,555</div>
+              <div class="donation-card-num">விசேஷ அருள்</div>
+              <div class="donation-card-benefit">தொழில் விரிவு</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 21,000</div>
+              <div class="donation-card-num">மகா புண்ணியம்</div>
+              <div class="donation-card-benefit">குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 25,000</div>
+              <div class="donation-card-num">கோவில் மேம்பாடு</div>
+              <div class="donation-card-benefit">பெயர் நிலைத்து நிற்கும்</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 51,000</div>
+              <div class="donation-card-num">மஹா திருவிளையாடல்</div>
+              <div class="donation-card-benefit">சந்ததியாருக்கு நன்மை</div>
+            </div>
+
+            <div class="donation-card">
+              <div class="donation-card-amt">₹ 1,00,008</div>
+              <div class="donation-card-num">மிகப்பெரிய புண்ணியம்</div>
+              <div class="donation-card-benefit">தேவியின் கருணை நிரம்பும்</div>
+            </div>
+          </div>
+
+        </div>
 
       </section>
 
