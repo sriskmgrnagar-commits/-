@@ -7,8 +7,6 @@
   <meta name="description" content="ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமியின் சக்திவாய்ந்த வரலாறு, மழை அருளின் அதிசயங்கள், நோய் தீர்க்கும் நிகழ்வுகள் மற்றும் சித்திரை, மாட்டுப் பொங்கல் திருவிழாக்கள் பற்றிய முழு தகவல்கள்.">
   <title>அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</title>
 
-
-
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -36,7 +34,7 @@
       color: #222;
     }
 
-    /* ===== 轮播区域样式 ===== */
+    /* ===== Marquee ===== */
     .marquee-top-wrap {
       max-width: var(--container);
       margin: 20px auto 0;
@@ -87,7 +85,7 @@
       font-size: 12px;
       color: #333;
     }
-    /* 基础缩放动画 */
+
     @keyframes pulseZoom {
       0% { transform: scale(1); }
       25% { transform: scale(1.03); }
@@ -99,7 +97,7 @@
       animation: pulseZoom 6.5s ease-in-out infinite;
       transform-origin: center center;
     }
-    /* 轮播移动动画 */
+
     @keyframes marqueeMove {
       0% { transform: translateX(0); }
       100% { transform: translateX(var(--marq-distance)); }
@@ -114,18 +112,23 @@
     .marquee-wrap:focus-within .marquee {
       animation-play-state: paused;
     }
-    /* 旋转特效变体 */
-    /*@keyframes rotate360 {
+
+    /* Rotate effect */
+    @keyframes rotate360 {
       0% { transform: rotate(0deg) scale(1); }
       50% { transform: rotate(180deg) scale(1.02); }
-      100% { transform: rotate(360deg) scale(1); }*/
+      100% { transform: rotate(360deg) scale(1); }
     }
     @keyframes glowPulse {
       0% { box-shadow: 0 6px 18px rgba(255, 140, 140, 0.08); }
       50% { box-shadow: 0 12px 26px rgba(255, 110, 110, 0.16); }
       100% { box-shadow: 0 6px 18px rgba(255, 140, 140, 0.08); }
     }
-    .rotate-glow img { animation: rotate360 12s linear infinite; transform-origin: center center; filter: drop-shadow(0 8px 18px rgba(255, 160, 160, 0.12)); }
+    .rotate-glow img {
+      animation: rotate360 12s linear infinite;
+      transform-origin: center center;
+      filter: drop-shadow(0 8px 18px rgba(255, 160, 160, 0.12));
+    }
     .rotate-glow { animation: glowPulse 6s ease-in-out infinite; }
 
     @keyframes shake {
@@ -158,7 +161,6 @@
     }
     .flip3d img { animation: flipY 10s ease-in-out infinite; transform-style: preserve-3d; transform-origin: center center; }
 
-    /* 分割线 */
     .section-divider {
       max-width: var(--container);
       margin: 30px auto;
@@ -168,8 +170,7 @@
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
     }
 
-    /* ===== 寺庙网站样式 ===== */
-    /* HEADER */
+    /* ===== Temple layout ===== */
     header {
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       color: white;
@@ -254,7 +255,7 @@
       text-decoration: none;
       font-weight: 700;
     }
-    /* MAIN */
+
     main {
       max-width: var(--container);
       margin: 20px auto;
@@ -328,7 +329,103 @@
       border-top: 6px solid var(--accent);
     }
 
-    /* 无障碍与运动偏好 */
+    /* Story MP3 player */
+    .story-audio-box {
+      margin: 10px 0 16px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #fff7f2;
+      border: 1px solid #f3d2c4;
+    }
+    .story-audio-title {
+      margin: 0 0 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #9f2b2b;
+    }
+    .story-player {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .story-play-btn {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 0, #4ade80, #16a34a);
+      box-shadow:
+        0 0 0 1px rgba(34, 197, 94, 0.5),
+        0 10px 18px rgba(22, 163, 74, 0.6);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.1s ease;
+    }
+    .story-play-btn:hover {
+      transform: translateY(-1px) scale(1.03);
+      filter: brightness(1.05);
+    }
+    .story-play-btn:active {
+      transform: translateY(1px) scale(0.97);
+    }
+    .story-play-icon {
+      width: 16px;
+      height: 16px;
+      fill: #020617;
+    }
+    .story-progress-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .story-progress-bar {
+      position: relative;
+      width: 100%;
+      height: 5px;
+      border-radius: 999px;
+      background: #f1e4dd;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .story-progress-fill {
+      position: absolute;
+      inset: 0;
+      width: 0%;
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+      transition: width 0.08s linear;
+    }
+    .story-time-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #8b6a60;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Small helpers for stats */
+    .small {
+      font-size: 13px;
+      color: #555;
+    }
+    .progress {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+    .progress i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+    }
+
+    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .marquee.animated,
       .zoom-anim,
@@ -340,7 +437,7 @@
       }
     }
 
-    /* ===== 响应式设计 ===== */
+    /* Responsive */
     @media (max-width: 900px) {
       .marq-item {
         min-width: 260px;
@@ -396,49 +493,44 @@
   </style>
 </head>
 <body>
-  <!-- 第一部分：图片轮播 -->
+  <!-- Top – Marquee -->
   <div class="marquee-top-wrap">
     <h1>அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</h1>
 
-     <p>
-  "ஓம் உமாயை நமஹ"  
-  "ஓம் நமோ பகவதே வாசுதேவாய"  
-  "க்லீம் கிருஷ்ணாய நமஹ"
-</p>
-<p>
-  <strong>✔ கிருஷ்ணர் — “ஓம் நமோ பகவதே வாசுதேவாய”</strong><br>
-  <strong>✔ சக்காளம்மன் — “ஓம் ஹ்ரீம் சக்தியே நமஹ”</strong> <br>
-
-  
-  <P> அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி திருப்பணி
-அனைத்து பக்தர்களின் ஆசீர்வாதத்துடன் விரைவில் தொடங்கப்பட உள்ளது.
-திருப்பணி பணிகளில் உங்களின் நன்கொடைகள், சேவை மற்றும் ஆதரவு வேண்டுகிறோம்.
-உங்களின் கைப்புண்ணியம் நம் ஆலய வளர்ச்சிக்கு பெரும் துணை ஆகும்.</p> <br>
-  
-  <p>உங்களின் ஒவ்வொரு கைப்புண்ணியமும் ஒரு தலைமுறைக்கு வழிகாட்டும் ஒளியாகும்</p>
-</p>
+    <p>
+      "ஓம் உமாயை நமஹ"<br>
+      "ஓம் நமோ பகவதே வாசுதேவாய"<br>
+      "க்லீம் கிருஷ்ணாய நமஹ"
+    </p>
+    <p>
+      <strong>✔ கிருஷ்ணர் — “ஓம் நமோ பகவதே வாசுதேவாய”</strong><br>
+      <strong>✔ சக்காளம்மன் — “ஓம் ஹ்ரீம் சக்தியே நமஹ”</strong>
+    </p>
+    <p>
+      அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி திருப்பணி
+      அனைத்து பக்தர்களின் ஆசீர்வாதத்துடன் விரைவில் தொடங்கப்பட உள்ளது.
+      திருப்பணி பணிகளில் உங்களின் நன்கொடைகள், சேவை மற்றும் ஆதரவு வேண்டுகிறோம்.
+      உங்களின் கைப்புண்ணியம் நம் ஆலய வளர்ச்சிக்கு பெரும் துணை ஆகும்.
+    </p>
+    <p>உங்களின் ஒவ்வொரு கைப்புண்ணியமும் ஒரு தலைமுறைக்கு வழிகாட்டும் ஒளியாகும்</p>
    
     <div class="marquee-wrap" id="marqueeWrap" tabindex="0" aria-label="">
       <div class="marquee" id="marquee">
-        
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg"  alt="8"><div class="marq-caption"></div></div>
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp2.jpeg" alt="2"><div class="marq-caption"></div></div>
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp3.jpeg" alt="3"><div class="marq-caption"></div></div>
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp4.jpeg" alt="4"><div class="marq-caption"></div></div>
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp5.jpeg" alt="5"><div class="marq-caption"></div></div>
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp6.jpeg" alt="6"><div class="marq-caption"></div></div>
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp7.jpeg" alt="7"><div class="marq-caption"></div></div>
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp8.jpeg" alt="8"><div class="marq-caption"></div></div>
-         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg"  alt="8"><div class="marq-caption"></div></div>
-      
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg"  alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp2.jpeg" alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp3.jpeg" alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp4.jpeg" alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp5.jpeg" alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp6.jpeg" alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp7.jpeg" alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp8.jpeg" alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg"  alt=""><div class="marq-caption"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- 分割线 -->
   <hr class="section-divider">
 
-  <!-- 第二部分：寺庙网站内容 -->
   <header>
     <div class="wrap">
       <div style="display:flex;align-items:center;gap:12px">
@@ -447,7 +539,6 @@
           <div class="title">
             <h1>அருள்மிகு ஸ்ரீ சக்காளம்மன்</h1>
             <p>கிருஷ்ணர் சாமி – ஸ்தல வரலாறு</p>
-             
           </div>
         </div>
       </div>
@@ -456,7 +547,6 @@
         <a href="#miracles">அதிசயம்</a>
         <a href="#rituals">திருவிழா</a>
       </nav>
-      
       <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
     </div>
     <div id="mobileMenu">
@@ -471,10 +561,47 @@
       <section class="hero">
         <div class="card">
           <h2 style="margin-top:4px">அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</h2>
-          <p class="lead">ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமியின் உருவான கதை — கிராமம் மீண்டும் வளமுற்றதும், நோய்கள் நீங்கியதும், மக்கள் சிறப்பு வழிபாடுகளை செய்தும் நிகழ்ந்த சம்பவங்கள்.</p>
+          <p class="lead">
+            ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமியின் உருவான கதை — கிராமம் மீண்டும் வளமுற்றதும்,
+            நோய்கள் நீங்கியதும், மக்கள் சிறப்பு வழிபாடுகளை செய்தும் நிகழ்ந்த சம்பவங்கள்.
+          </p>
 
           <article class="story card" id="story">
-             <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg"  alt="8"><div class="marq-caption"></div></div>
+            <div class="marq-item">
+              <img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg" alt="">
+              <div class="marq-caption"></div>
+            </div>
+
+            <!-- 🎧 Story Audio Player -->
+            <div class="story-audio-box">
+              <p class="story-audio-title">
+                🎧 அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி வரலாறு (ஆடியோ)
+              </p>
+
+              <div class="story-player">
+                <button class="story-play-btn" id="playBtnStory" aria-label="Play">
+                  <svg class="story-play-icon" id="playIconStory" viewBox="0 0 24 24">
+                    <polygon points="7,5 19,12 7,19"></polygon>
+                  </svg>
+                </button>
+
+                <div class="story-progress-wrap">
+                  <div class="story-progress-bar" id="progressBarStory">
+                    <div class="story-progress-fill" id="progressFillStory"></div>
+                  </div>
+                  <div class="story-time-row">
+                    <span id="currentTimeStory">00:00</span>
+                    <span id="durationStory">00:00</span>
+                  </div>
+                </div>
+              </div>
+
+              <audio id="audioStory">
+                <source src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/samy.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+
 அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி உருவான கதை
 
 மக்கள் அனைவரும் வறட்சியால் தவித்துக் கொண்டிருந்த காலகட்டம் அது. நம் ஊரின் ஒருவருக்கு பசியின் கொடுமையால் என்ன செய்வது என தெரியாமல், அருகிலுள்ள வேறு ஒரு ஊருக்கு சென்று மாட்டை திருட வேண்டும் என எண்ணம் தோன்றியது. ஆனால் அங்கே சென்றபோது அவர் பிடிபட்டார். அவரை மரத்தில் கட்டி வைத்து கடுமையாக அடித்தனர். அந்த மனவேதனையிலும் ஏக்கத்திலும் அவர் காடு வழியே தனியாக நடந்துச் சென்றார்.
@@ -492,7 +619,7 @@
 
 வறட்சி காலம் வரும் போது குடிக்கத் தண்ணீருக்கே தட்டுப்பாடு ஏற்பட்டது. அப்போது கிராம மக்கள் அனைவரும் மாலை நேரத்தில் (4 முதல் 7 மணி வரை) ஒன்று சேர்ந்து, வர்ண பகவானை வேண்டி குளத்தில் மண்ணால் மகாதேவன் (சிவன்)சிலையை உருவாக்கி  11 சிறுவர்களை நின்று வைத்து, அவர்கள் கையில் ஊதுபத்தி ஏந்தி நிற்க வைத்து “சாமி அழைத்து” அருள்வாக்கு கேட்டு வழிபாடு நடத்தினர். அதே இரவு முழுவதும் கனமழை பெய்து, வறட்சியிலிருந்து கிராமம் மீண்டது. இவை அனைத்தும் உண்மை சம்பவங்கள்.
 
-ஆண்டு தோறும் சித்திரை 1 மற்றும் மாட்டுப் பொங்கல் அன்று, குடும்பத்திற்காக உழைக்கும் மாட்டை தெய்வமாக நினைத்து, சக்கரை பொங்கல் செய்து சக்காளம்மன் சாமிக்கு படைத்து  கால்நடைகளுக்கு கொடுப்பது  வழக்கம். மேலும் கிருஷ்ண ஜெயந்தி அன்று, குழந்தைகளை கிருஷ்ணர் வேடமிட்டு வழிபடுவது அந்த ஊரின் பழமையான மரபாகும்.
+ஆண்டு தோறும் சித்திரை 1 மற்றும் மாட்டுப் பொங்கல் அன்று, குடும்பத்திற்காக உழைக்கும் மாட்டை தெய்வமாக நினைத்து, பொங்கல் செய்து சக்காளம்மன் சாமிக்கு படைத்து  கால்நடைகளுக்கு கொடுப்பது  வழக்கம். மேலும் கிருஷ்ண ஜெயந்தி அன்று, குழந்தைகளை கிருஷ்ணர் வேடமிட்டு வழிபடுவது அந்த ஊரின் பழமையான மரபாகும்.
 
 இதுவே ஸ்ரீ கிருஷ்ணன் மற்றும் சக்காளம்மன் சாமியின் சக்திவாய்ந்த உண்மை வரலாறு.
 
@@ -569,7 +696,7 @@
       <section id="miracles" style="flex:1; min-width: 300px;">
         <div class="card">
           <h3>அதிசயங்கள் & நிகழ்வுகள்</h3>
-          <p class="muted">பக்தர்களால் காணப்பட்ட மற்றும் உணர்ந்த-change நிகழ்வுகள்.</p>
+          <p class="muted">பக்தர்களால் காணப்பட்ட மற்றும் உணர்ந்த நிகழ்வுகள்.</p>
           <ul class="muted" style="line-height:1.8;margin-top:12px">
             <li>சக்காளம்மன் அமர்ந்த நாளே கனமழை பெய்தது; விவசாய வாழ்வு செழித்தது.</li>
             <li>ஆடு மாடுகள் நோயிலிருந்து தீர்த்தத்தால் குணமடைந்தன.</li>
@@ -581,7 +708,10 @@
       <aside style="width:320px; min-width:260px; margin-left:18px; flex-shrink: 0;">
         <div class="card">
           <h4>அறிவிக்கைகள்</h4>
-          <p class="muted" style="line-height:1.6">வரும் திருவிழாக்கள்: சித்திரை 1 (மிதமாக), மாட்டுப் பொங்கல், கிருஷ்ண ஜெயந்தி. விரைவில் செயற்கை வரைபடம் மற்றும் தொடர்பு விவரங்கள் இணைக்கப்படும்.</p>
+          <p class="muted" style="line-height:1.6">
+            வரும் திருவிழாக்கள்: சித்திரை 1, மாட்டுப் பொங்கல், கிருஷ்ண ஜெயந்தி.
+            விரைவில் செயற்கை வரைபடம் மற்றும் தொடர்பு விவரங்கள் இணைக்கப்படும்.
+          </p>
         </div>
       </aside>
     </div>
@@ -607,117 +737,94 @@
     </div>
   </main>
 
-<!-- Quick Stats Section -->
-<div class="stats-wrapper" style="max-width:900px;margin:22px auto">
+  <!-- Quick Stats Section -->
+  <div class="stats-wrapper" style="max-width:900px;margin:22px auto">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <aside style="flex:1;min-width:280px">
+        <div class="card fade">
+          <h3 style="margin:0 0 6px">Quick Stats</h3>
+          <div class="small">Target: <strong id="qTarget">₹1,200,000</strong></div>
+          <div class="small">Collected: <strong id="qCollected">₹0</strong></div>
+          <div class="small">Outgoing: <strong id="qOutgoing">₹0</strong></div>
+          <div class="small">Remaining: <strong id="qRemaining">₹1,200,000</strong></div>
+          <div style="height:8px"></div>
+          <div class="progress" aria-hidden="true">
+            <i id="progressFill2" style="width:0%"></i>
+          </div>
+        </div>
 
-  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div class="card fade" style="margin-top:12px">
+          <h3 style="margin:0 0 6px">By Category (Outflows)</h3>
+          <div class="small">Cement: <strong id="catCement">₹0</strong></div>
+          <div class="small">Stone: <strong id="catStone">₹0</strong></div>
+          <div class="small">Labour: <strong id="catLabour">₹0</strong></div>
+          <div class="small">Other: <strong id="catOther">₹0</strong></div>
+        </div>
+      </aside>
 
-    <!-- Quick Stats -->
-    <aside style="flex:1;min-width:280px">
-      <div class="card fade">
-        <h3 style="margin:0 0 6px">Quick Stats</h3>
+      <div style="flex:2;min-width:320px">
+        <div class="card fade">
+          <h3 style="margin:0 0 10px">நன்கொடை வழங்கியவர்களின் விவரம்</h3>
+          <p style="font-size:14px;color:#555;margin:0 0 12px;line-height:1.4">
+            உங்கள் குடும்பம் வழங்கிய கைப்புண்ணியம்  
+            ஒரு தலைமுறைக்கு வழிகாட்டும் ஒளியாக இருக்கும்.  
+            அருளின் விதை இன்று விதைக்கப்பட்டது.
+          </p>
 
-        <div class="small">Target: <strong id="qTarget">₹1,200,000</strong></div>
-        <div class="small">Collected: <strong id="qCollected">₹0</strong></div>
-        <div class="small">Outgoing: <strong id="qOutgoing">₹0</strong></div>
-        <div class="small">Remaining: <strong id="qRemaining">₹1,200,000</strong></div>
+          <table id="donTable" style="width:100%;border-collapse:collapse">
+            <thead>
+              <tr style="background:#101a31;color:#fff">
+                <th style="padding:8px;border-bottom:1px solid #222">பெயர்</th>
+                <th style="padding:8px;border-bottom:1px solid #222">முகவரி</th>
+                <th style="padding:8px;border-bottom:1px solid #222">தொகை</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:8px;border-bottom:1px solid #e6e9ef">ஆனந்தகுமார் w/o சத்தியா</td>
+                <td style="padding:8px;border-bottom:1px solid #e6e9ef">கோல்காரன் கொட்டாய்</td>
+                <td style="padding:8px;border-bottom:1px solid #e6e9ef">
+                  அவர்களின் வேண்டுதல் நிறைவேறியதற்காக,
+                  அருள்மிகு ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமி திருக்கோயிலுக்கு தரைத்தளம் அமைத்தல்.
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:8px;border-bottom:1px solid #e6e9ef">களிகுட்டி மகன் நாராயணன் w/o தனலட்சுமி</td>
+                <td style="padding:8px;border-bottom:1px solid #e6e9ef">MGR Nagar</td>
+                <td style="padding:8px;border-bottom:1px solid #e6e9ef">எம் சேண்ட் - 2 யூனிட்</td>
+              </tr>
+              <tr>
+                <td colspan="5" class="small" style="text-align:center;padding:10px;color:#aaa">
+                  <!-- future rows here -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
-        <div style="height:8px"></div>
-
-        <div class="progress" aria-hidden="true">
-          <i id="progressFill2" style="width:0%"></i>
         </div>
       </div>
-
-      <!-- Category Card -->
-      <div class="card fade" style="margin-top:12px">
-        <h3 style="margin:0 0 6px">By Category (Outflows)</h3>
-        <div class="small">Cement: <strong id="catCement">₹0</strong></div>
-        <div class="small">Stone: <strong id="catStone">₹0</strong></div>
-        <div class="small">Labour: <strong id="catLabour">₹0</strong></div>
-        <div class="small">Other: <strong id="catOther">₹0</strong></div>
-      </div>
-    </aside>
-
-
-    <!-- Donation Table -->
-    <div style="flex:2;min-width:320px">
-      <div class="card fade">
-
-        <h3 style="margin:0 0 10px">நன்கொடை வழங்கியவர்களின் விவரம்</h3>
-
-        <p style="font-size:14px;color:#ddd;margin:0 0 12px;line-height:1.4">
-          உங்கள் குடும்பம் வழங்கிய கைப்புண்ணியம்  
-          ஒரு தலைமுறைக்கு வழிகாட்டும் ஒளியாக இருக்கும்.  
-          அருளின் விதை இன்று விதைக்கப்பட்டது.
-        </p>
-
-        <table id="donTable" style="width:100%;border-collapse:collapse">
-          <thead>
-            <tr style="background:#101a31;color:#fff">
-              <th style="padding:8px;border-bottom:1px solid #222">பெயர்</th>
-              <th style="padding:8px;border-bottom:1px solid #222">முகவரி</th>
-              <th style="padding:8px;border-bottom:1px solid #222">தொகை</th>
-            </tr>
-          </thead>
-    <tbody>
-     
-      <tr>
-        <td style="padding:8px;border-bottom:1px solid #e6e9ef">ஆனந்தகுமார் w/o சத்தியா</td>
-        <td style="padding:8px;border-bottom:1px solid #e6e9ef">கோல்காரன் கொட்டாய்</td>
-        <td style="padding:8px;border-bottom:1px solid #e6e9ef">அவர்களின் வேண்டுதல் நிறைவேறியதற்காக,
-அருள்மிகு ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமி திருக்கோயிலுக்கு தரைத்தளம் அமைத்தல்.
-</td>
-      
-      </tr>
-
-	<tr>
-        <td style="padding:8px;border-bottom:1px solid #e6e9ef">களிகுட்டி மகன் நாராயணன் w/o தனலட்சுமி</td>
-        <td style="padding:8px;border-bottom:1px solid #e6e9ef">MGR Nagar</td>
-        <td style="padding:8px;border-bottom:1px solid #e6e9ef"> எம் சேண்ட்- 2 யூனிட் </td>
-      
-      </tr>
-
-          <tbody id="donTbody">
-            <tr>
-              <td colspan="5" class="small" style="text-align:center;padding:10px;color:#aaa">
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- FOOTER -->
-<footer style="background:#0b1220;padding:20px 0;margin-top:30px">
-  <div class="wrap" style="max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;color:#fff">
-    
-    <div style="margin-bottom:10px">
-      <strong style="font-size:16px">அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</strong>
-      <div style="font-size:13px;color:#e8e8e8;margin-top:6px">© All rights reserved</div>
-    </div>
-
-    <div style="font-size:13px;color:#e8e8e8">
-      Designed responsive for TamilRSGroup
     </div>
   </div>
-</footer>
 
+  <footer style="background:#0b1220;padding:20px 0;margin-top:30px">
+    <div class="wrap" style="max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;color:#fff">
+      <div style="margin-bottom:10px">
+        <strong style="font-size:16px">அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</strong>
+        <div style="font-size:13px;color:#e8e8e8;margin-top:6px">© All rights reserved</div>
+      </div>
+      <div style="font-size:13px;color:#e8e8e8">
+        Designed responsive for TamilRSGroup
+      </div>
+    </div>
+  </footer>
 
   <script>
-  
+    // ===== Marquee logic =====
     (function(){
       const marquee = document.getElementById('marquee');
       const wrap = document.getElementById('marqueeWrap');
       if(!marquee) return;
 
-      
       const original = Array.from(marquee.children);
       let idx = 0;
       while(marquee.children.length < 12) {
@@ -726,12 +833,10 @@
       }
       Array.from(marquee.children).forEach(n => marquee.appendChild(n.cloneNode(true)));
 
-     
-      marquee.querySelectorAll('.marq-item').forEach((it,i)=>{
+      marquee.querySelectorAll('.marq-item').forEach((it)=>{
         it.classList.add('zoom-anim');
       });
 
-   
       const variants = ['rotate-glow','shake-rotate','reverse-rotate','flip3d'];
       const items = marquee.querySelectorAll('.marq-item');
       items.forEach((it, i) => {
@@ -739,13 +844,11 @@
         const variant = variants[i % variants.length];
         it.classList.add(variant);
         img.classList.add('rotating');
-       
         const delay = (i % 4) * 0.25;
         it.style.animationDelay = delay + 's';
         img.style.animationDelay = delay + 's';
       });
 
-    
       function computeDistance(){
         const gap = parseFloat(getComputedStyle(marquee).gap) || 18;
         const originalCount = original.length;
@@ -767,7 +870,6 @@
         marquee.style.animationDuration = duration + 's';
       }
 
-      
       const imgs = marquee.querySelectorAll('img');
       let loaded = 0;
       if(imgs.length === 0) { setupMarquee(); }
@@ -780,23 +882,27 @@
       });
       if(loaded === imgs.length) setTimeout(setupMarquee,50);
 
-
       marquee.querySelectorAll('img').forEach(img=>{
         img.addEventListener('error', ()=>{
           img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="250"><rect width="100%" height="100%" fill="#f3f0ee"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="14" fill="#999">படம் கிடைக்கவில்லை</text></svg>');
         });
       });
 
-    
-      wrap.addEventListener('focusin', ()=>{ if(marquee.style.animationPlayState !== 'paused') marquee.style.animationPlayState = 'paused'; });
-      wrap.addEventListener('focusout', ()=>{ if(marquee.style.animationPlayState !== 'running') marquee.style.animationPlayState = 'running'; });
+      wrap.addEventListener('focusin', ()=>{
+        marquee.style.animationPlayState = 'paused';
+      });
+      wrap.addEventListener('focusout', ()=>{
+        marquee.style.animationPlayState = 'running';
+      });
 
-    
       let resizeTimeout;
-      window.addEventListener('resize', ()=>{ clearTimeout(resizeTimeout); resizeTimeout = setTimeout(()=>{ setupMarquee(); }, 180); });
+      window.addEventListener('resize', ()=>{
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(()=>{ setupMarquee(); }, 180);
+      });
     })();
 
-   
+    // ===== Mobile menu =====
     const ham = document.getElementById('hamburger');
     const menu = document.getElementById('mobileMenu');
     if (ham) {
@@ -805,7 +911,6 @@
       });
     }
 
-   
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', function(e){
         const href = this.getAttribute('href');
@@ -814,7 +919,6 @@
           const target = document.querySelector(href);
           if(target){
             target.scrollIntoView({behavior:'smooth',block:'start'});
-           
             if(window.matchMedia('(max-width:600px)').matches) {
               menu.style.display = 'none';
             }
@@ -822,21 +926,84 @@
         }
       })
     });
+
+    // ===== Story audio player =====
+    (function () {
+      const audio   = document.getElementById("audioStory");
+      if (!audio) return;
+
+      const playBtn       = document.getElementById("playBtnStory");
+      const playIcon      = document.getElementById("playIconStory");
+      const progressBar   = document.getElementById("progressBarStory");
+      const progressFill  = document.getElementById("progressFillStory");
+      const currentTimeEl = document.getElementById("currentTimeStory");
+      const durationEl    = document.getElementById("durationStory");
+
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60) || 0;
+        const secs = Math.floor(seconds % 60) || 0;
+        return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+      }
+
+      function setPlayIcon(isPlaying) {
+        if (isPlaying) {
+          playIcon.innerHTML = `
+            <rect x="6" y="5" width="4" height="14"></rect>
+            <rect x="14" y="5" width="4" height="14"></rect>
+          `;
+          playBtn.setAttribute("aria-label", "Pause");
+        } else {
+          playIcon.innerHTML = `
+            <polygon points="7,5 19,12 7,19"></polygon>
+          `;
+          playBtn.setAttribute("aria-label", "Play");
+        }
+      }
+
+      if (playBtn) {
+        playBtn.addEventListener("click", () => {
+          if (audio.paused) {
+            audio.play();
+          } else {
+            audio.pause();
+          }
+        });
+      }
+
+      audio.addEventListener("play",  () => setPlayIcon(true));
+      audio.addEventListener("pause", () => setPlayIcon(false));
+
+      audio.addEventListener("loadedmetadata", () => {
+        if (!isNaN(audio.duration)) {
+          durationEl.textContent = formatTime(audio.duration);
+        }
+      });
+
+      audio.addEventListener("timeupdate", () => {
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+        if (audio.duration) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progressFill.style.width = `${percent}%`;
+        }
+      });
+
+      audio.addEventListener("ended", () => {
+        setPlayIcon(false);
+        progressFill.style.width = "0%";
+        currentTimeEl.textContent = "00:00";
+      });
+
+      if (progressBar) {
+        progressBar.addEventListener("click", (e) => {
+          const rect = progressBar.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const percent = clickX / rect.width;
+          if (audio.duration) {
+            audio.currentTime = percent * audio.duration;
+          }
+        });
+      }
+    })();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
