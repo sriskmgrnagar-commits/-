@@ -3,18 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
   <meta name="description" content="ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமியின் சக்திவாய்ந்த வரலாறு, மழை அருளின் அதிசயங்கள், நோய் தீர்க்கும் நிகழ்வுகள் மற்றும் சித்திரை, மாட்டுப் பொங்கல் திருவிழாக்கள் பற்றிய முழு தகவல்கள்.">
   <title>அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Theme shifted slightly towards blue-night + temple feel */
-      --accent: #0f172a;    /* dark blue */
-      --accent-2: #1d4ed8;  /* bright blue */
+      --accent: #0f172a;
+      --accent-2: #1d4ed8;
       --muted: #9ca3af;
-      --bg: #020617;        /* page background */
+      --bg: #020617;
       --card: #020617fa;
       --glass: rgba(15, 23, 42, 0.7);
       --radius: 12px;
@@ -82,7 +79,7 @@
       100% { transform: translate3d(-25%, -25%, 0); }
     }
 
-    /* === GOD BACKGROUND 3D / 6D / 12D LAYERS === */
+    /* === GOD BACKGROUND === */
     .god-bg-layer {
       position: fixed;
       inset: 0;
@@ -150,20 +147,7 @@
       100% { transform: translate3d(0,-10px,0) scale(1.04); opacity:0.22; }
     }
 
-    @media (max-width: 900px) {
-      .god-bg-main {
-        width: 210px;
-        height: 210px;
-        opacity: 0.18;
-      }
-      .god-bg-side {
-        width: 140px;
-        height: 140px;
-        opacity: 0.12;
-      }
-    }
-
-    /* Glow for main heading & section */
+    /* Glow for headings */
     .page-title-main {
       text-shadow:
         0 0 6px rgba(191, 219, 254, 0.75),
@@ -171,6 +155,7 @@
         0 0 26px rgba(56, 189, 248, 0.85);
       animation: titleGlow 3.5s ease-in-out infinite alternate;
       color: #e5e7eb;
+      text-align: center;
     }
 
     @keyframes titleGlow {
@@ -199,26 +184,24 @@
       animation: blessingGlow 5.5s ease-in-out infinite alternate;
     }
 
-    .blessing-section::before {
+    .blessing-section::before,
+    .blessing-section::after {
       content: "✦";
       position: absolute;
-      top: 10px;
-      left: 12px;
       font-size: 16px;
       color: #bfdbfe;
       opacity: 0.8;
       filter: drop-shadow(0 0 8px rgba(191, 219, 254, 0.9));
     }
 
+    .blessing-section::before {
+      top: 10px;
+      left: 12px;
+    }
+
     .blessing-section::after {
-      content: "✦";
-      position: absolute;
       bottom: 10px;
       right: 12px;
-      font-size: 16px;
-      color: #bfdbfe;
-      opacity: 0.8;
-      filter: drop-shadow(0 0 8px rgba(191, 219, 254, 0.9));
     }
 
     @keyframes blessingGlow {
@@ -240,13 +223,16 @@
       margin: 20px auto 0;
       padding: 0 18px;
       color: #e5e7eb;
+      text-align: center;
     }
+
     .marquee-wrap {
       margin-top: 12px;
       position: relative;
       overflow: hidden;
       padding: 10px 0;
     }
+
     .marquee {
       display: flex;
       gap: var(--gap);
@@ -254,6 +240,7 @@
       will-change: transform;
       padding-bottom: 6px;
     }
+
     .marq-item {
       min-width: 300px;
       width: 300px;
@@ -269,23 +256,13 @@
       position: relative;
       border: 1px solid rgba(148, 163, 184, 0.4);
     }
+
     .marq-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       backface-visibility: hidden;
-    }
-    .marq-caption {
-      position: absolute;
-      left: 8px;
-      bottom: 8px;
-      padding: 6px 8px;
-      background: rgba(15,23,42,0.85);
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 12px;
-      color: #e5e7eb;
     }
 
     @keyframes pulseZoom {
@@ -295,6 +272,7 @@
       75% { transform: scale(1.01); }
       100% { transform: scale(1); }
     }
+
     .zoom-anim {
       animation: pulseZoom 10s ease-in-out infinite;
       transform-origin: center center;
@@ -304,46 +282,12 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(var(--marq-distance)); }
     }
+
     .marquee.animated {
       animation-name: marqueeMove;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
       animation-direction: reverse;
-    }
-    .marquee-wrap:hover .marquee,
-    .marquee-wrap:focus-within .marquee {
-      animation-play-state: paused;
-    }
-
-    /* === 3D tilt for story image === */
-    .god-tilt {
-      transform-style: preserve-3d;
-      animation: heroFloat 12s ease-in-out infinite alternate;
-    }
-    .god-tilt img {
-      transform-origin: center;
-    }
-
-    @keyframes heroFloat {
-      0%   { transform: translate3d(0,0,0) rotateX(4deg) rotateY(-6deg) scale(1); }
-      100% { transform: translate3d(0,-10px,0) rotateX(-4deg) rotateY(6deg) scale(1.03); }
-    }
-
-    @media (min-width: 901px) {
-      .god-tilt:hover {
-        animation: none;
-        transform: translate3d(0,-8px,0) rotateX(-6deg) rotateY(8deg) scale(1.04);
-        transition: transform 0.25s ease-out;
-      }
-    }
-
-    .section-divider {
-      max-width: var(--container);
-      margin: 30px auto;
-      padding: 0 18px;
-      border: none;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #60a5fa, transparent);
     }
 
     /* ===== Temple layout ===== */
@@ -358,6 +302,7 @@
       border-bottom: 1px solid rgba(148, 163, 184, 0.5);
       backdrop-filter: blur(12px);
     }
+
     .wrap {
       max-width: var(--container);
       margin: 0 auto;
@@ -366,11 +311,13 @@
       justify-content: space-between;
       gap: 12px;
     }
+
     .logo {
       display: flex;
       align-items: center;
       gap: 10px;
     }
+
     .mark {
       width: 48px;
       height: 48px;
@@ -385,22 +332,26 @@
         0 0 0 2px rgba(191, 219, 254, 0.7),
         0 0 18px rgba(59, 130, 246, 0.8);
     }
+
     .title h1 {
       margin: 0;
       font-size: 18px;
       font-weight: 800;
       line-height: 1.2;
     }
+
     .title p {
       margin: 0;
       font-size: 12px;
       opacity: 0.95;
     }
+
     nav {
       display: flex;
       align-items: center;
       gap: 12px;
     }
+
     nav a {
       color: inherit;
       text-decoration: none;
@@ -410,10 +361,12 @@
       font-size: 14px;
       border: 1px solid transparent;
     }
+
     nav a:hover {
       background: rgba(15, 23, 42, 0.6);
       border-color: rgba(191, 219, 254, 0.7);
     }
+
     .hamburger {
       display: none;
       width: 44px;
@@ -426,6 +379,7 @@
       color: white;
       cursor: pointer;
     }
+
     #mobileMenu {
       display: none;
       background: radial-gradient(circle at top left, #1d4ed8, #020617);
@@ -433,6 +387,7 @@
       padding: 12px 18px;
       border-bottom: 1px solid rgba(148, 163, 184, 0.6);
     }
+
     #mobileMenu a {
       display: block;
       padding: 10px 0;
@@ -464,10 +419,12 @@
       border: 1px solid rgba(148, 163, 184, 0.45);
       color: #e5e7eb;
     }
+
     .lead {
       color: var(--muted);
       line-height: 1.7;
     }
+
     .story {
       margin-top: 12px;
       line-height: 1.85;
@@ -478,15 +435,18 @@
       border: none;
       padding: 0;
     }
+
     .side-cta h3 {
       margin: 0 0 8px;
     }
+
     .timeline {
       display: flex;
       flex-direction: column;
       gap: 10px;
       margin-bottom: 16px;
     }
+
     .timeline .item {
       padding: 10px;
       border-left: 4px solid #60a5fa;
@@ -494,6 +454,7 @@
       border-radius: 6px;
       color: #e5e7eb;
     }
+
     .btn {
       background: linear-gradient(135deg, #2563eb, #4f46e5);
       color: #fff;
@@ -505,18 +466,22 @@
       display: inline-block;
       box-shadow: 0 10px 24px rgba(37, 99, 235, 0.6);
     }
+
     .btn:hover {
       background: linear-gradient(135deg, #1d4ed8, #4338ca);
     }
+
     .muted {
       color: var(--muted);
     }
+
     .rituals {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 12px;
     }
+
     footer {
       margin-top: 32px;
       padding: 22px;
@@ -524,6 +489,7 @@
       color: #fff;
       border-top: 2px solid rgba(148, 163, 184, 0.6);
       box-shadow: 0 -10px 32px rgba(15, 23, 42, 0.95);
+      text-align: center;
     }
 
     /* Story MP3 player */
@@ -535,17 +501,21 @@
       border: 1px solid rgba(96, 165, 250, 0.6);
       color: #e5e7eb;
     }
+
     .story-audio-title {
       margin: 0 0 8px;
       font-size: 14px;
       font-weight: 700;
       color: #bfdbfe;
     }
+
     .story-player {
       display: flex;
       align-items: center;
       gap: 10px;
+      margin-bottom: 8px;
     }
+
     .story-play-btn {
       flex-shrink: 0;
       width: 40px;
@@ -562,24 +532,29 @@
         0 10px 18px rgba(79, 70, 229, 0.7);
       transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.1s ease;
     }
+
     .story-play-btn:hover {
       transform: translateY(-1px) scale(1.03);
       filter: brightness(1.05);
     }
+
     .story-play-btn:active {
       transform: translateY(1px) scale(0.97);
     }
+
     .story-play-icon {
       width: 16px;
       height: 16px;
       fill: #020617;
     }
+
     .story-progress-wrap {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
+
     .story-progress-bar {
       position: relative;
       width: 100%;
@@ -589,6 +564,7 @@
       cursor: pointer;
       overflow: hidden;
     }
+
     .story-progress-fill {
       position: absolute;
       inset: 0;
@@ -597,6 +573,7 @@
       box-shadow: 0 0 8px rgba(56, 189, 248, 0.9);
       transition: width 0.08s linear;
     }
+
     .story-time-row {
       display: flex;
       justify-content: space-between;
@@ -605,83 +582,174 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* Small helpers for stats */
-    .small {
-      font-size: 13px;
-      color: #9ca3af;
+    /* ==== ANIMATED TABLE STYLES ==== */
+    .donation-table-container {
+      overflow-x: auto;
+      margin-top: 20px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 10px;
+      animation: tableFadeIn 1s ease-out;
     }
+
+    @keyframes tableFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .donation-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 10px;
+      overflow: hidden;
+      animation: rowEntrance 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes rowEntrance {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .donation-table tr {
+      animation: rowSlide 0.5s ease-out forwards;
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    @keyframes rowSlide {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .donation-table th {
+      background: linear-gradient(135deg, #1d4ed8, #4f46e5);
+      color: #ffffff;
+      padding: 15px 12px;
+      font-size: 16px;
+      text-align: center;
+      font-weight: 700;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .donation-table td {
+      border: 1px solid rgba(55, 65, 81, 0.5);
+      padding: 12px 10px;
+      font-size: 14px;
+      text-align: center;
+      color: #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    .donation-table tbody tr:nth-child(even) {
+      background: rgba(2, 6, 23, 0.7);
+    }
+
+    .donation-table tbody tr:nth-child(odd) {
+      background: rgba(15, 23, 42, 0.5);
+    }
+
+    .donation-table tbody tr:hover {
+      background: rgba(30, 64, 175, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ==== CARD VIEW FOR MOBILE ==== */
+    .donation-cards {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .donation-card {
+      background: linear-gradient(145deg, rgba(15,23,42,0.95), rgba(30, 64, 175, 0.3));
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      animation: cardAppear 0.6s ease-out forwards;
+      opacity: 0;
+      transform: translateY(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes cardAppear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .donation-card-amt {
+      font-weight: 700;
+      font-size: 18px;
+      color: #fbbf24;
+      margin-bottom: 5px;
+      text-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+    }
+
+    .donation-card-power {
+      font-size: 14px;
+      color: #bfdbfe;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .donation-card-benefit {
+      font-size: 13px;
+      color: #e5e7eb;
+      line-height: 1.4;
+      padding-top: 8px;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    /* Progress bar styles */
     .progress {
       width: 100%;
       height: 6px;
       border-radius: 999px;
       background: #0f172a;
       overflow: hidden;
+      margin: 8px 0;
     }
+
     .progress i {
       display: block;
       height: 100%;
       background: linear-gradient(90deg, #22c55e, #4ade80);
+      width: 0%;
+      transition: width 0.3s ease;
     }
 
-    /* === Desktop only floating icons (3D / 6D / 12D animations) === */
-    .float-orbs {
-      position: fixed;
-      bottom: 40px;
-      left: 40px;
-      right: 40px;
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-      z-index: 5;
-    }
-    .icon-orb {
-      width: 56px;
-      height: 56px;
-      border-radius: 999px;
-      border: 1px solid rgba(147, 197, 253, 0.8);
-      background: radial-gradient(circle at 30% 15%, #fef9c3, #bfdbfe, #1d4ed8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: #0f172a;
-      box-shadow:
-        0 0 0 1px rgba(191, 219, 254, 0.7),
-        0 0 20px rgba(59, 130, 246, 0.9);
-      font-weight: 800;
-    }
-    .icon-orb span {
-      pointer-events: none;
+    .small {
+      font-size: 13px;
+      color: #9ca3af;
     }
 
-    .icon-orb-3 {
-      animation: float3 3s ease-in-out infinite alternate;
-    }
-    .icon-orb-6 {
-      animation: float6 6s ease-in-out infinite alternate;
-    }
-    .icon-orb-12 {
-      animation: float12 12s ease-in-out infinite alternate;
+    .fade {
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
     }
 
-    @keyframes float3 {
-      0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 0.9; }
-      100% { transform: translate3d(0,-14px,0) rotate(3deg); opacity: 1; }
-    }
-    @keyframes float6 {
-      0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 0.85; }
-      100% { transform: translate3d(0,10px,0) rotate(-3deg); opacity: 1; }
-    }
-    @keyframes float12 {
-      0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 0.8; }
-      100% { transform: translate3d(0,-18px,0) rotate(4deg); opacity: 1; }
-    }
-
-    /* ==== Step-by-step blocks (NEW) ==== */
-    .step-block {
-      max-width: var(--container);
-      margin: 18px auto;
-      padding: 0 0; /* main already has padding */
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
 
     .step-label {
@@ -702,38 +770,29 @@
       color: #60a5fa;
     }
 
-    .step-block .wrap {
-      align-items: stretch;
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .marquee.animated,
-      .zoom-anim,
-      .blessing-section,
-      .page-title-main,
-      .icon-orb-3,
-      .icon-orb-6,
-      .icon-orb-12,
-      .god-bg-main,
-      .god-bg-side,
-      .god-tilt {
-        animation: none !important;
-      }
+    .step-block {
+      margin: 30px 0;
     }
 
     /* Responsive */
     @media (max-width: 900px) {
+      .god-bg-main {
+        width: 210px;
+        height: 210px;
+        opacity: 0.18;
+      }
+      .god-bg-side {
+        width: 140px;
+        height: 140px;
+        opacity: 0.12;
+      }
       .marq-item {
         min-width: 260px;
         width: 260px;
         height: 210px;
       }
       .hero {
-        grid-template-columns: 1fr; /* main card + aside கீழே கீழே */
-      }
-      .float-orbs {
-        display: none; /* mobileல் icons இல்லா view */
+        grid-template-columns: 1fr;
       }
     }
 
@@ -741,14 +800,10 @@
       main {
         padding: 0 10px;
       }
-
       .marq-item {
         min-width: 48vw;
         width: 48vw;
         height: 48vw;
-      }
-      .wrap {
-        padding: 0;
       }
       nav {
         display: none;
@@ -772,27 +827,19 @@
       .rituals {
         grid-template-columns: 1fr;
       }
-
-      .step-block {
-        margin: 14px auto;
+      .donation-scroll {
+        display: none;
       }
-      .step-label {
+      .donation-cards {
+        display: block;
+      }
+      .donation-table th,
+      .donation-table td {
+        padding: 8px 6px;
         font-size: 12px;
       }
-
-      /* miracles + அறிவிப்புகள் flex wrapper – vertical */
-      .wrap.wrap-flex {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .wrap.wrap-flex > aside {
-        width: 100% !important;
-        margin-left: 0 !important;
-      }
-
-      /* stats block full width */
-      .stats-wrapper {
-        margin: 14px auto !important;
+      .donation-table th {
+        font-size: 13px;
       }
     }
 
@@ -801,6 +848,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
     @media (min-width: 981px) {
       .rituals {
         grid-template-columns: repeat(3, 1fr);
@@ -814,7 +862,7 @@
   <div class="stars2"></div>
   <div class="stars3"></div>
 
-  <!-- 3D / 6D / 12D god background movement -->
+  <!-- 3D god background -->
   <div class="god-bg-layer">
     <div class="god-bg-main"></div>
     <div class="god-bg-side god-bg-side-left"></div>
@@ -831,8 +879,8 @@
       "க்லீம் கிருஷ்ணாய நமஹ"
     </p>
     <p>
-      <strong>✔ கிருஷ்ணர் — “ஓம் நமோ பகவதே வாசுதேவாய”</strong><br>
-      <strong>✔ சக்காளம்மன் — “ஓம் ஹ்ரீம் சக்தியே நமஹ”</strong>
+      <strong>✔ கிருஷ்ணர் — "ஓம் நமோ பகவதே வாசுதேவாய"</strong><br>
+      <strong>✔ சக்காளம்மன் — "ஓம் ஹ்ரீம் சக்தியே நமஹ"</strong>
     </p>
     <p>
       அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி திருப்பணி
@@ -841,10 +889,10 @@
       உங்களின் கைப்புண்ணியம் நம் ஆலய வளர்ச்சிக்கு பெரும் துணை ஆகும்.
     </p>
     <p>உங்களின் ஒவ்வொரு கைப்புண்ணியமும் ஒரு தலைமுறைக்கு வழிகாட்டும் ஒளியாகும்</p>
-   
-    <div class="marquee-wrap" id="marqueeWrap" tabindex="0" aria-label="">
+
+    <div class="marquee-wrap" id="marqueeWrap" tabindex="0" aria-label="கோவில் புகைப்படங்கள்">
       <div class="marquee" id="marquee">
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg"  alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg" alt=""><div class="marq-caption"></div></div>
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp2.jpeg" alt=""><div class="marq-caption"></div></div>
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp3.jpeg" alt=""><div class="marq-caption"></div></div>
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp4.jpeg" alt=""><div class="marq-caption"></div></div>
@@ -852,12 +900,35 @@
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp6.jpeg" alt=""><div class="marq-caption"></div></div>
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp7.jpeg" alt=""><div class="marq-caption"></div></div>
         <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp8.jpeg" alt=""><div class="marq-caption"></div></div>
-        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg"  alt=""><div class="marq-caption"></div></div>
+        <div class="marq-item"><img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg" alt=""><div class="marq-caption"></div></div>
       </div>
     </div>
-  </div>
 
-  <hr class="section-divider">
+    <!-- Top Section Audio Player -->
+    <div class="story-audio-box" style="margin-top: 20px;">
+      <p class="story-audio-title">🎵 பாடல்</p>
+      <div class="story-player">
+        <button class="story-play-btn" id="playBtnTop" aria-label="Play">
+          <svg class="story-play-icon" id="playIconTop" viewBox="0 0 24 24">
+            <polygon points="7,5 19,12 7,19"></polygon>
+          </svg>
+        </button>
+        <div class="story-progress-wrap">
+          <div class="story-progress-bar" id="progressBarTop">
+            <div class="story-progress-fill" id="progressFillTop"></div>
+          </div>
+          <div class="story-time-row">
+            <span id="currentTimeTop">00:00</span>
+            <span id="durationTop">00:00</span>
+          </div>
+        </div>
+      </div>
+      <audio id="audioTop">
+        <source src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/samp3.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
 
   <header>
     <div class="wrap">
@@ -873,22 +944,21 @@
       <nav aria-label="Main Navigation">
         <a href="#story">வரலாறு</a>
         <a href="#miracles">நன்கொடை விவரம்</a>
-        <a href="#rituals">திருப்பணி வருவாய் / செலவு</a>
+        <a href="#rituals">திருப்பணி வருவாய்</a>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
     </div>
     <div id="mobileMenu">
       <a href="#story">வரலாறு</a>
       <a href="#miracles">நன்கொடை விவரம்</a>
-      <a href="#rituals"> திருப்பணி வருவாய் / செலவு</a>
-      <a href="#donTable"> Admin / Auditors Teams</a>
+      <a href="#rituals">திருப்பணி வருவாய்</a>
     </div>
   </header>
 
   <main>
-    <!-- STEP 1: வரலாறு + ஆடியோ + முக்கிய அம்சங்கள் -->
+    <!-- STEP 1: வரலாறு + ஆடியோ -->
     <section class="step-block" id="step1">
-      <div class="step-label">படி 1 • ஸ்தல வரலாறு & ஆடியோ</div>
+      <div class="step-label">ஸ்தல வரலாறு & ஆடியோ</div>
       <div class="wrap">
         <section class="hero">
           <div class="card">
@@ -898,66 +968,57 @@
               நோய்கள் நீங்கியதும், மக்கள் சிறப்பு வழிபாடுகளை செய்தும் நிகழ்ந்த சம்பவங்கள்.
             </p>
 
-            <!-- 🎧 Story Audio Player -->
+            <!-- Story Audio Player -->
             <div class="story-audio-box">
               <p class="story-audio-title">
                 🎧 அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி வரலாறு (ஆடியோ)
               </p>
-              <article class="story card" id="story" style="margin-top:8px;">
-                <div class="marq-item god-tilt" style="max-width:260px;height:180px;margin-bottom:10px;">
-                  <img src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/temp1.jpeg" alt="">
-                  <div class="marq-caption"></div>
-                </div>
-
-                <div class="story-player">
-                  <button class="story-play-btn" id="playBtnStory" aria-label="Play">
-                    <svg class="story-play-icon" id="playIconStory" viewBox="0 0 24 24">
-                      <polygon points="7,5 19,12 7,19"></polygon>
-                    </svg>
-                  </button>
-
-                  <div class="story-progress-wrap">
-                    <div class="story-progress-bar" id="progressBarStory">
-                      <div class="story-progress-fill" id="progressFillStory"></div>
-                    </div>
-                    <div class="story-time-row">
-                      <span id="currentTimeStory">00:00</span>
-                      <span id="durationStory">00:00</span>
-                    </div>
+              <div class="story-player">
+                <button class="story-play-btn" id="playBtnStory" aria-label="Play story">
+                  <svg class="story-play-icon" id="playIconStory" viewBox="0 0 24 24">
+                    <polygon points="7,5 19,12 7,19"></polygon>
+                  </svg>
+                </button>
+                <div class="story-progress-wrap">
+                  <div class="story-progress-bar" id="progressBarStory">
+                    <div class="story-progress-fill" id="progressFillStory"></div>
+                  </div>
+                  <div class="story-time-row">
+                    <span id="currentTimeStory">00:00</span>
+                    <span id="durationStory">00:00</span>
                   </div>
                 </div>
-
-                <audio id="audioStory">
-                  <source src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/samy.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </article>
+              </div>
+              <audio id="audioStory">
+                <source src="https://raw.githubusercontent.com/sriskmgrnagar-commits/-/main/samy.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
             </div>
 
-            <article class="story">
-அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி உருவான கதை
+            <article class="story" id="story">
+              அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி உருவான கதை
 
-மக்கள் அனைவரும் வறட்சியால் தவித்துக் கொண்டிருந்த காலகட்டம் அது. நம் ஊரின் ஒருவருக்கு பசியின் கொடுமையால் என்ன செய்வது என தெரியாமல், அருகிலுள்ள வேறு ஒரு ஊருக்கு சென்று மாட்டை திருட வேண்டும் என எண்ணம் தோன்றியது. ஆனால் அங்கே சென்றபோது அவர் பிடிபட்டார். அவரை மரத்தில் கட்டி வைத்து கடுமையாக அடித்தனர். அந்த மனவேதனையிலும் ஏக்கத்திலும் அவர் காடு வழியே தனியாக நடந்துச் சென்றார்.
+              மக்கள் அனைவரும் வறட்சியால் தவித்துக் கொண்டிருந்த காலகட்டம் அது. நம் ஊரின் ஒருவருக்கு பசியின் கொடுமையால் என்ன செய்வது என தெரியாமல், அருகிலுள்ள வேறு ஒரு ஊருக்கு சென்று மாட்டை திருட வேண்டும் என எண்ணம் தோன்றியது. ஆனால் அங்கே சென்றபோது அவர் பிடிபட்டார். அவரை மரத்தில் கட்டி வைத்து கடுமையாக அடித்தனர். அந்த மனவேதனையிலும் ஏக்கத்திலும் அவர் காடு வழியே தனியாக நடந்துச் சென்றார்.
 
-அப்போது அவருக்கு கண்ணில் கிருஷ்ணர் மற்றும் சக்காளம்மன் சாமி தோன்றினர். உடனே அவர் மனதில் ஒரு எண்ணம் எழுந்தது
-இந்த சாமி நம்ம ஊரில் இருந்தால், நம் ஊருக்கு நன்மை வரும் எனக் கருதி
+              அப்போது அவருக்கு கண்ணில் கிருஷ்ணர் மற்றும் சக்காளம்மன் சாமி தோன்றினர். உடனே அவர் மனதில் ஒரு எண்ணம் எழுந்தது
+              இந்த சாமி நம்ம ஊரில் இருந்தால், நம் ஊருக்கு நன்மை வரும் எனக் கருதி
 
-அவர் போர்த்தியிருந்த போர்வைக்குள் அந்த சாமி சிலைகளை வைத்து, தனியாக 40 மைல் தூரம் தூக்கி வந்து, தனது கிராமத்தில் சிறு குளக்கரையில் ஆலமரத்தின் அடியில் பிரதிஷ்டை செய்தார்.
+              அவர் போர்த்தியிருந்த போர்வைக்குள் அந்த சாமி சிலைகளை வைத்து, தனியாக 40 மைல் தூரம் தூக்கி வந்து, தனது கிராமத்தில் சிறு குளக்கரையில் ஆலமரத்தின் அடியில் பிரதிஷ்டை செய்தார்.
 
-சாமி அமர்ந்த தினமே, இடியும் மின்னலும் கூட கனமழை பெய்தது. ஏரிகள், குளங்கள், குட்டைகள் அனைத்தும் நிரம்பி வழிந்தன. அந்த ஆண்டு முதல்  வறட்சி இல்லாமல், மக்கள் பசி–பட்டினி இல்லாமல் மக்கள் செழிப்புடன் வாழ்ந்தனர். விவசாயமும் செழித்து.
+              சாமி அமர்ந்த தினமே, இடியும் மின்னலும் கூட கனமழை பெய்தது. ஏரிகள், குளங்கள், குட்டைகள் அனைத்தும் நிரம்பி வழிந்தன. அந்த ஆண்டு முதல்  வறட்சி இல்லாமல், மக்கள் பசி–பட்டினி இல்லாமல் மக்கள் செழிப்புடன் வாழ்ந்தனர். விவசாயமும் செழித்து.
 
-சில ஆண்டுகள் கழித்து ஊரில் திடீரென பெரிய நோய் பரவியது. ஆடு–மாடுகள் அதிக அளவில் இறக்க ஆரம்பித்தன. என்ன செய்வது என்று தெரியாமல் மக்கள் துயரத்தில் இருந்தார்கள். அப்போது ஊர் பொதுமக்கள் அனைவரும் ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணன் சாமியிடம் வேண்டி, தீர்த்தம் வைத்து, சாமியின் அருளை நாடினர். அதன் பின்னர் ஆடு–மாடுகள் தெளித்து தனர் பின்னர் நோயிலிருந்து குணமடைந்தன.
+              சில ஆண்டுகள் கழித்து ஊரில் திடீரென பெரிய நோய் பரவியது. ஆடு–மாடுகள் அதிக அளவில் இறக்க ஆரம்பித்தன. என்ன செய்வது என்று தெரியாமல் மக்கள் துயரத்தில் இருந்தார்கள். அப்போது ஊர் பொதுமக்கள் அனைவரும் ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணன் சாமியிடம் வேண்டி, தீர்த்தம் வைத்து, சாமியின் அருளை நாடினர். அதன் பின்னர் ஆடு–மாடுகள் தெளித்து தனர் பின்னர் நோயிலிருந்து குணமடைந்தன.
 
-அது மட்டும் அல்ல அதே ஆண்டில் மக்கள் “அம்மை நோய்”யால் பாதிக்கப்பட்டனர். அப்போது வேப்பிலை, மஞ்சள் அரைத்து சாமியின் முன் வைத்து வேண்டிய பின்னர், அந்த கலவையை நோய்ப்பட்டவர்களுக்கு பூசி குளிக்க வைத்தனர். சில நாட்களில் அம்மை நோயும் குணமடைந்தது. மக்கள் ஒரு பெரிய பாதிப்பிலிருந்து விடுபட்டனர்
+              அது மட்டும் அல்ல அதே ஆண்டில் மக்கள் "அம்மை நோய்"யால் பாதிக்கப்பட்டனர். அப்போது வேப்பிலை, மஞ்சள் அரைத்து சாமியின் முன் வைத்து வேண்டிய பின்னர், அந்த கலவையை நோய்ப்பட்டவர்களுக்கு பூசி குளிக்க வைத்தனர். சில நாட்களில் அம்மை நோயும் குணமடைந்தது. மக்கள் ஒரு பெரிய பாதிப்பிலிருந்து விடுபட்டனர்
 
-வறட்சி காலம் வரும் போது குடிக்கத் தண்ணீருக்கே தட்டுப்பாடு ஏற்பட்டது. அப்போது கிராம மக்கள் அனைவரும் மாலை நேரத்தில் (4 முதல் 7 மணி வரை) ஒன்று சேர்ந்து, வர்ண பகவானை வேண்டி குளத்தில் மண்ணால் மகாதேவன் (சிவன்)சிலையை உருவாக்கி  11 சிறுவர்களை நின்று வைத்து, அவர்கள் கையில் ஊதுபத்தி ஏந்தி நிற்க வைத்து “சாமி அழைத்து” அருள்வாக்கு கேட்டு வழிபாடு நடத்தினர். அதே இரவு முழுவதும் கனமழை பெய்து, வறட்சியிலிருந்து கிராமம் மீண்டது. இவை அனைத்தும் உண்மை சம்பவங்கள்.
+              வறட்சி காலம் வரும் போது குடிக்கத் தண்ணீருக்கே தட்டுப்பாடு ஏற்பட்டது. அப்போது கிராம மக்கள் அனைவரும் மாலை நேரத்தில் (4 முதல் 7 மணி வரை) ஒன்று சேர்ந்து, வர்ண பகவானை வேண்டி குளத்தில் மண்ணால் மகாதேவன் (சிவன்)சிலையை உருவாக்கி  11 சிறுவர்களை நின்று வைத்து, அவர்கள் கையில் ஊதுபத்தி ஏந்தி நிற்க வைத்து "சாமி அழைத்து" அருள்வாக்கு கேட்டு வழிபாடு நடத்தினர். அதே இரவு முழுவதும் கனமழை பெய்து, வறட்சியிலிருந்து கிராமம் மீண்டது. இவை அனைத்தும் உண்மை சம்பவங்கள்.
 
-ஆண்டு தோறும் சித்திரை 1 மற்றும் மாட்டுப் பொங்கல் அன்று, குடும்பத்திற்காக உழைக்கும் மாட்டை தெய்வமாக நினைத்து, பொங்கல் செய்து சக்காளம்மன் சாமிக்கு படைத்து  கால்நடைகளுக்கு கொடுப்பது  வழக்கம். மேலும் கிருஷ்ண ஜெயந்தி அன்று, குழந்தைகளை கிருஷ்ணர் வேடமிட்டு வழிபடுவது அந்த ஊரின் பழமையான மரபாகும்.
+              ஆண்டு தோறும் சித்திரை 1 மற்றும் மாட்டுப் பொங்கல் அன்று, குடும்பத்திற்காக உழைக்கும் மாட்டை தெய்வமாக நினைத்து, பொங்கல் செய்து சக்காளம்மன் சாமிக்கு படைத்து  கால்நடைகளுக்கு கொடுப்பது  வழக்கம். மேலும் கிருஷ்ண ஜெயந்தி அன்று, குழந்தைகளை கிருஷ்ணர் வேடமிட்டு வழிபடுவது அந்த ஊரின் பழமையான மரபாகும்.
 
-இதுவே ஸ்ரீ கிருஷ்ணன் மற்றும் சக்காளம்மன் சாமியின் சக்திவாய்ந்த உண்மை வரலாறு.
+              இதுவே ஸ்ரீ கிருஷ்ணன் மற்றும் சக்காளம்மன் சாமியின் சக்திவாய்ந்த உண்மை வரலாறு.
 
-குறிப்பு:
-இந்த சாமிக்கு வேண்டுதல் வைத்து எதை வேண்டினாலும், அது நிறைவேற்றி தரும் என்பதே மக்கள் நம்பிக்கை.
+              குறிப்பு:
+              இந்த சாமிக்கு வேண்டுதல் வைத்து எதை வேண்டினாலும், அது நிறைவேற்றி தரும் என்பதே மக்கள் நம்பிக்கை.
             </article>
 
             <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
@@ -972,66 +1033,79 @@
               <div class="item"><strong>நோய்களை நீக்கும்</strong> — ஆடு மாடுகள் மற்றும் அம்மை நோய் குணம்.</div>
               <div class="item"><strong>வாழ்க்கை வளம்</strong> — விவசாயம் செழித்தது; மக்கள் நலமடைந்தனர்.</div>
             </div>
-            <article class="story card">
-பழைய நினைவுகள்…
-அவை சாதாரணக் கதைகள் இல்லை.
-அவை ஒரு ஊரின் உயிர்,
-ஒரு குடும்பத்தின் ஆணிவேர்,
-ஒரு மனிதனின் உள்ளத்தின் ஒலி.
+            
+        
+           <article class="story card" style="margin-top:20px; line-height:1.9; white-space:normal;">
+  <p><strong>பழைய நினைவுகள்…</strong><br>
+  அவை சாதாரணக் கதைகள் இல்லை.<br>
+  அவை ஒரு ஊரின் உயிர், ஒரு குடும்பத்தின் ஆணிவேர், ஒரு மனிதனின் உள்ளத்தின் ஒலி.</p>
 
-நம்ம கிராமத்தில் நடந்த உண்மை நிகழ்வுகள், பெரியவர்கள் சொன்ன வரலாறுகள், சாமி கதைகள் — இவை யாரோ ஒருத்தர் சொல்லிக்கிட்டிருந்த கற்பனைகள் கதைகள் இல்லை
-நம்ம முன்னோர்கள் அனுபவப்பட்டு தாங்கிக் கொண்டு, நம்பிக்கையோடு வாழ்ந்து வந்த உண்மை சான்றுகள்.
+  <p>
+  நம்ம கிராமத்தில் நடந்த உண்மை நிகழ்வுகள், பெரியவர்கள் சொன்ன வரலாறுகள், சாமி கதைகள் —
+  இவை யாரோ ஒருத்தர் சொல்லிக்கிட்டிருந்த கற்பனைகள் இல்லை.
+  நம்ம முன்னோர்கள் அனுபவம் பெற்றும், நம்பிக்கையோடு வாழ்ந்து வந்த உண்மை சான்றுகள்.
+  </p>
 
-ஏன் அவற்றை பாதுகாக்கணும்?
+  <p><strong>ஏன் அவற்றை பாதுகாக்கணும்?</strong><br>
+  ஏனெனில்… ஒருவரின் நினைவு மறைந்துவிட்டால்,
+  அவர் வாழ்ந்த தடங்கள் அழிந்து விடும்.
+  </p>
 
-ஏனெனில்…
-ஒருவரின் நினைவு அழிந்துவிட்டால், அவர் வாழ்ந்த தடங்கள்  அழிந்து விடும்.
+  <p>
+  பசியால் தவித்த ஒரு மனிதன்,<br>
+  காடு வழியே கண்ணீர் வடித்துத் நடந்த ஒரு வரலாறு,<br>
+  சாமி உருவம் கண்டதும் மாறிய மனம்,<br>
+  போர்வையில் மடித்து 40 மைல் தூக்கி வந்த நம்பிக்கை —<br><br>
+  இவை எல்லாம் நம்ம ஊரின் நம்பிக்கையின் அடையாளங்கள்.
+  </p>
 
-பசியால் தவித்த ஒரு மனிதன்,
-காடு வழியே கண்ணீர் வடித்துத் நடந்த ஒரு வரலாறு,
-ஒரு சாமி உருவம் பார்த்ததும் மனம் மாறிய ஒரு அன்பு,
-ஒரு போர்வையில் மடித்து 40 மைல் தூக்கி வந்த நம்பிக்கை —
+  <p>
+  ஏரிகள் நிரம்பிய தினங்களும்,<br>
+  மழை பொழிந்த இரவுகளும்,<br>
+  இவை மறந்து போகக் கூடாத பொக்கிஷங்கள்.
+  </p>
 
-இவை எல்லாம் கதைகள் இல்லை.
-நம்ம ஊரின் நம்பிக்கையின் அடையாளங்கள்.
+  <p>
+  நினைவுகள் தான் நம்மை யார் என்று உலகுக்கு சொல்கிறது.<br>
+  பழைய வரலாறே புதிய தலைமுறைக்கு தைரியம் தருகிறது.
+  </p>
 
-ஏரிகள் நிரம்பிய தினங்களும்,
-மழை பொழிந்த இரவுகளும்,
+  <p>
+  நம்ம ஊர் நம்பிக்கை, நம் தெய்வம், நம் கதைகள் — இவையே நம் அடையாளம்.
+  </p>
 
-இவை எல்லாம் மறந்து போகக் கூடாத பொக்கிஷங்கள்.
+  <p>
+  நம்ம சக்காளம்மன் & கிருஷ்ணர் சாமி,<br>
+  அவர்களது அருளால் மீண்ட மக்கள் —<br>
+  அது ஊரை காப்பாற்றிய அருளின் வரலாறு.
+  </p>
 
-ஏனெனில்…
+  <p>
+  அதை பாதுகாப்பது நம்ம தெய்வத்துக்கு செய்யும் கடமை மட்டும் இல்லை…<br>
+  நம்ம வாழ கற்றுத்தந்த முன்னோர்களுக்கு செய்யும் மரியாதை.
+  </p>
 
-நினைவுகள் தான் நம்மை யார் என்று உலகுக்கு சொல்கிறது.
+  <p>
+  பழைய நினைவுகளை பாதுகாப்பது சுவரில் தொங்கும் படத்தை பாதுகாப்பது போலல்ல.<br>
+  அது நம்ம வேர் உயிரோடு இருக்கும் அடையாளம்.
+  </p>
 
-பழைய வரலாறு தான் புதிய தலைமுறைக்கு தைரியம் தருகிறது.
+  <p><strong>அதை பாதுகாப்பது — நம் கடமை.</strong></p>
+</article>
 
-நம்ம ஊர் நம்பிக்கை, நம் தெய்வம், நம் கதைகள் — இவையே நம் அடையாளம்.
 
-நம்ம சக்காளம்மன் & கிருஷ்ணர் சாமி,
-அவர்களது அருளால் மீண்ட மக்கள் —
-அது சாதாரண சம்பவமில்லை.
-அது ஊரை காப்பாற்றிய அருளின் வரலாறு.
-அதை பாதுகாப்பது
-நம்ம தெய்வத்துக்கு செய்யும் கடமை மட்டும் இல்லை…
-நம்ம வாழ கற்றுத்தந்த முன்னோர்களுக்கு செய்யும் மரியாதை
-பழைய நினைவுகளை பாதுகாப்பது
-சுவரில் தொங்கும் ஒரு படத்தை பாதுகாப்பது போல இல்லை.
-அதை பாதுகாப்பது
-நம்  கடமை.
-அதை பாதுகாப்பது—நம் வேர் உயிரோடு இருக்கிறது என்பதற்கு அறிகுறி.
-            </article>
+
+       
           </aside>
         </section>
       </div>
     </section>
 
-    <!-- STEP 2: நன்கொடை / 3333 ஆன்மிகம் -->
+    <!-- STEP 2: Donation section -->
     <section class="step-block" id="step2">
-      <div class="step-label">படி 2 • 3333 ஆன்மிக நன்கொடை விளக்கம்</div>
+      <div class="step-label"> 3333 ஆன்மிக நன்கொடை விளக்கம்</div>
       <div class="wrap">
-        <section class="blessing-section" style="font-family:'Noto Sans Tamil','Arial',sans-serif; padding:20px; border-radius:12px; line-height:1.6; margin-top:22px; width:100%;">
-
+        <section class="blessing-section">
           <h2 style="color:#bfdbfe; text-align:center; margin-top:0; font-size:22px;">
             3333 — ஆன்மிக ரீதியில் சிறப்பு எண்ணியல் ✨
           </h2>
@@ -1041,7 +1115,7 @@
             என்பவற்றை குறிக்கும் புனித எண்ணாக கருதப்படுகிறது ✨
           </p>
 
-          <p style="font-size:15px; color:#e5e7eb;">
+          <p style="font-size:15px; color:#e5e7eb; text-align:center;">
             இந்த புண்ணிய நன்கொடையில் பங்கேற்பதன் மூலம்:
           </p>
 
@@ -1052,260 +1126,56 @@
             <li>🔹 கொடுக்கும் கைகளுக்கு அறிவு, ஆரோக்கியம், செல்வம், வளம் மேலும் பெருகும்</li>
           </ul>
 
-          <style>
-            table.donation-table {
-              width: 100%;
-              border-collapse: collapse;
-              background: rgba(15,23,42,0.95);
-              border-radius: 12px;
-              overflow: hidden;
-            }
-            .donation-table th {
-              background: linear-gradient(90deg, #1d4ed8, #4f46e5);
-              color: #ffffff;
-              padding: 12px;
-              font-size: 17px;
-              text-align: center;
-            }
-            .donation-table td {
-              border: 1px solid rgba(55, 65, 81, 0.8);
-              padding: 10px;
-              font-size: 15px;
-              text-align: center;
-              color: #e5e7eb;
-            }
-            .donation-table tbody tr:nth-child(even) {
-              background: #020617;
-            }
-            .donation-table tbody tr:nth-child(odd) {
-              background: #020617f7;
-            }
-            .donation-table tbody tr:hover {
-              background: rgba(30, 64, 175, 0.55);
-              transition: 0.2s;
-            }
-
-            /* --- New: Responsive donation wrapper --- */
-            .donation-wrapper {
-              width: 100%;
-            }
-            .donation-scroll {
-              width: 100%;
-              overflow-x: auto;
-              -webkit-overflow-scrolling: touch;
-            }
-            .donation-cards {
-              display: none; /* desktop-ல் காட்ட வேண்டாம் */
-            }
-            .donation-card {
-              background: rgba(15,23,42,0.95);
-              border-radius: 10px;
-              padding: 10px 12px;
-              border: 1px solid rgba(55,65,81,0.9);
-              margin-bottom: 8px;
-            }
-            .donation-card-amt {
-              font-weight: 700;
-              font-size: 16px;
-              color: #fbbf24;
-              margin-bottom: 4px;
-            }
-            .donation-card-num {
-              font-size: 14px;
-              color: #bfdbfe;
-              margin-bottom: 3px;
-            }
-            .donation-card-benefit {
-              font-size: 13px;
-              color: #e5e7eb;
-              line-height: 1.4;
-            }
-
-            @media (max-width:600px){
-              .donation-table th,.donation-table td{
-                padding:7px;
-                font-size:13px;
-              }
-              /* Mobile: table hide, cards show */
-              .donation-scroll {
-                display: none;
-              }
-              .donation-cards {
-                display: block;
-                margin-top: 10px;
-              }
-            }
-          </style>
-
           <div class="donation-wrapper">
-
-            <!-- Desktop / Laptop view – normal table -->
+            <!-- Desktop Table View -->
             <div class="donation-scroll">
-              <table class="donation-table">
-                <thead>
-                  <tr>
-                    <th>நன்கொடை</th>
-                    <th>எண் சக்தி</th>
-                    <th>ஆன்மிக பயன்</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>₹ 108</td><td>இறைநாம சக்தி</td><td>முதற்கட்ட பாக்கியம் கிடைக்கும்</td></tr>
-                  <tr><td>₹ 501</td><td>சுப தொடக்கம்</td><td>தடைகள் நீங்கும்</td></tr>
-                  <tr><td>₹ 786</td><td>பாதுகாப்பு சக்தி</td><td>கஷ்டம் அகலும்</td></tr>
-                  <tr><td>₹ 1,111</td><td>தெய்வ அருள்</td><td>புதிய முயற்சி வெற்றி</td></tr>
-                  <tr><td>₹ 1,234</td><td>முன்னேற்ற வளர்ச்சி</td><td>எதிர்காலம் உறுதி</td></tr>
-                  <tr><td>₹ 2,222</td><td>அமைதி + சமநிலை</td><td>குடும்ப நலன்</td></tr>
-                  <tr><td>₹ 3,333</td><td>மாற்றம் + ஆசீர்வாதம்</td><td>வேண்டுதல் நிறைவு</td></tr>
-                  <tr><td>₹ 4,444</td><td>பாதுகாப்பின் கட்டிடம்</td><td>நிலையான வருமானம்</td></tr>
-                  <tr><td>₹ 5,555</td><td>பஞ்சபூத பாக்கியம்</td><td>ஆரோக்கிய வளம்</td></tr>
-                  <tr><td>₹ 6,666</td><td>செல்வ எழுச்சி</td><td>வருமான உயர்வு</td></tr>
-                  <tr><td>₹ 7,777</td><td>அதிர்ஷ்ட உச்சம்</td><td>லட்சுமி அருள்</td></tr>
-                  <tr><td>₹ 8,888</td><td>அஷ்ட லட்சுமி</td><td>பண வளர்ச்சி</td></tr>
-                  <tr><td>₹ 9,999</td><td>முழு நன்மை</td><td>குடும்ப உயர்வு</td></tr>
-                  <tr><td>₹ 10,008</td><td>பரம்பரை புண்ணியம்</td><td>தெய்வ காப்பு</td></tr>
-                  <tr><td>₹ 12,345</td><td>அபரிமித முன்னேற்றம்</td><td>நிலையான வளர்ச்சி</td></tr>
-                  <tr><td>₹ 15,555</td><td>விசேஷ அருள்</td><td>தொழில் விரிவு</td></tr>
-                  <tr><td>₹ 21,000</td><td>மகா புண்ணியம்</td><td>குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</td></tr>
-                  <tr><td>₹ 25,000</td><td>கோவில் மேம்பாடு</td><td>பெயர் நிலைத்து நிற்கும்</td></tr>
-                  <tr><td>₹ 51,000</td><td>மஹா திருவிளையாடல்</td><td>சந்ததியாருக்கு நன்மை</td></tr>
-                  <tr><td>₹ 1,00,008</td><td>மிகப்பெரிய புண்ணியம்</td><td>தேவியின் கருணை நிரம்பும்</td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Mobile view – step-by-step cards -->
-            <div class="donation-cards">
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 108</div>
-                <div class="donation-card-num">இறைநாம சக்தி</div>
-                <div class="donation-card-benefit">முதற்கட்ட பாக்கியம் கிடைக்கும்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 501</div>
-                <div class="donation-card-num">சுப தொடக்கம்</div>
-                <div class="donation-card-benefit">தடைகள் நீங்கும்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 786</div>
-                <div class="donation-card-num">பாதுகாப்பு சக்தி</div>
-                <div class="donation-card-benefit">கஷ்டம் அகலும்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 1,111</div>
-                <div class="donation-card-num">தெய்வ அருள்</div>
-                <div class="donation-card-benefit">புதிய முயற்சி வெற்றி</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 1,234</div>
-                <div class="donation-card-num">முன்னேற்ற வளர்ச்சி</div>
-                <div class="donation-card-benefit">எதிர்காலம் உறுதி</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 2,222</div>
-                <div class="donation-card-num">அமைதி + சமநிலை</div>
-                <div class="donation-card-benefit">குடும்ப நலன்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 3,333</div>
-                <div class="donation-card-num">மாற்றம் + ஆசீர்வாதம்</div>
-                <div class="donation-card-benefit">வேண்டுதல் நிறைவு</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 4,444</div>
-                <div class="donation-card-num">பாதுகாப்பின் கட்டிடம்</div>
-                <div class="donation-card-benefit">நிலையான வருமானம்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 5,555</div>
-                <div class="donation-card-num">பஞ்சபூத பாக்கியம்</div>
-                <div class="donation-card-benefit">ஆரோக்கிய வளம்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 6,666</div>
-                <div class="donation-card-num">செல்வ எழுச்சி</div>
-                <div class="donation-card-benefit">வருமான உயர்வு</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 7,777</div>
-                <div class="donation-card-num">அதிர்ஷ்ட உச்சம்</div>
-                <div class="donation-card-benefit">லட்சுமி அருள்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 8,888</div>
-                <div class="donation-card-num">அஷ்ட லட்சுமி</div>
-                <div class="donation-card-benefit">பண வளர்ச்சி</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 9,999</div>
-                <div class="donation-card-num">முழு நன்மை</div>
-                <div class="donation-card-benefit">குடும்ப உயர்வு</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 10,008</div>
-                <div class="donation-card-num">பரம்பரை புண்ணியம்</div>
-                <div class="donation-card-benefit">தெய்வ காப்பு</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 12,345</div>
-                <div class="donation-card-num">அபரிமித முன்னேற்றம்</div>
-                <div class="donation-card-benefit">நிலையான வளர்ச்சி</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 15,555</div>
-                <div class="donation-card-num">விசேஷ அருள்</div>
-                <div class="donation-card-benefit">தொழில் விரிவு</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 21,000</div>
-                <div class="donation-card-num">மகா புண்ணியம்</div>
-                <div class="donation-card-benefit">குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 25,000</div>
-                <div class="donation-card-num">கோவில் மேம்பாடு</div>
-                <div class="donation-card-benefit">பெயர் நிலைத்து நிற்கும்</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 51,000</div>
-                <div class="donation-card-num">மஹா திருவிளையாடல்</div>
-                <div class="donation-card-benefit">சந்ததியாருக்கு நன்மை</div>
-              </div>
-
-              <div class="donation-card">
-                <div class="donation-card-amt">₹ 1,00,008</div>
-                <div class="donation-card-num">மிகப்பெரிய புண்ணியம்</div>
-                <div class="donation-card-benefit">தேவியின் கருணை நிரம்பும்</div>
+              <div class="donation-table-container">
+                <table class="donation-table">
+                  <thead>
+                    <tr>
+                      <th>நன்கொடை</th>
+                      <th>எண் சக்தி</th>
+                      <th>ஆன்மிக பயன்</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>₹ 108</td><td>இறைநாம சக்தி</td><td>முதற்கட்ட பாக்கியம் கிடைக்கும்</td></tr>
+                    <tr><td>₹ 501</td><td>சுப தொடக்கம்</td><td>தடைகள் நீங்கும்</td></tr>
+                    <tr><td>₹ 786</td><td>பாதுகாப்பு சக்தி</td><td>கஷ்டம் அகலும்</td></tr>
+                    <tr><td>₹ 1,111</td><td>தெய்வ அருள்</td><td>புதிய முயற்சி வெற்றி</td></tr>
+                    <tr><td>₹ 1,234</td><td>முன்னேற்ற வளர்ச்சி</td><td>எதிர்காலம் உறுதி</td></tr>
+                    <tr><td>₹ 2,222</td><td>அமைதி + சமநிலை</td><td>குடும்ப நலன்</td></tr>
+                    <tr><td>₹ 3,333</td><td>மாற்றம் + ஆசீர்வாதம்</td><td>வேண்டுதல் நிறைவு</td></tr>
+                    <tr><td>₹ 4,444</td><td>பாதுகாப்பின் கட்டிடம்</td><td>நிலையான வருமானம்</td></tr>
+                    <tr><td>₹ 5,555</td><td>பஞ்சபூத பாக்கியம்</td><td>ஆரோக்கிய வளம்</td></tr>
+                    <tr><td>₹ 6,666</td><td>செல்வ எழுச்சி</td><td>வருமான உயர்வு</td></tr>
+                    <tr><td>₹ 7,777</td><td>அதிர்ஷ்ட உச்சம்</td><td>லட்சுமி அருள்</td></tr>
+                    <tr><td>₹ 8,888</td><td>அஷ்ட லட்சுமி</td><td>பண வளர்ச்சி</td></tr>
+                    <tr><td>₹ 9,999</td><td>முழு நன்மை</td><td>குடும்ப உயர்வு</td></tr>
+                    <tr><td>₹ 10,008</td><td>பரம்பரை புண்ணியம்</td><td>தெய்வ காப்பு</td></tr>
+                    <tr><td>₹ 12,345</td><td>அபரிமித முன்னேற்றம்</td><td>நிலையான வளர்ச்சி</td></tr>
+                    <tr><td>₹ 15,555</td><td>விசேஷ அருள்</td><td>தொழில் விரிவு</td></tr>
+                    <tr><td>₹ 21,000</td><td>மகா புண்ணியம்</td><td>குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்</td></tr>
+                    <tr><td>₹ 25,000</td><td>கோவில் மேம்பாடு</td><td>பெயர் நிலைத்து நிற்கும்</td></tr>
+                    <tr><td>₹ 51,000</td><td>மஹா திருவிளையாடல்</td><td>சந்ததியாருக்கு நன்மை</td></tr>
+                    <tr><td>₹ 1,00,008</td><td>மிகப்பெரிய புண்ணியம்</td><td>தேவியின் கருணை நிரம்பும்</td></tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-
+            
+            <!-- Mobile Card View -->
+            <div class="donation-cards" id="donationCards">
+              <!-- Cards will be generated by JavaScript -->
+            </div>
           </div>
-
         </section>
       </div>
     </section>
 
     <!-- STEP 3: அதிசயங்கள் + அறிவிப்புகள் -->
     <section class="step-block" id="step3">
-      <div class="step-label">படி 3 • அதிசயங்கள் & அறிவிப்புகள்</div>
+      <div class="step-label">அதிசயங்கள் & அறிவிப்புகள்</div>
       <div class="wrap wrap-flex" style="margin-top:18px; display: flex; flex-wrap: wrap;">
         <section id="miracles" style="flex:1; min-width: 300px;">
           <div class="card">
@@ -1313,9 +1183,13 @@
             <p class="muted">பக்தர்களால் காணப்பட்ட மற்றும் உணர்ந்த நிகழ்வுகள்.</p>
             <ul class="muted" style="line-height:1.8;margin-top:12px">
               <li>சக்காளம்மன் அமர்ந்த நாளே கனமழை பெய்தது; விவசாய வாழ்வு செழித்தது.</li>
-              <li>ஆடு மாடுகள் நோயிலிருந்து தீர்த்தத்தால் குணமடைந்தன.</li>
+              <li>மாடுகள் நோயிலிருந்து தீர்த்தத்தால் குணமடைந்தன.</li>
               <li>அம்மை நோயும் வேப்பிலை–மஞ்சள் பரிசோதனையால் குணமடைந்தது.</li>
-              <li>சித்திரை 1, மாட்டுப் பொங்கல் போன்ற வருடாந்திர நிகழ்வுகள்.</li>
+              <li>சித்திரை 1, மாட்டுப் பொங்கல் போன்ற வருடாந்திர நிகழ்வுகள்.“எங்களை வாழ வைத்த மாடுகளுக்கு
+நன்றியுணர்வு சொல்வது மாட்டுப் பொங்கல்.”
+
+“வயலில் கால் பதித்த தோழக்கார நண்பர்களை
+அந்த நாளில் தெய்வமாக உயர்த்தும் வழிபாடு.”</li>
             </ul>
           </div>
         </section>
@@ -1323,8 +1197,14 @@
           <div class="card">
             <h4>அறிவிக்கைகள்</h4>
             <p class="muted" style="line-height:1.6">
-              வரும் திருவிழாக்கள்: சித்திரை 1, மாட்டுப் பொங்கல், கிருஷ்ண ஜெயந்தி.
-              விரைவில் செயற்கை வரைபடம் மற்றும் தொடர்பு விவரங்கள் இணைக்கப்படும்.
+              🛕 அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி திருப்பணி பணிகள்
+              உங்கள் அனைவரின் ஆதரவுடன் நடைபெற உள்ளன. 🙏
+              அத்தொகுதி சம்பந்தமான:
+              ✨ செயற்கை வரைபடம்
+              ✨ நன்கொடை தகவல்கள்
+              ✨ நன்கொடையாளர் பட்டியல்
+              ✨ தொடர்பு விபரங்கள்
+              விரைவில் அறிவிக்கப்படும்!
             </p>
           </div>
         </aside>
@@ -1344,7 +1224,7 @@
             </div>
             <div class="rit card">
               <h4>மாட்டுப் பொங்கல்</h4>
-              <p class="muted">மாட்டை தேவதையாகக் கருதி  பொங்கல் செய்து பூஜை செய்கின்றனர்.</p>
+              <p class="muted">மாட்டை தேவதையாகக் கருதி பொங்கல் செய்து பூஜை செய்கின்றனர்.</p>
             </div>
             <div class="rit card">
               <h4>கிருஷ்ண ஜெயந்தி</h4>
@@ -1396,7 +1276,6 @@
                 <thead>
                   <tr style="background:#020617;color:#fff">
                     <th style="padding:8px;border-bottom:1px solid #111827">பெயர்</th>
-                    <th style="padding:8px;border-bottom:1px solid #111827">முகவரி</th>
                     <th style="padding:8px;border-bottom:1px solid #111827">தொகை</th>
                   </tr>
                 </thead>
@@ -1405,17 +1284,13 @@
                     <td style="padding:8px;border-bottom:1px solid #111827">ஆனந்தகுமார் w/o சத்தியா</td>
                     <td style="padding:8px;border-bottom:1px solid #111827">கோல்காரன் கொட்டாய்-அவர்களின் வேண்டுதல் நிறைவேறியதற்காக,
                       அருள்மிகு ஸ்ரீ சக்காளம்மன் மற்றும் கிருஷ்ணர் சாமி திருக்கோயிலுக்கு தரைத்தளம் அமைத்தல்</td>
-                    <td style="padding:8px;border-bottom:1px solid #111827">
-                      
-                    </td>
                   </tr>
                   <tr>
                     <td style="padding:8px;border-bottom:1px solid #111827">களிகுட்டி மகன் நாராயணன் w/o தனலட்சுமி</td>
                     <td style="padding:8px;border-bottom:1px solid #111827">MGR Nagar- எம் சேண்ட் - 2 யூனிட்</td>
-                    <td style="padding:8px;border-bottom:1px solid #111827"></td>
                   </tr>
                   <tr>
-                    <td colspan="5" class="small" style="text-align:center;padding:10px;color:#6b7280">
+                    <td colspan="2" class="small" style="text-align:center;padding:10px;color:#6b7280">
                       <!-- future rows here -->
                     </td>
                   </tr>
@@ -1429,7 +1304,7 @@
     </section>
   </main>
 
-  <footer style="background:#020617;padding:20px 0;margin-top:30px">
+  <footer>
     <div class="wrap" style="max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;color:#fff">
       <div style="margin-bottom:10px">
         <strong style="font-size:16px">அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி</strong>
@@ -1456,7 +1331,6 @@
       }
       Array.from(marquee.children).forEach(n => marquee.appendChild(n.cloneNode(true)));
 
-      // only gentle zoom animation, no rotation variants
       marquee.querySelectorAll('.marq-item').forEach((it)=>{
         it.classList.add('zoom-anim');
       });
@@ -1494,12 +1368,6 @@
       });
       if(loaded === imgs.length) setTimeout(setupMarquee,50);
 
-      marquee.querySelectorAll('img').forEach(img=>{
-        img.addEventListener('error', ()=>{
-          img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="250"><rect width="100%" height="100%" fill="#0b1120"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="14" fill="#9ca3af">படம் கிடைக்கவில்லை</text></svg>');
-        });
-      });
-
       wrap.addEventListener('focusin', ()=>{
         marquee.style.animationPlayState = 'paused';
       });
@@ -1523,33 +1391,27 @@
       });
     }
 
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        const href = this.getAttribute('href');
-        if(href.length>1){
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if(target){
-            target.scrollIntoView({behavior:'smooth',block:'start'});
-            if(window.matchMedia('(max-width:600px)').matches) {
-              menu.style.display = 'none';
-            }
-          }
-        }
-      })
-    });
+    // ===== Audio Player Function =====
+    function initAudioPlayer(config) {
+      const {
+        audioId,
+        playBtnId,
+        playIconId,
+        progressBarId,
+        progressFillId,
+        currentTimeId,
+        durationId
+      } = config;
 
-    // ===== Story audio player =====
-    (function () {
-      const audio   = document.getElementById("audioStory");
+      const audio = document.getElementById(audioId);
       if (!audio) return;
 
-      const playBtn       = document.getElementById("playBtnStory");
-      const playIcon      = document.getElementById("playIconStory");
-      const progressBar   = document.getElementById("progressBarStory");
-      const progressFill  = document.getElementById("progressFillStory");
-      const currentTimeEl = document.getElementById("currentTimeStory");
-      const durationEl    = document.getElementById("durationStory");
+      const playBtn = document.getElementById(playBtnId);
+      const playIcon = document.getElementById(playIconId);
+      const progressBar = document.getElementById(progressBarId);
+      const progressFill = document.getElementById(progressFillId);
+      const currentTimeEl = document.getElementById(currentTimeId);
+      const durationEl = document.getElementById(durationId);
 
       function formatTime(seconds) {
         const mins = Math.floor(seconds / 60) || 0;
@@ -1558,6 +1420,7 @@
       }
 
       function setPlayIcon(isPlaying) {
+        if (!playIcon) return;
         if (isPlaying) {
           playIcon.innerHTML = `
             <rect x="6" y="5" width="4" height="14"></rect>
@@ -1582,27 +1445,21 @@
         });
       }
 
-      audio.addEventListener("play",  () => setPlayIcon(true));
+      audio.addEventListener("play", () => setPlayIcon(true));
       audio.addEventListener("pause", () => setPlayIcon(false));
 
       audio.addEventListener("loadedmetadata", () => {
-        if (!isNaN(audio.duration)) {
+        if (!isNaN(audio.duration) && durationEl) {
           durationEl.textContent = formatTime(audio.duration);
         }
       });
 
       audio.addEventListener("timeupdate", () => {
-        currentTimeEl.textContent = formatTime(audio.currentTime);
-        if (audio.duration) {
+        if (currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
+        if (audio.duration && progressFill) {
           const percent = (audio.currentTime / audio.duration) * 100;
           progressFill.style.width = `${percent}%`;
         }
-      });
-
-      audio.addEventListener("ended", () => {
-        setPlayIcon(false);
-        progressFill.style.width = "0%";
-        currentTimeEl.textContent = "00:00";
       });
 
       if (progressBar) {
@@ -1615,7 +1472,93 @@
           }
         });
       }
-    })();
+    }
+
+    // Initialize audio players
+    initAudioPlayer({
+      audioId: "audioTop",
+      playBtnId: "playBtnTop",
+      playIconId: "playIconTop",
+      progressBarId: "progressBarTop",
+      progressFillId: "progressFillTop",
+      currentTimeId: "currentTimeTop",
+      durationId: "durationTop"
+    });
+
+    initAudioPlayer({
+      audioId: "audioStory",
+      playBtnId: "playBtnStory",
+      playIconId: "playIconStory",
+      progressBarId: "progressBarStory",
+      progressFillId: "progressFillStory",
+      currentTimeId: "currentTimeStory",
+      durationId: "durationStory"
+    });
+
+    // ===== Generate Mobile Cards =====
+    function generateMobileCards() {
+      const donationCards = document.getElementById('donationCards');
+      if (!donationCards) return;
+      
+      const tableData = [
+        { amount: '₹ 108', power: 'இறைநாம சக்தி', benefit: 'முதற்கட்ட பாக்கியம் கிடைக்கும்' },
+        { amount: '₹ 501', power: 'சுப தொடக்கம்', benefit: 'தடைகள் நீங்கும்' },
+        { amount: '₹ 786', power: 'பாதுகாப்பு சக்தி', benefit: 'கஷ்டம் அகலும்' },
+        { amount: '₹ 1,111', power: 'தெய்வ அருள்', benefit: 'புதிய முயற்சி வெற்றி' },
+        { amount: '₹ 1,234', power: 'முன்னேற்ற வளர்ச்சி', benefit: 'எதிர்காலம் உறுதி' },
+        { amount: '₹ 2,222', power: 'அமைதி + சமநிலை', benefit: 'குடும்ப நலன்' },
+        { amount: '₹ 3,333', power: 'மாற்றம் + ஆசீர்வாதம்', benefit: 'வேண்டுதல் நிறைவு' },
+        { amount: '₹ 4,444', power: 'பாதுகாப்பின் கட்டிடம்', benefit: 'நிலையான வருமானம்' },
+        { amount: '₹ 5,555', power: 'பஞ்சபூத பாக்கியம்', benefit: 'ஆரோக்கிய வளம்' },
+        { amount: '₹ 6,666', power: 'செல்வ எழுச்சி', benefit: 'வருமான உயர்வு' },
+        { amount: '₹ 7,777', power: 'அதிர்ஷ்ட உச்சம்', benefit: 'லட்சுமி அருள்' },
+        { amount: '₹ 8,888', power: 'அஷ்ட லட்சுமி', benefit: 'பண வளர்ச்சி' },
+        { amount: '₹ 9,999', power: 'முழு நன்மை', benefit: 'குடும்ப உயர்வு' },
+        { amount: '₹ 10,008', power: 'பரம்பரை புண்ணியம்', benefit: 'தெய்வ காப்பு' },
+        { amount: '₹ 12,345', power: 'அபரிமித முன்னேற்றம்', benefit: 'நிலையான வளர்ச்சி' },
+        { amount: '₹ 15,555', power: 'விசேஷ அருள்', benefit: 'தொழில் விரிவு' },
+        { amount: '₹ 21,000', power: 'மகா புண்ணியம்', benefit: 'குடும்பத்திற்குப் பெரிய ஆசீர்வாதம்' },
+        { amount: '₹ 25,000', power: 'கோவில் மேம்பாடு', benefit: 'பெயர் நிலைத்து நிற்கும்' },
+        { amount: '₹ 51,000', power: 'மஹா திருவிளையாடல்', benefit: 'சந்ததியாருக்கு நன்மை' },
+        { amount: '₹ 1,00,008', power: 'மிகப்பெரிய புண்ணியம்', benefit: 'தேவியின் கருணை நிரம்பும்' }
+      ];
+      
+      donationCards.innerHTML = '';
+      
+      tableData.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'donation-card';
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.innerHTML = `
+          <div class="donation-card-amt">${item.amount}</div>
+          <div class="donation-card-power">${item.power}</div>
+          <div class="donation-card-benefit">${item.benefit}</div>
+        `;
+        donationCards.appendChild(card);
+      });
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      generateMobileCards();
+      
+      // Add smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href.length > 1) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              if (window.matchMedia('(max-width:600px)').matches) {
+                menu.style.display = 'none';
+              }
+            }
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
