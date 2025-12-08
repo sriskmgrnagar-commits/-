@@ -1,355 +1,1098 @@
-<!-- index.html - Enhanced Temple website with Donation Movement UI
-Place this file in D:\HTML\Temple and put the images in the same folder (e.g. temp1.jpeg ... temp8.jpeg).
-This version adds a donation movement panel with a 100-name sample donation list, progress bar, animated ticker, search and export.
-Open in a browser to view.
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ta">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ஸ்ரீ சக்காளம்மன் - Donation Movement</title>
+  <meta charset="UTF-8">
+  <title>தெய்வ வழிபாடு · தீபம் · நன்கொடை நன்மைகள்</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-    /* --- NEW PROFESSIONAL TEMPLE COLOR THEME & ANIMATIONS ADDED --- */
-    body{
-      background: linear-gradient(120deg, #ffecd2, #fcb69f, #ffe9c7, #f8d49a);
-      background-size: 400% 400%;
-      animation: bgFlow 18s ease infinite;
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: "Noto Sans Tamil", "Latha", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #2b1b47 0, #05030a 55%, #000 100%);
+      color: #f7f3ff;
+      line-height: 1.7;
     }
 
-    @keyframes bgFlow {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 16px 40px;
     }
 
-    /* Glow animation for temple title */
-    h1{
-      animation: templeGlow 3s infinite ease-in-out;
+    /* Top bar */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: linear-gradient(90deg, rgba(8,5,20,0.96), rgba(30,21,52,0.96));
+      border-bottom: 1px solid rgba(255, 215, 128, 0.3);
+      z-index: 50;
+      backdrop-filter: blur(8px);
     }
-    @keyframes templeGlow{
-      0%,100%{text-shadow:0 0 8px #ff9f43,0 0 16px #ff7f11}
-      50%{text-shadow:0 0 20px #ffb84d,0 0 28px #ff9f43}
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-
-    /* IMAGE CAROUSEL - smoother fade + slide animation */
-    .carousel img{
-      opacity:0;
-      transform:translateX(15px) scale(1.02);
-      transition:opacity 1.2s ease, transform 1.2s ease;
+    .top-title {
+      font-size: 0.9rem;
+      color: #ffe9a8;
     }
-
-    .carousel img.show{
-      opacity:1;
-      transform:translateX(0) scale(1);
-      filter:brightness(1.05) drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+    .btn {
+      border: 1px solid rgba(255, 215, 128, 0.6);
+      background: rgba(15, 10, 40, 0.9);
+      color: #ffe9a8;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
-
-    .carousel img.prev{
-      opacity:0.25;
-      transform:translateX(-25px) scale(.96);
-    }
-
-    /* DONATION PROGRESS BAR - glowing movement */
-    .progress > i{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .progress > i::after{
-      content:"";
-      position:absolute;
-      top:0;left:-50%;
-      height:100%;width:50%;
-      background:rgba(255,255,255,0.5);
-      filter:blur(6px);
-      animation: shineMove 2.4s infinite linear;
-    }
-
-    @keyframes shineMove{
-      0%{left:-60%}
-      100%{left:110%}
+    .btn:hover {
+      transform: translateY(-1px);
+      background: rgba(45, 30, 90, 0.95);
+      box-shadow: 0 0 12px rgba(255, 215, 128, 0.35);
     }
 
-    /* 3D CUBE – smooth rotation + temple glow */
-    .cube{
-      box-shadow:0 0 25px rgba(255,153,51,0.45), 0 0 45px rgba(255,119,0,0.45);
-      animation: cubePulse 2.6s infinite ease-in-out alternate;
+    .card {
+      background: rgba(10, 6, 24, 0.95);
+      border-radius: 18px;
+      padding: 18px 16px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255, 215, 128, 0.25);
+      box-shadow: 0 0 25px rgba(255, 196, 0, 0.18);
+      backdrop-filter: blur(6px);
+      animation: fadeUp 0.7s ease-out both;
+    }
+    /* simple stagger animation */
+    .card:nth-of-type(1) { animation-delay: 0.05s; }
+    .card:nth-of-type(2) { animation-delay: 0.10s; }
+    .card:nth-of-type(3) { animation-delay: 0.15s; }
+    .card:nth-of-type(4) { animation-delay: 0.20s; }
+    .card:nth-of-type(5) { animation-delay: 0.25s; }
+    .card:nth-of-type(6) { animation-delay: 0.30s; }
+    .card:nth-of-type(7) { animation-delay: 0.35s; }
+    .card:nth-of-type(8) { animation-delay: 0.40s; }
+    .card:nth-of-type(9) { animation-delay: 0.45s; }
+    .card:nth-of-type(10) { animation-delay: 0.50s; }
+    .card:nth-of-type(11) { animation-delay: 0.55s; }
+    .card:nth-of-type(12) { animation-delay: 0.60s; }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(255, 215, 128, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    @keyframes cubePulse{
-      from{transform:rotateX(-20deg) rotateY(25deg) scale(1)}
-      to{transform:rotateX(-20deg) rotateY(25deg) scale(1.05)}
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    :root{--accent:#f59e0b;--accent-2:#06b6d4;--card:#fff;--muted:#475569;--bg:#fffdf7}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui, Roboto, 'Noto Sans Tamil', sans-serif;background:linear-gradient(180deg,var(--bg),#f0fbf6);color:#0f172a}
-    .container{max-width:1200px;margin:28px auto;padding:20px}
-    header{display:flex;align-items:center;justify-content:space-between}
-    h1{margin:0;font-size:22px}
-    .sub{color:var(--muted);font-size:13px}
 
-    main{display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:18px}
+    h1, h2, h3, h4 {
+      margin: 0 0 10px;
+      font-weight: 600;
+      color: #ffe9a8;
+    }
+    h1 {
+      font-size: 1.7rem;
+      text-align: center;
+    }
+    h2 {
+      font-size: 1.25rem;
+    }
+    h3 {
+      font-size: 1.05rem;
+    }
+    p {
+      margin: 6px 0;
+      font-size: 0.96rem;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #e5deff;
+      margin-bottom: 8px;
+    }
+    .tagline {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #fdd8a8;
+      margin-top: 4px;
+    }
 
-    /* Left: Photos + Donations */
-    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.06)}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    thead {
+      background: linear-gradient(90deg, #5b3c9e, #9a621f);
+    }
+    th, td {
+      padding: 7px 9px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      vertical-align: top;
+    }
+    th {
+      text-align: left;
+      font-weight: 600;
+      color: #fff7d1;
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+    tbody tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    tbody tr:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.015);
+    }
 
-    .photo-wrap{height:360px;border-radius:10px;overflow:hidden;background:#f8fafc;margin-bottom:12px;display:flex;align-items:center;justify-content:center}
-    .photo-wrap img{width:100%;height:100%;object-fit:cover}
+    .emoji-title {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+    ul {
+      padding-left: 18px;
+      margin: 4px 0 6px;
+      font-size: 0.94rem;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    .count-title {
+      font-weight: 700;
+      color: #ffe4a0;
+      margin-top: 6px;
+    }
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #c7b5ff;
+      margin-bottom: 4px;
+    }
+    .highlight-box {
+      border-left: 3px solid #f7c65c;
+      padding-left: 10px;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #fce8c2;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.75rem;
+      margin: 2px 0;
+      color: #ffe9a8;
+      border: 1px solid rgba(255, 215, 128, 0.4);
+    }
 
-    /* Donation Movement Panel */
-    .movement{margin-top:12px}
-    .movement-header{display:flex;align-items:center;justify-content:space-between}
-    .progress-wrap{margin-top:12px}
-    .progress{height:18px;background:#eef2ff;border-radius:10px;overflow:hidden}
-    .progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),#fb923c);width:0%;transition:width 900ms cubic-bezier(.2,.9,.2,1)}
-    .stats{display:flex;gap:12px;margin-top:10px}
-    .stat{background:linear-gradient(180deg,#fff,#fbfbfe);padding:10px;border-radius:8px;flex:1;text-align:center}
-    .stat .num{font-weight:800;font-size:18px}
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 6px;
+    }
 
-    /* Ticker */
-    .ticker{margin-top:14px;background:#fff7ed;padding:8px;border-radius:8px;overflow:hidden;border:1px solid rgba(245,158,11,0.08)}
-    .ticker-inner{display:inline-block;white-space:nowrap;animation:scrollLeft 18s linear infinite}
-    @keyframes scrollLeft{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #d1d5db;
+      margin-top: 10px;
+    }
 
-    /* Table for 100 names */
-    .table-wrap{margin-top:14px;max-height:360px;overflow:auto;border-radius:8px;border:1px solid #eef2ff}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:8px 10px;border-bottom:1px solid #f1f5f9;text-align:left;font-size:14px}
-    th{position:sticky;top:0;background:#ffffff}
-    tr:hover{background:#fbfbfb}
-
-    /* Right side */
-    .side .card{margin-bottom:12px}
-    .controls{display:flex;gap:8px;align-items:center}
-    .btn{padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#fb923c);color:#fff}
-    .btn.ghost{background:transparent;border:1px solid #e6edf6}
-
-    .search{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef8;margin-top:10px}
-
-    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-
-    @media (max-width:980px){main{grid-template-columns:1fr} .side{order:2}}
+    @media (min-width: 768px) {
+      .wrapper {
+        padding: 80px 24px 40px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>ஸ்ரீ சக்காளம்மன் – Donation Movement</h1>
-        <div class="sub">பார்வதி தெய்வ மந்திரம் & கிருஷ்ணா மாத்ரம் — Temple Rebuilding Fund</div>
+
+  <!-- Top Navigation Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <button class="btn" type="button" onclick="goBack()">
+        ← Back
+      </button>
+      <span class="top-title">தெய்வ வழிபாடு · தீபம் · நன்கொடை</span>
+    </div>
+    <a class="btn" href="https://sriskmgrnagar-commits.github.io/-/" target="_blank" rel="noopener">
+      🏠 Home / Main Page
+    </a>
+  </div>
+
+  <div class="wrapper">
+
+    <!-- Main Title -->
+    <div class="card">
+      <h1>🕉️ வாரத்தின் 7 நாட்கள் · தீபம் · நன்கொடை & அருள் நன்மைகள்</h1>
+      <p class="subtitle">நாள்தோறும் பின்பற்றக்கூடிய தெய்வ அட்டவணை, தீப எண்ணிக்கை, எண்ணெய் & நன்கொடை வழிகள்</p>
+      <p class="tagline">“இருளை நீக்கி ஒளியை வரவேற்கும் வழிபாடு – வாழ்க்கையில் அமைதி, செல்வம், ஆரோக்கியம் தரும்.”</p>
+    </div>
+
+    <!-- 1. வாரத்தின் 7 நாட்கள் -->
+    <section class="card" id="week">
+      <h2>📅 வாரத்தின் 7 நாட்கள் — தெய்வ வழிபாட்டு அட்டவணை</h2>
+      <p class="section-label">நாள் • தெய்வம் • மந்திரம் • ஜப எண்ணிக்கை • நன்மை</p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>நாள்</th>
+              <th>தெய்வம்</th>
+              <th>மூல மந்திரம்</th>
+              <th>ஜப எண்ணிக்கை</th>
+              <th>அருள் / நன்மை</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>திங்கள்</td>
+              <td>சிவபெருமான்</td>
+              <td>ஓம் நமசிவாய</td>
+              <td>108</td>
+              <td>மன அமைதி, ஆரோக்கியம், தடைகள் நீக்கம்</td>
+            </tr>
+            <tr>
+              <td>செவ்வாய்</td>
+              <td>முருகன் &amp; அனுமன்</td>
+              <td>ஓம் சரவணபவா / ஓம் ஹனுமதே நமஹ</td>
+              <td>51–108</td>
+              <td>துணிவு, எதிரி தடைகள் அகலும்</td>
+            </tr>
+            <tr>
+              <td>புதன்</td>
+              <td>விநாயகர் &amp; சரஸ்வதி</td>
+              <td>ஓம் கம் கணபதயே நமஹ / ஓம் ஐம் சரஸ்வத்யை நமஹ</td>
+              <td>21–27</td>
+              <td>கல்வி, பேச்சுத் திறன், வேலை</td>
+            </tr>
+            <tr>
+              <td>வியாழன்</td>
+              <td>பெருமாள்</td>
+              <td>ஓம் நமோ நாராயணாய</td>
+              <td>108</td>
+              <td>செல்வ அதிர்ஷ்டம், வியாபாரம் வளர்ச்சி</td>
+            </tr>
+            <tr>
+              <td>வெள்ளி</td>
+              <td>அம்மன் (சக்தி / Lakshmi)</td>
+              <td>ஓம் ஐம் ஹ்ரீம் க்லீம் சக்தியே நமஹ / ஓம் ஸ்ரீம் மஹா லக்ஷ்மியே நமஹ</td>
+              <td>108</td>
+              <td>திருமணம், பெண்கள் &amp; குடும்ப நலம்</td>
+            </tr>
+            <tr>
+              <td>சனி</td>
+              <td>அய்யப்பன், பைரவர் &amp; சனீஸ்வரன்</td>
+              <td>ஸ்வாமியே சரணம் ஐயப்பா / ஓம் ஹ்ரீம் பைரவாய நமஹ / ஓம் ஶநைஸ்சராய நமஹ</td>
+              <td>108</td>
+              <td>கடன், பிரச்சினைகள், பித்ரு தோஷம் அகலும்</td>
+            </tr>
+            <tr>
+              <td>ஞாயிறு</td>
+              <td>சூரியன் &amp; கிருஷ்ணர்</td>
+              <td>ஓம் ஹ்ராம் ஹ்ரீம் ஹ்ரௌம் சூர்யாய நமஹ / ஓம் நமோ பகவதே வாசுதேவாய</td>
+              <td>21–51</td>
+              <td>உடல் நலம், அன்பு &amp; நம்பிக்கை</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="controls">
-        <button class="btn primary" id="exportCsv">Export CSV</button>
-        <button class="btn ghost" id="addRandom">Add Random Donation</button>
+    </section>
+
+    <!-- 2. எண் + தெய்வ அருள் — கல் நன்கொடை -->
+    <section class="card" id="stone-donation">
+      <h2>🪨✨ எண் + தெய்வ அருள் — கல் நன்கொடை அட்டவணை</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>நன்கொடை எண்</th>
+              <th>தெய்வ இணைப்பு</th>
+              <th>முக்கிய அருள்</th>
+              <th>பக்தரின் நம்பிக்கை</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>101</td>
+              <td>பிள்ளையார் – தடையற்ற தொடக்கம்</td>
+              <td>புதிய நல்ல துவக்கம்</td>
+              <td>நல்லதே நடக்கும்</td>
+            </tr>
+            <tr>
+              <td>301</td>
+              <td>முருகன் – வேக வெற்றி</td>
+              <td>வேலை / தொழில் வளர்ச்சி</td>
+              <td>உயர்வு வரும்</td>
+            </tr>
+            <tr>
+              <td>501</td>
+              <td>ஐந்து முக சிவன்</td>
+              <td>வீட்டு சாந்தி, பாதுகாப்பு</td>
+              <td>அமைதி குடிக்கும்</td>
+            </tr>
+            <tr>
+              <td>701</td>
+              <td>அம்மன் / சக்தி</td>
+              <td>பெண்கள் &amp; குழந்தைகள் நலம்</td>
+              <td>எல்லோருக்கும் ஆரோக்கியம்</td>
+            </tr>
+            <tr>
+              <td>786</td>
+              <td>அமைதி &amp; கருணை தெய்வ அருள் 🌙</td>
+              <td>மன அமைதி + பாதுகாப்பு</td>
+              <td>நிழல் போல அருள்</td>
+            </tr>
+            <tr>
+              <td>1001</td>
+              <td>மகாவிஷ்ணு – முழுமை</td>
+              <td>நல்வழிக்கு மாற்றம்</td>
+              <td>அதிர்ஷ்டம் வரும்</td>
+            </tr>
+            <tr>
+              <td>1111</td>
+              <td>லட்சுமி + விஷ்ணு</td>
+              <td>தடைகள் நீக்கம்</td>
+              <td>கதவுகள் திறக்கும்</td>
+            </tr>
+            <tr>
+              <td>1501</td>
+              <td>ராதா–கிருஷ்ணர்</td>
+              <td>திருமண நன்மை</td>
+              <td>குடும்பம் இணைப்பு</td>
+            </tr>
+            <tr>
+              <td>2501</td>
+              <td>அம்மன் + கிருஷ்ணர் இணை அருள்</td>
+              <td>குடும்ப ஒற்றுமை &amp; செல்வம்</td>
+              <td>முழுமையான நன்மை</td>
+            </tr>
+            <tr>
+              <td>3333 ⭐</td>
+              <td>பிரம்மா–விஷ்ணு–சிவன் (நாலு திசை)</td>
+              <td>முழு குடும்ப வளர்ச்சி</td>
+              <td>எல்லாவற்றிலும் நிறைவு ❤️</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </header>
+    </section>
 
-    <main>
-      <section>
-        <div class="card">
-          <div class="photo-wrap" id="photoWrap">
-            <img src="D:/HTML/Temple/temp1.jpeg" alt="temple">
-          </div>
+    <!-- 3. 11 சாத அன்னதானம் -->
+    <section class="card" id="rice">
+      <h2>🍚✨ 11 சாத அன்னதானம் &amp; அருள் நன்மைகள்</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>சாதம்</th>
+              <th>தெய்வ இணைப்பு</th>
+              <th>நன்மை &amp; தீர்வு</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>தயிர் சாதம்</td>
+              <td>சிவன் / அம்மன்</td>
+              <td>மன அமைதி, கோபம் குறைவு</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>எலுமிச்சை சாதம்</td>
+              <td>முருகன்</td>
+              <td>தடைகள், கண்ணேற்றம் அகலும்</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>தக்காளி சாதம்</td>
+              <td>கிருஷ்ணர்</td>
+              <td>அன்பு &amp; குடும்ப இணைப்பு</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>சாம்பார் சாதம்</td>
+              <td>பெருமாள்</td>
+              <td>வேலை / வியாபாரம் வாய்ப்பு</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>பருப்பு சாதம்</td>
+              <td>லக்ஷ்மி</td>
+              <td>செல்வம் &amp; நிதி நிலைபாடு</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>புலியோதரை</td>
+              <td>துர்கை / அம்மன்</td>
+              <td>தீய சக்தி விலகும்</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>நெய் சாதம்</td>
+              <td>விஷ்ணு</td>
+              <td>அதிர்ஷ்டம் + உயர்வு</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>பொங்கல்</td>
+              <td>பிள்ளையார்</td>
+              <td>தொடக்க நன்மை &amp; வெற்றி</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>கீரை சாதம்</td>
+              <td>தெய்வ தாய்</td>
+              <td>ஆரோக்கியம் &amp; சுறுசுறுப்பு</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>வெஜ் ரைஸ்</td>
+              <td>அனுமன்</td>
+              <td>துணிவு &amp; பயம் அகலும்</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>பாயசம் / இனிப்பு சாதம்</td>
+              <td>லக்ஷ்மி / பெருமாள்</td>
+              <td>மகிழ்ச்சி + குடும்ப வளம்</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-          <div class="movement">
-            <div class="movement-header">
-              <div>
-                <strong>Donation Movement</strong>
-                <div style="font-size:13px;color:var(--muted)">Current drive: Front mandapam repair & kumbabishekam</div>
-              </div>
-              <div style="text-align:right">
-                <div style="font-size:13px;color:var(--muted)">Target</div>
-                <div style="font-weight:800;font-size:18px">₹200,000</div>
-              </div>
-            </div>
+    <!-- 4. அன்னதானம் — இனிப்பு -->
+    <section class="card" id="sweets">
+      <h2>🍯✨ அன்னதானம் — இனிப்பு வகைகள் &amp; அருள் நன்மைகள்</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>இனிப்பு வகை</th>
+              <th>தெய்வ இணைப்பு</th>
+              <th>தீர்வு / நன்மை</th>
+              <th>பக்தர்களுக்கு அர்த்தம்</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>பாயசம்</td>
+              <td>லட்சுமி / பெருமாள்</td>
+              <td>செல்வ அதிர்ஷ்டம்</td>
+              <td>பண வரவு &amp; வளம் கூடும்</td>
+            </tr>
+            <tr>
+              <td>சர்க்கரை பொங்கல்</td>
+              <td>பிள்ளையார் / அய்யப்பன்</td>
+              <td>தொடக்கங்கள் வெற்றி</td>
+              <td>குடும்ப உயர்வு</td>
+            </tr>
+            <tr>
+              <td>கேசரி</td>
+              <td>கிருஷ்ணர்</td>
+              <td>அன்பு &amp; மகிழ்ச்சி</td>
+              <td>சண்டைகள் குறைவு</td>
+            </tr>
+            <tr>
+              <td>ஜிலேபி</td>
+              <td>சக்தி / துர்கை</td>
+              <td>துரிஷ்டி அகலும்</td>
+              <td>வீடு பிரகாசம்</td>
+            </tr>
+            <tr>
+              <td>லட்டு</td>
+              <td>ஹனுமான்</td>
+              <td>துணிவு &amp; வலிமை</td>
+              <td>பயம் &amp; விரோதம் அகலும்</td>
+            </tr>
+            <tr>
+              <td>ரஸகுல்லா</td>
+              <td>முருகன்</td>
+              <td>இளைஞரின் வளர்ச்சி</td>
+              <td>கல்வி / வேலை வளர்ச்சி</td>
+            </tr>
+            <tr>
+              <td>மோடகம்</td>
+              <td>பிள்ளையார்</td>
+              <td>மறைந்த தடைகள் தீர்வு</td>
+              <td>நல்ல ஆரம்பம்</td>
+            </tr>
+            <tr>
+              <td>பல்பாயசம் / செம்மணிப்பால்</td>
+              <td>சிவன்</td>
+              <td>மன அமைதி</td>
+              <td>நரம்பு அமைதி, குளிர்ச்சி</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-            <div class="progress-wrap">
-              <div class="progress" aria-hidden="true">
-                <div class="progress-bar" id="progressBar"></div>
-              </div>
-              <div class="stats">
-                <div class="stat"><div class="label">Raised</div><div class="num" id="raised">₹0</div></div>
-                <div class="stat"><div class="label">Donors</div><div class="num" id="donorCount">0</div></div>
-                <div class="stat"><div class="label">Avg Donation</div><div class="num" id="avgDonation">₹0</div></div>
-              </div>
+    <!-- 5. 21 அபிஷேகங்கள் -->
+    <section class="card" id="abhishegam">
+      <h2>🛕✨ 21 அபிஷேகங்கள் &amp; அருள் நன்மைகள்</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>அபிஷேகம்</th>
+              <th>தெய்வ அருள்</th>
+              <th>முக்கிய நன்மை</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>பால்</td><td>சிவன் / முருகன்</td><td>மன அமைதி + ஆரோக்கியம்</td></tr>
+            <tr><td>2</td><td>தயிர்</td><td>சக்தி</td><td>குழந்தை நலம் + மன நிம்மதி</td></tr>
+            <tr><td>3</td><td>தேன்</td><td>கிருஷ்ணர்</td><td>திருமண நன்மை + அன்பு வளர்ச்சி</td></tr>
+            <tr><td>4</td><td>சர்க்கரை</td><td>பிள்ளையார்</td><td>தொடக்க வெற்றி</td></tr>
+            <tr><td>5</td><td>பஞ்சாமிர்தம்</td><td>பெருமாள்</td><td>வாய்ப்புகள் திறப்பு</td></tr>
+            <tr><td>6</td><td>குங்குமப்பூ பால்</td><td>லட்சுமி</td><td>செல்வ வளர்ச்சி</td></tr>
+            <tr><td>7</td><td>சந்தனம்</td><td>விஷ்ணு</td><td>கோபம் / பயம் குறைவு</td></tr>
+            <tr><td>8</td><td>துளசி தீதம்</td><td>ஸ்ரீநிவாசன்</td><td>நம்பிக்கை + குடும்ப ஒற்றுமை</td></tr>
+            <tr><td>9</td><td>பில்வா ஆர்ச்சனை</td><td>சிவன்</td><td>பாபவிமோசனம் + தடைகள் நீக்கம்</td></tr>
+            <tr><td>10</td><td>நெய்</td><td>அய்யப்பன்</td><td>துணிவு + தீர்மானம்</td></tr>
+            <tr><td>11</td><td>பசுந்தண்ணீர்</td><td>எல்லா தெய்வமும்</td><td>நோய் குறைவு + வீட்டில் குளிர்ச்சி</td></tr>
+            <tr><td>12</td><td>தேங்காய்த் தண்ணீர்</td><td>சக்தி</td><td>துரிஷ்டி அகலும்</td></tr>
+            <tr><td>13</td><td>இலநீர்</td><td>அம்மன்</td><td>உடல் நலம் + ஆற்றல்</td></tr>
+            <tr><td>14</td><td>எலுமிச்சை தண்ணீர்</td><td>நவகிரக</td><td>கிரக தஷை தணிவு</td></tr>
+            <tr><td>15</td><td>கற்பூர நீர்</td><td>ஹனுமான்</td><td>எதிரி / பயம் நீக்கம்</td></tr>
+            <tr><td>16</td><td>மஞ்சள் + பால்</td><td>அம்மன்</td><td>பெண்கள் நலம் + செல்வ நன்மை</td></tr>
+            <tr><td>17</td><td>குங்கும நீர்</td><td>சக்தி</td><td>குடும்ப பாதுகாப்பு</td></tr>
+            <tr><td>18</td><td>விபூதி</td><td>பசுபதீஸ்வரர்</td><td>கர்ம துஷ்ட தீர்வு</td></tr>
+            <tr><td>19</td><td>பனங்கற்கண்டு நீர்</td><td>முருகன்</td><td>குழந்தைகள் வளர்ச்சி</td></tr>
+            <tr><td>20</td><td>ஆரத்தி கற்பூரம்</td><td>அனைத்துத் தெய்வமும்</td><td>வீடு விழா, மகிழ்ச்சி</td></tr>
+            <tr><td>21</td><td>ரோஜா நீர்</td><td>பெருமாள் / லட்சுமி</td><td>அன்பு, அமைதி, அத்தாட்சியம்</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-              <div class="ticker" aria-hidden="true">
-                <div class="ticker-inner" id="tickerInner">Loading recent donations…</div>
-              </div>
+    <!-- 6. கல் / பொருள் நன்கொடை -->
+    <section class="card" id="material">
+      <h2>🏗️✨ கல் / பொருள் நன்கொடை &amp; அருள் நன்மைகள்</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>நன்கொடை வகை</th>
+              <th>தெய்வ இணைப்பு</th>
+              <th>தீர்வு வேண்டிய பிரச்சினை</th>
+              <th>அருள் / நன்மை</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>கல் நன்கொடை</td>
+              <td>பிரம்மா–விஷ்ணு–சிவன்</td>
+              <td>தடைகள், வீடு / வேலை தடை</td>
+              <td>வாழ்க்கை உயர்வு, நிலைபாடு</td>
+            </tr>
+            <tr>
+              <td>சிமெண்டு</td>
+              <td>அம்மன் – ஒற்றுமை சக்தி</td>
+              <td>குடும்ப சண்டை, பிரிவு</td>
+              <td>குடும்பத்தில் அமைதி + ஒற்றுமை</td>
+            </tr>
+            <tr>
+              <td>இரும்பு (Steel)</td>
+              <td>முருகன் – பாதுகாப்பு</td>
+              <td>விபத்து அச்சம், எதிரிகள்</td>
+              <td>ஆரோக்கியம் + காவல் + வெற்றி</td>
+            </tr>
+            <tr>
+              <td>மண் நன்கொடை</td>
+              <td>பூமாதா – பரம்பரை சக்தி</td>
+              <td>சந்ததி தாமதம், வேர் பிரச்சினை</td>
+              <td>சந்ததி நன்மை + பூர்விக அருள்</td>
+            </tr>
+            <tr>
+              <td>எண் அடிப்படையிலான நன்கொடை</td>
+              <td>தெய்வ அதிர்ஷ்ட அதிர்வு</td>
+              <td>நிதி பிரச்சினை, அதிர்ஷ்டக் குறைவு</td>
+              <td>செல்வம் + விசா / வேலை நன்மைகள்</td>
+            </tr>
+            <tr>
+              <td>தண்ணீர் / குள அமையம்</td>
+              <td>ருத்ர சக்தி</td>
+              <td>வெப்ப கோபம், மன அழுத்தம்</td>
+              <td>மனம் குளிர்ச்சி + ஆரோக்கியம்</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-              <div class="table-wrap">
-                <table id="donationTable">
-                  <thead>
-                    <tr><th>#</th><th>Name</th><th>Amount</th><th>Note</th></tr>
-                  </thead>
-                  <tbody id="donationBody">
-                    <!-- rows generated by JS -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <!-- 7. தீபம் – முழு பகுதி (Deepam content) -->
+    <section class="card" id="deepam">
+      <h2>🪔 தீபம் – சிறந்த எண்ணிக்கைகள், நேரம், எண்ணெய் &amp; பலன்கள்</h2>
+      <p class="subtitle">இருளை நீக்கி ஒளியை வரவேற்கும் அனைத்து தீப வழிபாடு குறிப்புகள் – ஒரே இடத்தில் ✨</p>
+      <p class="tagline">அதே ஒளி ஆரோக்கியம், பணம், அமைதி, பாதுகாப்பு ஆகியவெல்லாம் வீட்டில் நிலை நிறுத்தும்.</p>
+    </section>
 
-      <aside class="side">
-        <div class="card">
-          <h3>Search & Filter</h3>
-          <input class="search" id="searchInput" placeholder="Search donor name or amount">
-          <div style="margin-top:10px;display:flex;gap:8px">
-            <button class="btn primary" id="applyFilter">Apply</button>
-            <button class="btn ghost" id="clearFilter">Clear</button>
-          </div>
-        </div>
+    <section class="card">
+      <h3>🔥 சிறந்த எண்ணிக்கைகள் — தீபம் எரிப்பதற்கான பரிந்துரைகள்</h3>
+      <p class="section-label">தெய்வம் • தீப எண்ணிக்கை • பலன்</p>
+      <table>
+        <thead>
+          <tr>
+            <th>தெய்வம்</th>
+            <th>தீப எண்ணிக்கை</th>
+            <th>பலன்</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>அம்மன் / சக்தி</td>
+            <td>1, 3, 5, 7, 9</td>
+            <td>குடும்ப பாதுகாப்பு, ஆரோக்கியம், தடைகள் நீங்கும்</td>
+          </tr>
+          <tr>
+            <td>பெருமாள் / கிருஷ்ணர்</td>
+            <td>2 அல்லது 4</td>
+            <td>சாந்தி, செல்வம், ஆனந்தம்</td>
+          </tr>
+          <tr>
+            <td>சிவபெருமான்</td>
+            <td>1 அல்லது 5</td>
+            <td>நோய் நீங்குதல், மன அமைதி, ஞானம்</td>
+          </tr>
+          <tr>
+            <td>விநாயகர்</td>
+            <td>2</td>
+            <td>தொடக்க தடைகள் நீங்கும்</td>
+          </tr>
+          <tr>
+            <td>நவராத்திரி / சக்தி பூஜை</td>
+            <td>9 தீபங்கள்</td>
+            <td>சக்தி, வெற்றி</td>
+          </tr>
+          <tr>
+            <td>ஶ்ரீ லட்சுமி (வெள்ளிக்கிழமை)</td>
+            <td>2, 8, 11</td>
+            <td>செல்வம், வியாபாரம் வளர்ச்சி</td>
+          </tr>
+          <tr>
+            <td>ஆஞ்சநேயர்</td>
+            <td>1 அல்லது 3</td>
+            <td>தைரியம், வேலை வெற்றி</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-        <div class="card">
-          <h3>Quick Stats</h3>
-          <div style="margin-top:8px">Target: <strong>₹200,000</strong></div>
-          <div style="margin-top:6px">Collected: <strong id="collectedShort">₹0</strong></div>
-          <div style="margin-top:6px">Remaining: <strong id="remainingShort">₹200,000</strong></div>
-        </div>
+    <section class="card">
+      <div class="emoji-title">⭐ சிறப்பு பரிந்துரைகள்</div>
+      <p class="section-label">எண்ணிக்கை • அர்த்தம் •</p>
+      <table>
+        <thead>
+          <tr>
+            <th>எண்ணிக்கை</th>
+            <th>பொருள்</th>
+            <th>யாருக்குப் பெஸ்ட்</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 தீபம்</td>
+            <td>ஒற்றுமை, அமைதி</td>
+            <td>எவருக்கும்</td>
+          </tr>
+          <tr>
+            <td>2 தீபம்</td>
+            <td>செல்வம், தம்பதி நல்லிணக்கம்</td>
+            <td>திருமணமானவர்கள்</td>
+          </tr>
+          <tr>
+            <td>3 தீபம்</td>
+            <td>தெய்வ அருள் அதிகரிப்பு</td>
+            <td>ஆன்மீக வளர்ச்சி வேண்டுபவர்கள்</td>
+          </tr>
+          <tr>
+            <td>5 தீபம்</td>
+            <td>நவகிரக சாந்தி</td>
+            <td>ஜாதக பிரச்சினை உள்ளவர்கள்</td>
+          </tr>
+          <tr>
+            <td>7 தீபம்</td>
+            <td>வழிபாடு நிறைவு</td>
+            <td>விருப்பங்கள் வேண்டுபவர்கள்</td>
+          </tr>
+          <tr>
+            <td>9 தீபம்</td>
+            <td>அனைத்து தெய்வ அருளும்</td>
+            <td>மிகச் சிறந்தது (அம்மன்)</td>
+          </tr>
+          <tr>
+            <td>11 தீபம்</td>
+            <td>பெரிய நோக்கம் சாதனை</td>
+            <td>லட்சுமி, சுப நெறி</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-        <div class="card">
-          <h3>Actions</h3>
-          <div style="margin-top:8px">Use "Add Random Donation" to simulate donation movement. Export CSV to download the current list.</div>
-        </div>
-      </aside>
-    </main>
+    <section class="card">
+      <h3>⏱ தீபம் ஏற்றும் நேரம்</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>நாள்</th>
+            <th>தெய்வம்</th>
+            <th>பலன்</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>திங்கள்</td>
+            <td>சிவன்</td>
+            <td>குடும்ப அமைதி</td>
+          </tr>
+          <tr>
+            <td>செவ்வாய்</td>
+            <td>ஆஞ்சநேயர், அம்மன்</td>
+            <td>தடைகள் நீங்கும்</td>
+          </tr>
+          <tr>
+            <td>வியாழன்</td>
+            <td>குரு, கிருஷ்ணர்</td>
+            <td>கல்வி, வேலை</td>
+          </tr>
+          <tr>
+            <td>வெள்ளி</td>
+            <td>லட்சுமி, சக்தி</td>
+            <td>பண வரவு</td>
+          </tr>
+          <tr>
+            <td>சனி</td>
+            <td>சனீஸ்வரர்</td>
+            <td>ரோக/கார்ம பிரச்சினை நீங்கும்</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-    <footer>Temple Trust — Donation movement demo</footer>
+    <section class="card">
+      <h3>🪔 எந்த எண்ணெய்?</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>எண்ணெய்</th>
+            <th>எப்போது</th>
+            <th>ஏன்</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>நெய் தீபம்</td>
+            <td>பூஜை அறை / கோவில்</td>
+            <td>மிகச் சிறந்த பலன்</td>
+          </tr>
+          <tr>
+            <td>எள்ளெண்ணெய்</td>
+            <td>பிரச்சினை / சனி தோஷம்</td>
+            <td>தடைகள் கரைவு</td>
+          </tr>
+          <tr>
+            <td>தெங்காய் எண்ணெய்</td>
+            <td>தினம்</td>
+            <td>செல்வம் &amp; ஆரோக்கிய பாதுகாப்பு</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h3>🪔 ஒவ்வொரு எண்ணுக்கும் அர்த்தம் </h3>
+
+      <p class="count-title">1️⃣ 1 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> ஒற்றுமை, மன அமைதி, வீட்டு பாதுகாப்பு</p>
+      <p><strong>யாருக்கு?:</strong> எவரும், தினமும் செய்யலாம்</p>
+      <p><strong>எண்ணெய்:</strong> நெய் அல்லது தெங்காய் எண்ணெய்</p>
+      <p><strong>மந்திரம்:</strong> “ஓம் ஶ்ரீ சக்தியே நமஹ” / “ஓம் நமசிவாய”</p>
+
+      <p class="count-title">3️⃣ 3 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> இச்சா-ஞான-க்ரியா சக்தி, முயற்சி வெற்றி</p>
+      <p><strong>பெஸ்ட் தெய்வம்:</strong> அம்மன், துர்கை, கிருஷ்ணர்</p>
+      <p><strong>நாள்:</strong> செவ்வாய், வெள்ளி</p>
+
+      <p class="count-title">7️⃣ 7 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> சப்தமாதா, சப்தரிஷி, முழுமை நோக்கி முன்னேற்றம்</p>
+      <p><strong>எப்போது?:</strong> 7 நாள் / 7 வாரம் தொடர்ந்து</p>
+
+      <p class="count-title">9️⃣ 9 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> நவசக்தி, நவகிரக அனுகிரகம்</p>
+      <p><strong>பெஸ்ட்:</strong> அம்மன், நவராத்திரி, வெள்ளிக்கிழமை</p>
+
+      <p class="count-title">1️⃣1️⃣ 11 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> ஏகாதசி எண்ணிக்கை, பெரிய விருப்பம்/விரதம் நிறைவு</p>
+      <p><strong>நாள்:</strong> வியாழன், ஏகாதசி – விஷ்ணு/கிருஷ்ணர்</p>
+
+      <p class="count-title">2️⃣7️⃣ 27 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> 27 நட்சத்திரங்கள் – ஜாதக பிரச்சினை நிவர்த்தி</p>
+
+      <p class="count-title">5️⃣1️⃣ 51 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> 51 சக்தி பீடம் நினைவு – சக்தி அருள்</p>
+
+      <p class="count-title">1️⃣0️⃣8️⃣ 108 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> பூரண சித்தி, மந்திர ஜப பலன்</p>
+
+      <p class="count-title">3️⃣3️⃣3️⃣ 333 தீபம்</p>
+      <p><strong>அர்த்தம்:</strong> பிரம்மா–விஷ்ணு–ருத்ரன் சமநிலை</p>
+
+      <p class="count-title">6️⃣6️⃣6️⃣ 666 தீபம்</p>
+      <p>பழைய பாவங்கள் – “தீயில் கரைத்து விடு” என்ற சமர்ப்பணம்.</p>
+      <p class="highlight-box">இது heavy எண்ணிக்கை; மன அமைதி, தைரியம் உள்ளவர்கள் மட்டும் செய்ய பரிந்துரை.</p>
+
+      <p class="count-title">7️⃣8️⃣6️⃣ 786 தீபம்</p>
+      <p>உலக சமாதானம், எல்லா மத மக்களுக்கும் நன்மை வேண்டி சமர்ப்பணம்.</p>
+
+      <p class="count-title">8️⃣8️⃣8️⃣ 888 தீபம்</p>
+      <p>லட்சுமி, செல்வ வளர்ச்சி, வியாபாரம் உயர்வு.</p>
+
+      <p class="count-title">9️⃣9️⃣9️⃣ 999 தீபம்</p>
+      <p>ஒரு பெரிய chapter close செய்து புதிய தொடக்கம் வேண்டி.</p>
+
+      <p class="count-title">1️⃣0️⃣0️⃣8️⃣ 1008 தீபம்</p>
+      <p>குடும்ப / கோயில் பெரிய விரதத்தின் முடிவில் – மிக பெரிய நன்றி தீபம்.</p>
+    </section>
+
+    <section class="card">
+      <span class="tag">தினசரி / வார ரொட்டின்</span>
+      <ul>
+        <li>தினம்: 1 அல்லது 3 தீபம்</li>
+        <li>செவ்வாய் &amp; வெள்ளி: 7 அல்லது 9 தீபம்</li>
+        <li>மாதம் ஒரு நாள் (பௌர்ணமி): 27 அல்லது 51 தீபம்</li>
+      </ul>
+
+      <span class="tag">பெரிய விருப்பம் / கடன் / வீட்டு பிரச்சினை</span>
+      <ul>
+        <li>11 தீபம் – 11 நாட்கள் தொடர்ந்து</li>
+        <li>முடிந்த பிறகு – 108 தீப நன்றி தீபம்</li>
+      </ul>
+
+      <span class="tag">மிக ஸ்பெஷல் நாள்</span>
+      <ul>
+        <li>புதிய வீடு / நிலம் / பெரிய முடிவு:</li>
+        <li>காலை: 27 தீபம்</li>
+        <li>மாலை: 51 அல்லது 108 தீபம்</li>
+      </ul>
+    </section>
+
+    <!-- 8. 21 தெய்வங்களின் மூல மந்திரங்கள் -->
+    <section class="card" id="mantras-21">
+      <h2>🕉️ 21 தெய்வங்களின் மூல மந்திரங்கள்</h2>
+      <p class="subtitle">தினமும் ஒவ்வொரு மந்திரத்தையும் 3 / 9 / 11 முறை ஜபிக்கலாம்</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>தெய்வம்</th>
+              <th>மூல மந்திரம்</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>கணபதி</td>
+              <td>ஓம் ஶ்ரீ கம் கணபதயே நமஹ</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>சிவபெருமான்</td>
+              <td>ஓம் நமசிவாய</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>பார்வதி அம்மன் / சக்தி</td>
+              <td>ஓம் ஹ்ரீம் நமஹ</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>பெருமாள் / நாராயணன்</td>
+              <td>ஓம் நமோ நாராயணாய</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>லட்சுமி தேவி</td>
+              <td>ஓம் ஶ்ரீம் மஹாலட்ச்ம்யை நமஹ</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>கிருஷ்ணர்</td>
+              <td>ஓம் க்ரீஷ்ணாய நமஹ<br>ஓம் கிளீம் கிருஷ்ணாய நமஹ</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>முருகன்</td>
+              <td>ஓம் சரவணபவா</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>ஆஞ்சநேயர்</td>
+              <td>ஓம் ஹனுமதே நமஹ</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>அய்யப்பன்</td>
+              <td>ஸ்வாமியே சரணம் ஐயப்பா</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>துர்கை அம்மன்</td>
+              <td>ஓம் தும் துர்காயை நமஹ</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>மாரியம்மன்</td>
+              <td>ஓம் ஐம் ஹ்ரீம் க்லீம் சாமுண்டாயை விந்த்யே</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>காளியம்மன்</td>
+              <td>ஓம் காளிகாயை நமஹ</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>விஷ்வகர்மா</td>
+              <td>ஓம் விஷ்வகர்மணே நமஹ</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>சூரிய பகவான்</td>
+              <td>ஓம் ஸூர்யாய நமஹ</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>சந்திரன்</td>
+              <td>ஓம் சோமாய நமஹ</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>பத்மஸூதி விநாயகர் / விநாயகி சக்தி</td>
+              <td>ஓம் க்ரீம் மகா கணபதயே நமஹ</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>நவகிரகம்</td>
+              <td>ஓம் நவகிரபாய நமஹ</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>சனீஸ்வரன்</td>
+              <td>ஓம் ஶநைஸ்சராய நமஹ</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>ராஹு</td>
+              <td>ஓம் ராஹவே நமஹ</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>கேது</td>
+              <td>ஓம் கேதவே நமஹ</td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>குலதெய்வம்</td>
+              <td>ஓம் குலதெய்வாய நமஹ<br><span style="font-size:0.8rem;opacity:0.8;">(உங்கள் குடும்ப தெய்வத்தின் பெயரை சேர்த்தால் மிகச் சிறந்தது)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:14px;">⭐ எப்படி ஜபிக்கலாம்?</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>நேரம்</th>
+              <th>எத்தனை முறை</th>
+              <th>பலன்</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>காலை ஸ்நானம் பிறகு</td>
+              <td>3 முறை / 9 முறை</td>
+              <td>சக்தி &amp; மன அமைதி</td>
+            </tr>
+            <tr>
+              <td>அமாவாசை / பௌர்ணமி</td>
+              <td>11 முறை</td>
+              <td>பித்ரு நன்மை</td>
+            </tr>
+            <tr>
+              <td>சனி &amp; செவ்வாய்</td>
+              <td>21 முறை</td>
+              <td>தடைகள் நீங்கும்</td>
+            </tr>
+            <tr>
+              <td>பிறந்தநாள் / விசேஷ நாள்</td>
+              <td>108 முறை</td>
+              <td>மகா நன்மை</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <br>
+      <span class="tag">🛕 பக்தி அட்டவணை · தீபம் · அன்னதானம் · நன்கொடை · 21 தெய்வ மந்திரங்கள்</span>
+    </footer>
+
   </div>
 
   <script>
-    // CONFIG
-    const TARGET = 200000;
-
-    // Generate sample 100-name donation list (Tamil-friendly sample names)
-    const sampleNames = [
-      'A. Murugan','B. Kumar','C. Ravi','D. Ramesh','E. Kannan','F. Anand','G. Selvam','H. Arul','I. Shankar','J. Siva',
-      'K. Kumar','L. Raj','M. Natarajan','N. Suresh','O. Manikandan','P. Karthik','Q. Madan','R. Pradeep','S. Balaji','T. Dinesh',
-      'U. Venkatesh','V. Hari','W. Prakash','X. Vijay','Y. Ganesan','Z. Raju','Anbu','Balu','Chidambaram','Dharani',
-      'Eashwar','Faizal','Gopi','Hariharan','Ilango','Janakiraman','Karthikeyan','Loganathan','Manoj','Naveen',
-      'Omar','Prakash','Rajan','Selvaraj','Thirumalai','Udhayan','Vinoth','Vimal','Yogesh','Zakir',
-      'Aarthi','Bhanu','Charu','Divya','Ezhil','Fathima','Gayathri','Hema','Indira','Jayanthi',
-      'Kalpana','Lakshmi','Meena','Nithya','Oviya','Pavithra','Rajalakshmi','Sangeetha','Thara','Usha',
-      'Vasudha','Yamini','Zeya','Aruna','Bharathi','Chitra','Deepa','Eshwari','Feroz','Gowri',
-      'Harini','Ila','Jeeva','Kavya','Latha','Malar','Nila','Ovi','Priya','Raji'
-    ];
-
-    // Create 100 sample donation objects with random amounts
-    const donations = sampleNames.slice(0,100).map((n,i)=>{
-      // randomize amounts between 100 and 10000, more small donations
-      const amount = Math.floor(Math.pow(Math.random(),1.5)*9000)+100; // skewed distribution
-      return { id: i+1, name: n, amount, note: amount>2000? 'Major' : 'நல்கல்', date: new Date(Date.now()-Math.floor(Math.random()*1000*60*60*24*30)) };
-    });
-
-    // state
-    let visibleDonations = [...donations];
-
-    // DOM refs
-    const donationBody = document.getElementById('donationBody');
-    const raisedEl = document.getElementById('raised');
-    const donorCountEl = document.getElementById('donorCount');
-    const avgDonationEl = document.getElementById('avgDonation');
-    const progressBar = document.getElementById('progressBar');
-    const tickerInner = document.getElementById('tickerInner');
-    const collectedShort = document.getElementById('collectedShort');
-    const remainingShort = document.getElementById('remainingShort');
-
-    // render functions
-    function renderTable(list){
-      donationBody.innerHTML = '';
-      list.forEach((d,idx)=>{
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${d.id}</td><td>${escapeHtml(d.name)}</td><td>₹${d.amount.toLocaleString()}</td><td>${escapeHtml(d.note)}</td>`;
-        donationBody.appendChild(tr);
-      });
-    }
-
-    function updateStats(list){
-      const total = list.reduce((s,x)=>s+x.amount,0);
-      const count = list.length;
-      const avg = count? Math.round(total/count):0;
-      raisedEl.textContent = '₹' + total.toLocaleString();
-      donorCountEl.textContent = count;
-      avgDonationEl.textContent = '₹' + avg.toLocaleString();
-      const perc = Math.min(100, Math.round((total / TARGET) * 100));
-      progressBar.style.width = perc + '%';
-      collectedShort.textContent = '₹' + total.toLocaleString();
-      remainingShort.textContent = '₹' + Math.max(0, TARGET - total).toLocaleString();
-
-      // ticker recent 6 donations
-      const recent = list.slice(-6).map(d=>`${d.name} donated ₹${d.amount.toLocaleString()}`).join('  •  ');
-      tickerInner.textContent = recent || 'No donations yet';
-    }
-
-    // helpers
-    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]); }
-
-    // initial render
-    renderTable(visibleDonations);
-    updateStats(visibleDonations);
-
-    // SEARCH / FILTER
-    document.getElementById('applyFilter').addEventListener('click', ()=>{
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      if(!q){ visibleDonations = [...donations]; } else {
-        visibleDonations = donations.filter(d=> d.name.toLowerCase().includes(q) || String(d.amount).includes(q));
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // history இல்லையெனில் Home link க்கு போகும்
+        window.location.href = "https://sriskmgrnagar-commits.github.io/-/";
       }
-      renderTable(visibleDonations);
-      updateStats(visibleDonations);
-    });
-
-    document.getElementById('clearFilter').addEventListener('click', ()=>{
-      document.getElementById('searchInput').value = '';
-      visibleDonations = [...donations]; renderTable(visibleDonations); updateStats(visibleDonations);
-    });
-
-    // Export CSV
-    document.getElementById('exportCsv').addEventListener('click', ()=>{
-      const rows = [['ID','Name','Amount','Note']].concat(visibleDonations.map(d=>[d.id,d.name,d.amount,d.note]));
-      const csv = rows.map(r=>r.map(cell=>`"${String(cell).replace(/"/g,'""')}"`).join(',')).join('
-');
-      const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'donations.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    });
-
-    // Add random donation to simulate movement
-    document.getElementById('addRandom').addEventListener('click', ()=>{
-      const names = sampleNames;
-      const name = names[Math.floor(Math.random()*names.length)];
-      const amount = Math.floor(Math.random()*8000)+50;
-      const id = donations.length + 1;
-      const note = amount>2000? 'Major':'நல்கல்';
-      const obj = { id, name, amount, note, date: new Date() };
-      donations.push(obj);
-      visibleDonations.push(obj);
-      renderTable(visibleDonations);
-      updateStats(visibleDonations);
-      // flash progress bar
-      progressBar.style.boxShadow = '0 6px 18px rgba(6,182,212,0.18)';
-      setTimeout(()=> progressBar.style.boxShadow = '', 900);
-    });
-
-    // small UX: clicking a table row highlights donor
-    donationBody.addEventListener('click', (e)=>{
-      const tr = e.target.closest('tr'); if(!tr) return;
-      donationBody.querySelectorAll('tr').forEach(r=>r.style.background='');
-      tr.style.background='#fff8eb';
-    });
-
-    // ensure ticker resets animation when content changes
-    const ticker = document.getElementById('tickerInner');
-    const tickerObserver = new MutationObserver(()=>{ ticker.style.animation = 'none'; void ticker.offsetWidth; ticker.style.animation = null; });
-    tickerObserver.observe(ticker,{childList:true,characterData:true,subtree:true});
-
-    // accessibility: keyboard filter on Enter
-    document.getElementById('searchInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') document.getElementById('applyFilter').click(); });
-
+    }
   </script>
+
 </body>
 </html>
